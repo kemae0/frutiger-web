@@ -46,7 +46,7 @@ html[data-ig-theme] {
   --card-background: var(--fw-ig-paper) !important;
   --card-background-flat: var(--fw-ig-soft) !important;
   --surface-background: var(--fw-ig-paper) !important;
-  --web-wash: var(--fw-ig-paper) !important;
+  --web-wash: transparent !important;
   --wash: var(--fw-ig-soft) !important;
   --popover-background: var(--fw-ig-paper) !important;
   --popover-card-background: var(--fw-ig-paper) !important;
@@ -64,11 +64,18 @@ html[data-ig-theme] {
 html[data-ig-theme] :is(span, a, p, label, h1, h2, h3, button, input, textarea, [contenteditable="true"]) {
   font-family: var(--frutiger-font) !important;
 }
-html[data-ig-theme] :is(article, nav, [role="navigation"], [role="dialog"], [role="menu"], [role="listbox"], form) {
+html[data-ig-theme] :is(article, nav, footer, [role="navigation"], [role="dialog"], [role="menu"], [role="listbox"], form, main > header) {
   background-color: var(--fw-ig-paper) !important;
   border: 1px solid var(--fw-ig-edge) !important;
   border-radius: var(--fw-ig-radius) !important;
   box-shadow: var(--fw-ig-shadow) !important;
+}
+/* Clear the route canvas, not content cards. Nested React route wrappers can
+   otherwise cover the wallpaper with Instagram's solid page wash. */
+html[data-ig-theme] :is(body > [id^="mount_"], #react-root, main, [role="main"]),
+html[data-ig-theme] :is([id^="mount_"], #react-root) :is(div, section):has(main, [role="main"]):not(:is(article, nav, aside, form, [role="dialog"], [role="menu"], [role="listbox"])),
+html[data-ig-theme] :is(main, [role="main"]) > div:has(article):not([role="dialog"]) {
+  background: transparent !important;
 }
 /* Paint structural surfaces without changing Instagram's grids or media geometry. */
 html[data-ig-theme] :is(article, [role="dialog"], form) > header {

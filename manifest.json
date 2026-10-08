@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Frutiger Web",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Frutiger Aero and orange-and-white DORFic themes for YouTube, YouTube Music and Instagram.",
   "permissions": ["storage"],
   "action": {

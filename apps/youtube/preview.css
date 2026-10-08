@@ -136,3 +136,17 @@ yt-page-header-renderer, yt-page-header-view-model, ytm-shorts-lockup-view-model
 .modern-shorts-playback-fixture .ytSpecButtonShapeWithLabelHost { display: flex; flex-direction: column; gap: 8px; align-items: center; font-size: 11px; }
 .modern-shorts-playback-fixture .ytSpecButtonShapeWithLabelHost button { background: #343434; color: #fff; width: 40px; height: 40px; border: none; border-radius: 50%; font-size: 23px; }
 .modern-shorts-playback-fixture ytd-engagement-panel-section-list-renderer { display: block; padding: 18px; font-size: 12px; max-width: 220px; }
+/* Native-like layered avatar/backplate/reply styles expose the regressions. */
+#page-header-container { background: #0f0f0f; }
+.watch-fixture #author-thumbnail { width: 30px; height: 30px; background: #eee; box-shadow: 0 3px 9px #0004; }
+.watch-fixture #author-thumbnail yt-img-shadow { display: block; background: #fff; box-shadow: 0 2px 5px #0003; }
+.watch-fixture ytd-comment-replies-renderer { border-left: 1px solid #8aa1b1; }
+.channel-header :is(yt-decorated-avatar-view-model,yt-avatar-shape) { display: block; flex-shrink: 0; background: #eee; box-shadow: 0 3px 8px #0003; }
+ytd-tabbed-page-header,tp-yt-app-header,yt-image-banner-view-model { display: block; }
+#tabs-inner-container { background: #0f0f0f; }
+.channel-header :is(.ytSpecAvatarShapeHost,.ytSpecAvatarShapeAvatarSizeGiant) { display: block; position: relative; background: #ddd; box-shadow: 0 3px 8px #0004; }
+.channel-header .ytSpecAvatarShapeImageOverlays { position: absolute; inset: 0; background: #eee6; box-shadow: 0 2px 5px #0003; }
+/* Native channel avatar wrappers have explicit square geometry; the theme does not size them. */
+.channel-header :is(yt-decorated-avatar-view-model,yt-avatar-shape,.ytSpecAvatarShapeHost,.ytSpecAvatarShapeAvatarSizeGiant) { width: 94px; height: 94px; flex: 0 0 94px; }
+.channel-header :is(.ytSpecAvatarShapeHost,.ytSpecAvatarShapeAvatarSizeGiant) { display: flex; }
+@media(max-width:700px) { .channel-header :is(yt-decorated-avatar-view-model,yt-avatar-shape,.ytSpecAvatarShapeHost,.ytSpecAvatarShapeAvatarSizeGiant) { width: 65px; height: 65px; flex-basis: 65px; } }

@@ -40,7 +40,11 @@
       color: style.color, opacity: style.opacity, font: style.fontFamily, shadow: style.boxShadow,
       radius: style.borderRadius, height: rect.height, width: rect.width,
       background: style.backgroundColor, backgroundImage: style.backgroundImage,
-      textShadow: style.textShadow, display: style.display, hidden: element.hidden
+      textShadow: style.textShadow, display: style.display, hidden: element.hidden,
+      overflowX: style.overflowX, overflowY: style.overflowY,
+      scrollWidth: element.scrollWidth, clientWidth: element.clientWidth,
+      clamp: style.webkitLineClamp, lineHeight: style.lineHeight,
+      borders: ['Top', 'Right', 'Bottom', 'Left'].map(side => style[`border${side}Width`])
     };
     return { element, style, rect };
   };
@@ -74,6 +78,137 @@
       assert(Number(style.opacity) === 1, `${id}: nested text must not be faded`);
     }
     assert(Number(getComputedStyle(element).opacity) === 1, `${id}: label opacity must be restored`);
+  };
+  const noFrame = (id, allowedSides = [], nativeCorners = false) => {
+    const item = inspect(id);
+    if (!item) return;
+    assert(alpha(item.style.backgroundColor) === 0 && item.style.backgroundImage === 'none',
+      `${id}: inner comment rows must share the single outer reading surface`);
+    assert(item.style.boxShadow === 'none', `${id}: nested comment rows must not create repeated frames`);
+    if (!nativeCorners) assert(['TopLeft', 'TopRight', 'BottomLeft', 'BottomRight'].every(corner =>
+      parseFloat(item.style[`border${corner}Radius`]) === 0), `${id}: inner rows must not repeat rounded panel corners`);
+    for (const side of ['Top', 'Right', 'Bottom', 'Left'].filter(side => !allowedSides.includes(side))) {
+      assert(parseFloat(item.style[`border${side}Width`]) === 0,
+        `${id}: ${side.toLowerCase()} border must not create a nested comment frame`);
+    }
+  };
+  const circularAvatar = (id) => {
+    const item = inspect(id);
+    if (!item) return;
+    assert(item.rect.width > 0 && Math.abs(item.rect.width - item.rect.height) <= 1,
+      `${id}: avatar layers must retain their square native geometry`);
+    assert(['TopLeft', 'TopRight', 'BottomLeft', 'BottomRight'].every(corner =>
+      item.style[`border${corner}Radius`] === '50%'), `${id}: every wrapper corner must mask as a circle`);
+    assert(item.style.overflowX === 'hidden' && item.style.overflowY === 'hidden',
+      `${id}: avatar wrappers must clip their image corners`);
+    assert(alpha(item.style.backgroundColor) === 0 && item.style.backgroundImage === 'none' && item.style.boxShadow === 'none',
+      `${id}: transparent avatar wrappers must not reveal a square backplate or shadow`);
+  };
+  const canvasVisible = () => {
+    const item = inspect('ig-canvas');
+    if (!item) return;
+    const post = node('ig-post');
+    assert(Boolean(post) && item.element.contains(post), 'The native Instagram canvas must contain the feed article');
+    // Start outside the solid article so opaque route/main layers below the mount are checked too.
+    let element = post?.parentElement || item.element;
+    while (element && element !== document.body) {
+      const style = getComputedStyle(element);
+      const label = element.id || element.tagName.toLowerCase();
+      assert(alpha(style.backgroundColor) === 0 && style.backgroundImage === 'none',
+        `Instagram canvas ancestor ${label} must expose the scenic wallpaper`);
+      element = element.parentElement;
+    }
+    assert(item.rect.height > 0 && item.rect.width > 0 && item.style.visibility !== 'hidden',
+      'Instagram transparent canvas must retain its visible content layout');
+  };
+  const musicGuides = () => {
+    const app = document.querySelector('ytmusic-app');
+    const toggle = document.getElementById('guide-toggle');
+    assert(Boolean(app && toggle), 'Native Music guide fixture and toggle must exist');
+    if (!app || !toggle) return;
+    const compactInitially = app.hasAttribute('guide-collapsed');
+    const fullscreen = app.hasAttribute('fixture-fullscreen');
+    const themed = document.documentElement.hasAttribute('data-yt-music-theme');
+    const home = () => {
+      const item = inspect('music-home-content');
+      if (!item) return null;
+      assert(item.rect.height > 0 && item.rect.width > 0 && item.style.display !== 'none' &&
+        item.style.visibility === 'visible' && Number(item.style.opacity) > 0,
+        'Music home must remain visible and retain nonzero content dimensions');
+      const card = item.element.querySelector('ytmusic-two-row-item-renderer');
+      assert(Boolean(card) && card.getBoundingClientRect().height > 0 && getComputedStyle(card).visibility === 'visible',
+        'Music home must retain visible media content rather than only an empty wrapper');
+      return item;
+    };
+    if (fullscreen) {
+      for (const id of ['music-guide', 'music-mini-guide']) {
+        const item = inspect(id);
+        if (item) assert(item.style.visibility === 'hidden' || item.style.display === 'none',
+          'Native fullscreen must continue to hide both Music guides');
+      }
+      home();
+      return;
+    }
+    const check = (compact) => {
+      if (app.hasAttribute('guide-collapsed') !== compact) toggle.click();
+      const guide = inspect(compact ? 'music-mini-guide' : 'music-guide');
+      const entry = inspect(compact ? 'music-mini-guide-entry' : 'music-guide-entry');
+      const icon = inspect(compact ? 'music-mini-guide-icon' : 'music-guide-icon');
+      const content = home();
+      if (!guide || !entry || !icon) return;
+      assert(guide.style.visibility === 'visible' && guide.style.display !== 'none' && guide.rect.width > 0,
+        `${compact ? 'Compact' : 'Expanded'} Music guide must retain its native visible state`);
+      assert(icon.rect.width > 0 && icon.rect.height > 0 && icon.style.visibility === 'visible',
+        'Music guide icons must remain visible at a nonzero native size');
+      for (const boundary of [guide.rect, entry.rect]) {
+        assert(icon.rect.left >= boundary.left - 1 && icon.rect.right <= boundary.right + 1 &&
+          icon.rect.top >= boundary.top - 1 && icon.rect.bottom <= boundary.bottom + 1,
+          `${compact ? 'Compact' : 'Expanded'} Music icon must fit inside its visible guide and entry bounds`);
+      }
+      const svg = icon.element.querySelector('svg');
+      assert(Boolean(svg) && svg.getBoundingClientRect().width > 0 && svg.getBoundingClientRect().width <= icon.rect.width + 1,
+        'Native Music guide SVG artwork must fit inside its icon');
+      if (themed) assert(guide.element.scrollWidth <= guide.element.clientWidth + 1,
+        `${compact ? 'Compact' : 'Expanded'} visible guide must not overflow horizontally`);
+      if (!compact) {
+        const scrollport = guide.element.closest('#guide-content');
+        assert(Boolean(scrollport), 'Expanded Music guide must retain its native scrollport');
+        if (scrollport && themed) {
+          const style = getComputedStyle(scrollport);
+          const clipsHorizontally = ['hidden', 'clip'].includes(style.overflowX);
+          assert(clipsHorizontally || scrollport.scrollWidth <= scrollport.clientWidth + 1,
+            'Expanded guide must prevent a horizontal scrollbar despite native border and vertical gutter width');
+          assert(['auto', 'scroll'].includes(style.overflowY) && scrollport.scrollHeight > scrollport.clientHeight,
+            'Tall native guide content must remain vertically scrollable');
+          const startTop = scrollport.scrollTop;
+          scrollport.scrollTop = 20;
+          assert(scrollport.scrollTop > 0, 'Expanded Music guide must actually allow vertical scrolling');
+          scrollport.scrollTop = startTop;
+          const drawer = guide.element.closest('#contentContainer');
+          if (drawer) {
+            const drawerStyle = getComputedStyle(drawer);
+            assert(['hidden', 'clip'].includes(drawerStyle.overflowX) || drawer.scrollWidth <= drawer.clientWidth + 1,
+              'Native drawer must not create a second horizontal scrollbar');
+            assert(['auto', 'scroll'].includes(drawerStyle.overflowY), 'Native drawer must retain vertical scroll policy');
+          }
+        }
+        const mini = node('music-mini-guide');
+        if (mini) assert(getComputedStyle(mini).visibility === 'hidden', 'Expanded mode must keep the mini guide hidden');
+      } else {
+        const expanded = node('music-guide');
+        if (expanded) assert(getComputedStyle(expanded).visibility === 'hidden',
+          'Compact mode must preserve the hidden mounted expanded guide');
+      }
+      if (content) assert(content.rect.left >= guide.rect.right - 1,
+        'Music home content must remain beside the visible guide');
+      observations[compact ? 'music-compact-state' : 'music-expanded-state'] = {
+        guideWidth: guide.rect.width, iconLeft: icon.rect.left, iconRight: icon.rect.right,
+        guideScrollWidth: guide.element.scrollWidth, guideClientWidth: guide.element.clientWidth,
+        homeWidth: content?.rect.width, homeHeight: content?.rect.height
+      };
+    };
+    try { check(false); check(true); }
+    finally { if (app.hasAttribute('guide-collapsed') !== compactInitially) toggle.click(); }
   };
   const replies = () => {
     const panel = node('watch-replies-panel');
@@ -122,6 +257,7 @@
       if (instagram) {
         for (const id of ['ig-title', 'ig-byline', 'ig-comment', 'ig-dialog-text', 'ig-input']) nestedDark(id);
         for (const id of ['ig-post', 'ig-dialog', 'ig-nav', 'ig-login']) solid(id);
+        canvasVisible();
         white('ig-reel-text');
         const input = node('ig-input');
         if (input) {
@@ -227,9 +363,42 @@
         shadow('ytm-shorts-lockup-view-model-v2');
         const menu = inspect('menu-panel');
         if (menu) assert(menu.rect.width > 0 && menu.style.backgroundColor !== 'rgba(0, 0, 0, 0)', 'Menu must retain an opaque framed surface');
-        for (const id of ['watch-metadata-panel', 'watch-owner-panel', 'watch-like-panel',
-          'watch-description-panel', 'watch-comments-panel', 'watch-comments-header-panel',
-          'watch-editor-panel', 'watch-thread-panel', 'watch-replies-panel', 'watch-related-panel']) solid(id);
+        for (const id of ['watch-metadata-panel', 'watch-comments-panel', 'watch-related-panel',
+          'channel-backplate', 'channel-tabs-backplate']) solid(id);
+        for (const id of ['watch-owner-panel', 'watch-description-panel']) noFrame(id);
+        noFrame('watch-like-panel', [], true);
+        for (const id of ['watch-metadata-panel', 'watch-comments-panel']) {
+          const panel = node(id);
+          const primary = panel?.closest('#primary');
+          if (panel && primary) assert(Math.abs(panel.getBoundingClientRect().width - primary.getBoundingClientRect().width) <= 1,
+            `${id}: the coherent reading frame must fill its native primary column`);
+        }
+        const comments = node('watch-comments-panel');
+        if (comments) {
+          const style = getComputedStyle(comments);
+          assert(style.boxShadow !== 'none' && parseFloat(style.borderTopWidth) > 0,
+            'Comments must retain one framed outer reading surface');
+        }
+        for (const id of ['watch-comments-header-panel', 'watch-editor-panel', 'comment-reply-model',
+          'comment-nested-reply-model']) noFrame(id);
+        noFrame('watch-thread-panel', ['Bottom']);
+        noFrame('watch-replies-panel', ['Left']);
+        noFrame('comment-nested-replies', ['Left']);
+        for (const id of ['comment-avatar', 'comment-avatar-wrapper', 'channel-avatar-wrapper',
+          'channel-avatar-shape', 'channel-avatar-image', 'channel-avatar-native-host',
+          'channel-avatar-native-size', 'channel-avatar-native-overlay']) circularAvatar(id);
+        nestedDark('channel-handle');
+        nestedDark('channel-handle-link');
+        const longTitle = inspect('channel-long-title');
+        if (longTitle) {
+          const lineHeight = parseFloat(longTitle.style.lineHeight);
+          assert(longTitle.style.webkitLineClamp === '2' && longTitle.style.overflowY === 'hidden',
+            'Long channel Shorts titles must clamp to two lines');
+          assert(lineHeight > 0 && longTitle.rect.height > 0 && longTitle.rect.height <= lineHeight * 2 + 1,
+            'A long channel Shorts title must not grow beyond two native text lines');
+          assert(longTitle.rect.width > 0 && longTitle.style.whiteSpace === 'normal',
+            'Channel title clamping must retain native width and word wrapping');
+        }
         for (const id of ['watch-title', 'watch-owner-text', 'watch-like-text', 'watch-action-text',
           'watch-description-text', 'watch-description-link', 'watch-comments-heading', 'watch-editor-text',
           'watch-comment-author', 'watch-comment-text', 'watch-comment-action', 'watch-reply-text',
@@ -282,6 +451,7 @@
       }
       assert(document.documentElement.scrollWidth <= innerWidth + 1, 'Page must not overflow horizontally');
     }
+    if (music) musicGuides();
     if (!music && !instagram) replies();
   } catch (error) {
     failures.push(error.message);

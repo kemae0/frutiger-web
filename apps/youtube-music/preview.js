@@ -18,3 +18,18 @@ function apply() {
 }
 picker.addEventListener('change', apply);
 apply();
+// Fixture-only native guide state; extension styles never open a hidden guide.
+const fixtureApp = document.querySelector('ytmusic-app');
+const fixtureGuideMode = new URLSearchParams(location.search).get('guide');
+const fixtureGuideMedia = matchMedia('(max-width: 670px)');
+function applyFixtureGuide() {
+  fixtureApp.toggleAttribute('guide-collapsed', fixtureGuideMode === 'compact' || (fixtureGuideMode !== 'expanded' && fixtureGuideMedia.matches));
+  document.getElementById('guide-toggle').setAttribute('aria-expanded', String(!fixtureApp.hasAttribute('guide-collapsed')));
+}
+applyFixtureGuide();
+fixtureGuideMedia.addEventListener('change', applyFixtureGuide);
+document.getElementById('guide-toggle').addEventListener('click', () => {
+  fixtureApp.toggleAttribute('guide-collapsed');
+  document.getElementById('guide-toggle').setAttribute('aria-expanded', String(!fixtureApp.hasAttribute('guide-collapsed')));
+});
+fixtureApp.toggleAttribute('fixture-fullscreen', new URLSearchParams(location.search).get('fullscreen') === '1');

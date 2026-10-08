@@ -71,6 +71,8 @@ Run `node tools/verify-extensions.cjs` for manifest, host scope, local file refe
 
 Run `node tools/test-rendering.cjs` with Chrome or Edge installed to check browser rendering against native-style labels and stretched chips. It verifies contrast, packaged fonts, opaque watch/comment panels, Shorts playback overlays, reply toggling, Music genres/episodes/Related tabs, compact filters, artwork shapes, shadows, Instagram content/forms/menus, media colors and off restoration. Add `--screenshots` to refresh the six images above. Test profiles and reports remain under ignored `.qa/`.
 
+Sidebar checks exercise expanded and compact Music guides, including mounted hidden panels and native SVG icons. Use `--site=youtube-music --width=960 --guide=compact` for a narrower layout or `--site=youtube-music --guide=fullscreen` to verify the guide stays hidden during fullscreen. Comment checks cover transparent inner replies and circular avatar wrappers; Instagram checks verify that canvas layers expose the wallpaper while posts remain opaque.
+
 The previews use the actual theme stylesheets against representative local markup. Their layouts are illustrative. The source package has been checked with these fixtures and behavioral tests; it still needs an installed-extension check against live signed-in pages for account-specific layouts and playback.
 
 The manifest follows the official [Chrome content scripts documentation](https://developer.chrome.com/docs/extensions/reference/manifest/content-scripts).

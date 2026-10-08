@@ -111,35 +111,35 @@ html[data-yt-music-theme="dorfic"] ytmusic-search-box #suggestions {
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-renderer,
 html[data-yt-music-theme="dorfic"] #guide-wrapper,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-renderer {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-renderer[is-collapsed] {
   background: linear-gradient(100deg, #fffefa, #e8edf1) !important;
-  border-right: 1px solid #ecd1b8 !important;
+
   box-shadow: 2px 0 18px #b86b2210 !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed] {
   color: var(--df-ink) !important;
   border-radius: 8px !important;
-  margin: 4px 8px !important;
+
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[active],
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-selected],
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer[active] {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed][active] {
   color: var(--df-accent-ink) !important;
   background: linear-gradient(#ffb75c, #f77815 48%, #e65b04 51%, #ff8a26) !important;
-  border: 1px solid #d76716 !important;
+
   box-shadow: inset 0 1px 1px #fff9, 0 3px 8px #aa4a0620 !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[active] yt-icon,
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-selected] yt-icon,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer[active] yt-icon,
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed][active] yt-icon,
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[active] .title,
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-selected] .title,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer[active] .title {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed][active] .title {
   color: var(--df-accent-ink) !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer:hover,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer:hover {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed]:hover {
   box-shadow: inset 0 0 0 1px #ec873a !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-browse-response,
@@ -314,20 +314,20 @@ html[data-yt-music-theme="dorfic"] ytmusic-search-box #suggestions {
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-renderer,
 html[data-yt-music-theme="dorfic"] #guide-wrapper,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-renderer {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-renderer[is-collapsed] {
   background: linear-gradient(90deg, #fff, #f6f8fa 92%, #e4eaf0 93%, #fff 96%) !important;
-  border-right: 1px solid #b9c4ce !important;
+
   box-shadow: inset -3px 0 #fa7a1d !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[active],
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-selected],
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer[active] {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed][active] {
   background: linear-gradient(90deg, #ffad53, #ff8928) !important;
   border-color: #d27020 !important;
   box-shadow: inset 4px 0 #cf5c05, inset 0 1px #ffd3a1, 0 2px 0 #b9c4ce50 !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer:hover,
-html[data-yt-music-theme="dorfic"] ytmusic-mini-guide-entry-renderer:hover {
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer[is-collapsed]:hover {
   box-shadow: inset 3px 0 #ed751c, inset 0 0 0 1px #a9bac8 !important;
 }
 html[data-yt-music-theme="dorfic"] ytmusic-carousel-shelf-renderer {
@@ -742,3 +742,32 @@ html[data-yt-music-theme="dorfic"] ytmusic-player-page #side-panel tp-yt-paper-t
 html[data-yt-music-theme="dorfic"] ytmusic-player-page #side-panel tp-yt-paper-tabs #selectionBar {
   background-color: #b64a08 !important;
 }
+
+/* Native guide dimensions and hidden expanded/visible collapsed state are owned by Music. */
+html[data-yt-music-theme="dorfic"] :is(ytmusic-guide-renderer, ytmusic-guide-entry-renderer, ytmusic-guide-entry-renderer tp-yt-paper-item) {
+  box-sizing: border-box;
+}
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer .guide-icon {
+  color: #2b211b !important;
+  fill: currentColor !important;
+  flex-shrink: 0;
+}
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer .title-column {
+  min-width: 0;
+}
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer :is(.title-group, .subtitle-group) {
+  min-width: 0; overflow: hidden;
+}
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer :is(.title, .subtitle),
+html[data-yt-music-theme="dorfic"] ytmusic-guide-entry-renderer :is(.title, .subtitle) :is(a, span) {
+  color: #2b211b !important;
+}
+html[data-yt-music-theme="dorfic"] ytmusic-browse-response > #content-wrapper { min-width: 0; box-sizing: border-box; }
+
+/* Clip horizontal overflow at the native drawer scrollports, not at content or icon widths. */
+html[data-yt-music-theme="dorfic"] tp-yt-app-drawer#guide #contentContainer,
+html[data-yt-music-theme="dorfic"] tp-yt-app-drawer#guide #guide-content {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+html[data-yt-music-theme="dorfic"] ytmusic-app-layout #mini-guide-background { box-sizing: border-box; }
