@@ -1,0 +1,28 @@
+:root { color-scheme: light; font-family: "Segoe UI", Arial, sans-serif; color: #16465b; }
+* { box-sizing: border-box; }
+body { width: 330px; margin: 0; padding: 24px; background: radial-gradient(ellipse at 85% -10%, #fff 0, transparent 53%), linear-gradient(150deg, #e4fbff, #ccf0ff 55%, #eaf7d4); }
+header { display: flex; align-items: center; gap: 12px; margin: -24px -24px 20px; padding: 18px 20px; background: linear-gradient(#8de6ff,#2b9ada 46%,#0871bc 50%,#38b3e2); border-bottom: 1px solid #075a8b; box-shadow: inset 0 1px #e2fdff, 0 3px 7px #144f7440; color: #fff; text-shadow: 0 1px #125b87; }
+h1 { font-size: 23px; font-weight: 600; letter-spacing: -.7px; margin: 3px 0 0; }
+.setting { display: flex; align-items: center; gap: 12px; position: relative; padding: 17px 15px; border: 1px solid #fff; border-radius: 16px; background: linear-gradient(#ffffffdf, #ffffff80); box-shadow: 0 3px 10px #185f7520, inset 0 1px #fff; cursor: pointer; }
+.setting strong { display: block; font-size: 14px; }
+input { position: absolute; right: 14px; width: 44px; height: 28px; opacity: 0; z-index: 2; cursor: pointer; }
+.switch { margin-left: auto; width: 44px; height: 26px; background: #a9bbc1; border-radius: 16px; box-shadow: inset 0 1px 4px #1c4a5740; transition: background .15s; }
+.switch::after { content: ""; display: block; width: 20px; height: 20px; margin: 3px; border-radius: 50%; background: linear-gradient(#fff, #d9edf3); box-shadow: 0 1px 3px #17465750; transition: transform .15s; }
+input:checked + .switch { background: linear-gradient(#88d466, #379458); }
+input:checked + .switch::after { transform: translateX(18px); }
+input:focus-visible + .switch { outline: 3px solid #0989bf; outline-offset: 3px; }
+.picker-label { display: block; font-size: 11px; font-weight: 600; margin: 19px 2px 7px; }
+select { width: 100%; padding: 11px 12px; border: 1px solid #a0cbd8; border-radius: 11px; background: #ffffffcf; color: #16465b; font: inherit; font-size: 13px; box-shadow: inset 0 1px #fff; }
+select:focus-visible { outline: 3px solid #0989bf; outline-offset: 2px; }
+.status { font-size: 12px; line-height: 1.5; min-height: 36px; margin: 17px 2px 10px; }
+body[data-theme="dorfic"] { background: radial-gradient(ellipse at 85% -10%, #fff 0, transparent 53%), linear-gradient(150deg, #fff9ee, #ffdfba 60%, #fffaf2); color: #653719; }
+body[data-theme="dorfic"] .switch { background: #b8aaa0; }
+body[data-theme="dorfic"] input:checked + .switch { background: linear-gradient(#ffb458, #e76818); }
+body[data-theme="dorfic"] .setting, body[data-theme="dorfic"] select { border-color: #f0ccaa; }
+.site-setting { display: flex; position: relative; align-items: center; justify-content: space-between; padding: 10px 4px; font-size: 12px; border-bottom: 1px solid #b6d6dd80; cursor: pointer; }
+.site-setting input { right: 4px; }
+.site-setting .switch { flex-shrink: 0; }
+body[data-theme="dorfic"] header { background: linear-gradient(110deg,#fff,#dce1e7); border-top: 5px solid #f37816; border-bottom: 1px solid #a7adb4; color: #323a41; text-shadow: 0 1px #fff; }
+body[data-theme="dorfic"] .setting, body[data-theme="dorfic"] select { border-radius: 6px; }
+body[data-theme="dorfic"] select { color: #653719; }
+body[data-theme="dorfic"] .site-setting { border-color: #b9bec4; }

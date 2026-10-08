@@ -1,0 +1,383 @@
+/* All rules are opt-in. Removing the root attribute restores native YouTube Music. */
+html[data-yt-music-theme="frutiger"] {
+  color-scheme: light;
+  --fm-ink: #103f55;
+  --fm-muted: #38677b;
+  --fm-border: #7fb9cc;
+  --fm-glass: linear-gradient(180deg, #f5fdfff5 0%, #d7f1fbed 52%, #b9dceded 53%, #e6f6fbf5 100%);
+  --fm-gloss: linear-gradient(#fff 0%, #e7f8ff 44%, #a8d4e9 45%, #caeafa 100%);
+  --fm-blue: #087daa;
+  --ytmusic-color-black1: #e3f5fc;
+  --ytmusic-color-black2: #eefaff;
+  --ytmusic-color-black3: #d8edf6;
+  --ytmusic-color-black4: #badbe8;
+  --ytmusic-color-blackpure: #eefaff;
+  --ytmusic-color-blackpure-alpha30: rgba(208,239,250,.3);
+  --ytmusic-color-blackpure-alpha60: rgba(220,243,251,.6);
+  --ytmusic-color-blackpure-alpha80: rgba(223,245,252,.85);
+  --ytmusic-color-white1: #103f55;
+  --ytmusic-color-white2: #2a576d;
+  --ytmusic-color-white3: #436a7a;
+  --ytmusic-color-white4: #517888;
+  --ytmusic-color-white5: #597c8b;
+  --ytmusic-color-grey1: #527c8f;
+  --ytmusic-color-grey2: #446f83;
+  --ytmusic-color-grey3: #3b6579;
+  --ytmusic-color-grey4: #79a3b5;
+  --ytmusic-color-grey5: #a4c9d9;
+  --ytmusic-color-lightgrey: #b8dce9;
+  --ytmusic-color-mediumgrey: #7197a8;
+  --ytmusic-color-darkgrey: #d0e9f3;
+  --ytmusic-color-red: #057da8;
+  --ytmusic-color-lightred: #0879a0;
+  --ytmusic-color-lightblue: #027aab;
+  --ytmusic-color-blue1: #057aaa;
+  --ytmusic-primary-color: #103f55;
+  --ytmusic-secondary-color: #38677b;
+  --ytmusic-background: #e3f5fc;
+  --ytmusic-text-primary: #103f55;
+  --ytmusic-text-secondary: #38677b;
+  --ytmusic-divider: rgba(45,117,145,.24);
+  --ytmusic-menu-background: #f0fbff;
+  --ytmusic-search-background: #f0fbff;
+  --yt-spec-text-primary: #103f55;
+  --yt-spec-text-secondary: #38677b;
+  --yt-spec-icon-active-other: #0d6284;
+  --yt-spec-icon-inactive: #38677b;
+  --yt-spec-base-background: #e3f5fc;
+  --yt-spec-raised-background: #f0fbff;
+  --yt-spec-menu-background: #f0fbff;
+  --yt-spec-brand-background-primary: #e3f5fc;
+  --yt-spec-brand-background-secondary: #d5edf7;
+  --yt-spec-general-background-a: #e3f5fc;
+  --yt-spec-general-background-b: #edfaff;
+  --yt-spec-badge-chip-background: #d6edf7;
+  --yt-spec-call-to-action: #067eaa;
+  --yt-spec-10-percent-layer: rgba(30,120,160,.1);
+  --yt-spec-outline: rgba(53,129,161,.3);
+  --paper-slider-active-color: #159bc6;
+  --paper-slider-container-color: #9ecbda;
+  --paper-slider-knob-color: #1689b0;
+  --paper-spinner-color: #058cb8;
+  --iron-icon-fill-color: currentColor;
+  scrollbar-color: #62a8bf #e2f3f8;
+}
+html[data-yt-music-theme="frutiger"] body,
+html[data-yt-music-theme="frutiger"] ytmusic-app {
+  background: radial-gradient(ellipse at 86% 8%, rgba(255,255,255,.92), transparent 46%), radial-gradient(ellipse at 100% 95%, #c8eaba 0%, transparent 46%), linear-gradient(145deg, #b9e3f5, #ecfaff 46%, #c8e7f0) !important;
+  color: var(--fm-ink) !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-app {
+  /* These definitions also beat app-local native variable declarations. */
+  --ytmusic-color-black1: #e3f5fc;
+  --ytmusic-color-black2: #eefaff;
+  --ytmusic-color-black3: #d8edf6;
+  --ytmusic-color-black4: #badbe8;
+  --ytmusic-color-blackpure: #eefaff;
+  --ytmusic-color-white1: #103f55;
+  --ytmusic-color-white2: #2a576d;
+  --ytmusic-color-white3: #436a7a;
+  --ytmusic-color-white4: #517888;
+  --ytmusic-color-grey2: #446f83;
+  --ytmusic-color-red: #057da8;
+  --ytmusic-primary-color: #103f55;
+  --ytmusic-secondary-color: #38677b;
+  --ytmusic-background: transparent;
+  --ytmusic-divider: rgba(45,117,145,.24);
+  --ytmusic-menu-background: #f0fbff;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-app-layout,
+html[data-yt-music-theme="frutiger"] ytmusic-browse-response,
+html[data-yt-music-theme="frutiger"] ytmusic-player-page,
+html[data-yt-music-theme="frutiger"] ytmusic-section-list-renderer,
+html[data-yt-music-theme="frutiger"] #background.ytmusic-app-layout { background: transparent !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar {
+  background: linear-gradient(180deg, #fffffffa 0%, #d8f7fffa 48%, #94d5ecee 49%, #c9effbf5 100%) !important;
+  border-bottom: 1px solid #78b4ca !important;
+  box-shadow: 0 3px 13px #2368852b, inset 0 1px 0 #fff !important;
+  backdrop-filter: none;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar #logo,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar .ytmusic-logo { filter: drop-shadow(0 1px 1px #1d6b8733); }
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar #right-content,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar .left-content,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar #left-content { color: var(--fm-ink) !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-search-box {
+  --ytmusic-search-background: #f1fbff;
+  --ytmusic-search-border: #89bbcc;
+  background: linear-gradient(#fefeff, #eaf8ff) !important;
+  border: 1px solid #86b8cc !important;
+  border-radius: 22px !important;
+  box-shadow: inset 0 2px 4px #3c829523, 0 1px 0 #fff !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-search-box #input { color: var(--fm-ink) !important; caret-color: #087daa; }
+html[data-yt-music-theme="frutiger"] ytmusic-search-box #input::placeholder { color: #527785 !important; opacity: 1; }
+html[data-yt-music-theme="frutiger"] ytmusic-guide-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-guide-renderer #guide-wrapper,
+html[data-yt-music-theme="frutiger"] ytmusic-guide-renderer #contentContainer {
+  background: linear-gradient(110deg, #f6fdfff5, #d7f0f8ef) !important;
+  border-right-color: #a4cadb !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer { border-radius: 12px !important; margin-inline: 6px; color: var(--fm-ink) !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer:hover { background: #c8e9f5 !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer[active],
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer[is-selected] {
+  background: var(--fm-gloss) !important; box-shadow: inset 0 1px #fff, 0 2px 5px #487c9530 !important;
+  color: #085d84 !important; border: 1px solid #9bc9db;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-renderer {
+  background: var(--fm-glass) !important; border: 1px solid rgba(255,255,255,.95) !important; border-radius: 22px !important;
+  box-shadow: 0 6px 18px #29678024, inset 0 1px 0 #fff, inset 0 -1px 2px #73b4cf66, 0 0 0 1px #96c5d655 !important;
+  padding: 20px 22px !important; margin-block: 20px !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer .title,
+html[data-yt-music-theme="frutiger"] ytmusic-detail-header-renderer .title,
+html[data-yt-music-theme="frutiger"] ytmusic-responsive-header-renderer .title {
+  color: #134960 !important; text-shadow: 0 1px 0 #fff; font-family: "Segoe UI", Arial, sans-serif !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer .strapline,
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer .subtitle,
+html[data-yt-music-theme="frutiger"] ytmusic-responsive-list-item-renderer .secondary-flex-columns { color: var(--fm-muted) !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer .title,
+html[data-yt-music-theme="frutiger"] ytmusic-responsive-list-item-renderer .title,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar .title,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar .byline { color: var(--fm-ink) !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer #image,
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer .image,
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer ytmusic-thumbnail-renderer {
+  border-radius: 14px !important; overflow: hidden; box-shadow: 0 5px 12px #235b8033, 0 0 0 1px #ffffffbc;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer,
+html[data-yt-music-theme="frutiger"] yt-chip-cloud-chip-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer #text {
+  background: var(--fm-gloss) !important; color: #15506c !important; border-color: #91bbce !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer,
+html[data-yt-music-theme="frutiger"] yt-chip-cloud-chip-renderer { border-radius: 20px !important; box-shadow: inset 0 1px 0 #fff, 0 2px 3px #2a6c851a; }
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[selected],
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[is-selected] { background: linear-gradient(#8bdd61, #439d24) !important; color: #103707 !important; border-color: #579c3c !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[selected] #text { background: transparent !important; color: #103707 !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-detail-header-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-responsive-header-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-player-queue,
+html[data-yt-music-theme="frutiger"] ytmusic-queue-header-renderer { background: var(--fm-glass) !important; border-radius: 18px; }
+html[data-yt-music-theme="frutiger"] ytmusic-player-queue { border: 1px solid #aed0de; }
+html[data-yt-music-theme="frutiger"] ytmusic-player-queue-item { color: var(--fm-ink) !important; border-bottom: 1px solid #bddde955; }
+html[data-yt-music-theme="frutiger"] ytmusic-player-queue-item:hover,
+html[data-yt-music-theme="frutiger"] ytmusic-responsive-list-item-renderer:hover { background-color: #bfe6f066 !important; border-radius: 8px; }
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar {
+  background: linear-gradient(180deg, #fffffffa 0%, #d2f4fffa 48%, #82c6e2fa 49%, #c4edfafa 100%) !important;
+  color: var(--fm-ink) !important; border-top: 1px solid #7dafc4 !important;
+  box-shadow: 0 -5px 20px #255a7920, inset 0 1px #fff !important;
+  backdrop-filter: none;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar tp-yt-paper-icon-button,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar tp-yt-paper-icon-button,
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-renderer tp-yt-paper-icon-button { color: #176b8e !important; border-radius: 50%; }
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #play-pause-button {
+  color: #fff !important; background: linear-gradient(#7dd9ee, #1294bf 48%, #087ba6 49%, #15a5ca) !important;
+  border: 1px solid #258cac !important; border-radius: 50%; box-shadow: inset 0 1px #fff9, 0 3px 6px #28647a55;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #progress-bar,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #slider,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar tp-yt-paper-slider {
+  --paper-slider-active-color: #138cba; --paper-slider-container-color: #abd1de; --paper-slider-knob-color: #087fab;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-play-button-renderer {
+  --ytmusic-play-button-background-color: #087dac;
+  --ytmusic-play-button-icon-color: #fff;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-menu-popup-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-popup-container tp-yt-paper-dialog,
+html[data-yt-music-theme="frutiger"] ytmusic-search-suggestions-section,
+html[data-yt-music-theme="frutiger"] ytmusic-search-box #suggestions {
+  background: var(--fm-glass) !important; color: var(--fm-ink) !important; border: 1px solid #9dc5d7 !important;
+  border-radius: 14px !important; box-shadow: 0 10px 28px #12405b38, inset 0 1px #fff !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-menu-navigation-item-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-menu-service-item-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-toggle-menu-service-item-renderer { color: var(--fm-ink) !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-menu-navigation-item-renderer:hover,
+html[data-yt-music-theme="frutiger"] ytmusic-menu-service-item-renderer:hover { background: #cceaf6 !important; }
+html[data-yt-music-theme="frutiger"] a,
+html[data-yt-music-theme="frutiger"] yt-formatted-string a { color: inherit; }
+html[data-yt-music-theme="frutiger"] :focus-visible { outline: 3px solid #057db1 !important; outline-offset: 3px; }
+/* Fullscreen video controls stay native; no rules target video or .html5-video-player. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer,
+  html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer { transition: none !important; }
+}
+
+/* Aqua window chrome and stereo hardware: visual framing only; site content is untouched. */
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar {
+  background: linear-gradient(180deg, #d1f6ff 0%, #70c7ed 5%, #2398cf 43%, #06539d 44%, #0d78bb 83%, #70cee8 100%) !important;
+  border-top: 1px solid #ffffffc9 !important;
+  border-bottom: 3px solid #09568d !important;
+  box-shadow: inset 0 2px 0 #ecffff99, inset 0 -2px 0 #8fe7ff, 0 2px 0 #b8ebff, 0 6px 13px #032e5e65 !important;
+  color: #f8feff !important;
+  --ytmusic-color-white1: #f8feff;
+  --ytmusic-color-white2: #ebfaff;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar #right-content,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar .left-content,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar #left-content,
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar tp-yt-paper-icon-button {
+  color: #f8feff !important; text-shadow: 0 1px 2px #003762;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-search-box {
+  --ytmusic-search-background: #eefcff;
+  --ytmusic-color-white1: #143b50;
+  color: #17465c !important;
+  background: linear-gradient(180deg, #b9d5df 0%, #e8f8ff 15%, #fff 52%, #e4f8ff 100%) !important;
+  border: 1px solid #124b77 !important;
+  border-radius: 6px 20px 20px 6px !important;
+  box-shadow: inset 0 3px 5px #214d7159, inset 0 -2px 0 #fff, 0 1px 0 #c6f3ff, 0 0 0 2px #a9d9ed80 !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-search-box tp-yt-paper-icon-button { color: #17465c !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-guide-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-guide-renderer #guide-wrapper,
+html[data-yt-music-theme="frutiger"] ytmusic-guide-renderer #contentContainer {
+  background: linear-gradient(90deg, #effafff2 0%, #cfe8f4e8 86%, #9bc8ddd9 100%) !important;
+  border-right: 1px solid #538fb4 !important;
+  box-shadow: inset -2px 0 0 #ffffff8c, 3px 0 8px #10457126;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer {
+  border-radius: 5px 18px 18px 5px !important;
+  border: 1px solid transparent;
+  margin-block: 3px;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer:hover {
+  background: linear-gradient(#f2fdff, #c3e3f3 49%, #9ecbdf 50%, #dcf3ff) !important;
+  border-color: #7eafc6;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer[active],
+html[data-yt-music-theme="frutiger"] ytmusic-guide-entry-renderer[is-selected] {
+  background: linear-gradient(180deg, #f1ffcf 0%, #c0ed78 44%, #70bc2e 45%, #a9e464 100%) !important;
+  color: #173e08 !important; border-color: #619637;
+  box-shadow: inset 0 1px #fff, inset 0 -2px #62a4246b, 0 2px 4px #315b3f3d !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-renderer {
+  background: linear-gradient(180deg, #f7fdfff5, #deeff9ed 62%, #c3e3f1f0) !important;
+  border: 1px solid #4c8bad !important;
+  border-radius: 8px 8px 3px 3px !important;
+  box-shadow: inset 0 1px #fff, inset 1px 0 #fff, inset -1px -2px #a0c4d7, 0 0 0 2px #e2f7ffbb, 0 7px 12px #003d682e !important;
+  padding: 15px 17px 18px !important;
+  margin-block: 25px !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer {
+  background: linear-gradient(180deg, #a0e4f9 0%, #369ece 45%, #065498 46%, #197fbb 100%) !important;
+  border: 1px solid #095c91;
+  border-radius: 5px 5px 2px 2px;
+  box-shadow: inset 0 1px #e9fcff, inset 0 -1px #71d2ef, 0 2px 3px #093e7140;
+  padding: 10px 13px;
+  margin-bottom: 20px;
+  align-items: center;
+  --ytmusic-color-white1: #f4fdff;
+  --ytmusic-color-white2: #e0f6ff;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer .title {
+  color: #fff !important;
+  text-shadow: 0 1px 2px #003365 !important;
+  font-family: Tahoma, "Segoe UI", Arial, sans-serif !important;
+  font-weight: 700;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer .strapline {
+  color: #e9fbff !important; text-shadow: 0 1px #104e79;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer tp-yt-paper-icon-button {
+  color: #fff !important;
+  background: linear-gradient(#7bccdf, #096393) !important;
+  border: 1px solid #c1edf980;
+  box-shadow: inset 0 1px #f5ffff88, 0 1px 2px #003a66;
+  border-radius: 4px;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer #image,
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer .image,
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer ytmusic-thumbnail-renderer {
+  border-radius: 3px !important;
+  outline: 1px solid #6398b2;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #f8feff, 0 0 0 4px #9ec3d4, 0 5px 7px #0734524d, inset 0 1px #fff !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-two-row-item-renderer .title { text-shadow: 0 1px #fff; }
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer,
+html[data-yt-music-theme="frutiger"] yt-chip-cloud-chip-renderer {
+  background: linear-gradient(#f6fdff 0%, #d4edfa 45%, #9fcde3 46%, #d8effa 100%) !important;
+  border: 1px solid #618aa5 !important;
+  border-radius: 50px !important;
+  color: #123d57 !important;
+  box-shadow: inset 0 1px #fff, inset 0 -2px #5a99b466, 0 2px 3px #00416c40 !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer #text { background: transparent !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[selected],
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[is-selected] {
+  background: linear-gradient(#eaffc8 0%, #b8eb6e 44%, #68b623 45%, #a8e461 100%) !important;
+  color: #163d09 !important;
+  border-color: #51892d !important;
+  box-shadow: inset 0 1px #fff, inset 0 -2px #4a8b2380, 0 0 0 1px #eeffd5, 0 3px 5px #24672b40 !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[selected] #text,
+html[data-yt-music-theme="frutiger"] ytmusic-chip-cloud-chip-renderer[is-selected] #text { color: #163d09 !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar {
+  background: repeating-linear-gradient(0deg, #ffffff09 0px, #ffffff09 1px, #18476808 1px, #18476808 2px), linear-gradient(180deg, #ffffff 0%, #e0edf5 12%, #b9d0df 44%, #8aaec6 45%, #d7e8f2 91%, #729db8 100%) !important;
+  border-top: 3px solid #155b89 !important;
+  color: #113b55 !important;
+  box-shadow: inset 0 2px #f8ffff, inset 0 -2px #3a7197, 0 -1px 0 #c8eafa, 0 -5px 13px #02305057 !important;
+  --ytmusic-color-white1: #113b55;
+  --ytmusic-color-white2: #315c73;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #play-pause-button {
+  background: radial-gradient(ellipse at 48% 12%, #ffffffe0 0%, #ffffff40 25%, transparent 45%), linear-gradient(180deg, #d3fa96 0%, #8ece38 46%, #399312 47%, #79c72c 100%) !important;
+  color: #123c07 !important;
+  border: 1px solid #305f32 !important;
+  border-radius: 50% !important;
+  box-shadow: inset 0 1px #ffffffea, inset 0 -3px #1e6d1770, 0 0 0 2px #f0f7f7, 0 0 0 3px #719aa4, 0 3px 5px #143c524f !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #previous-button,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #next-button {
+  background: linear-gradient(#fff 0%, #d8e7ee 44%, #a0bece 45%, #e0f1f6 100%) !important;
+  color: #164e71 !important;
+  border: 1px solid #6b97ad;
+  border-radius: 50%;
+  box-shadow: inset 0 1px #fff, 0 1px 3px #0c3e5d44;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #progress-bar,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar #slider,
+html[data-yt-music-theme="frutiger"] ytmusic-player-bar tp-yt-paper-slider {
+  --paper-slider-active-color: #59ab16;
+  --paper-slider-container-color: #7196aa;
+  --paper-slider-knob-color: #c2edf5;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-queue {
+  border: 1px solid #538dab;
+  border-radius: 5px;
+  box-shadow: inset 0 1px #fff, 0 0 0 2px #dff5ff8c, 0 3px 9px #00385226;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-queue-header-renderer {
+  background: linear-gradient(#b8ebff, #519fcc 44%, #226d9f 45%, #88cce8) !important;
+  border-radius: 4px 4px 0 0;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-menu-popup-renderer,
+html[data-yt-music-theme="frutiger"] ytmusic-popup-container tp-yt-paper-dialog {
+  border-radius: 5px !important;
+  border: 1px solid #4d87aa !important;
+  box-shadow: inset 0 1px #fff, 0 0 0 2px #ddf5ff, 0 7px 15px #07365c66 !important;
+}
+
+html[data-yt-music-theme="frutiger"] ytmusic-queue-header-renderer {
+  color: #fff !important;
+  --ytmusic-color-white1: #fff;
+  --ytmusic-color-white2: #effbff;
+  text-shadow: 0 1px #18577d;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-nav-bar :focus-visible,
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer :focus-visible {
+  outline-color: #efffcc !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer button,
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer tp-yt-paper-icon-button,
+html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer yt-icon {
+  color: #fff !important;
+  --ytmusic-color-white1: #fff;
+  border-color: #a9e8ff !important;
+}

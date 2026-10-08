@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Frutiger Web",
+  "version": "1.0.0",
+  "description": "Bring Frutiger Aero glass and orange-and-white DORFic to YouTube and YouTube Music.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Frutiger Web",
+    "default_popup": "popup.html",
+    "default_icon": {"16":"icons/icon-16.png","32":"icons/icon-32.png","48":"icons/icon-48.png","128":"icons/icon-128.png"}
+  },
+  "icons": {"16":"icons/icon-16.png","32":"icons/icon-32.png","48":"icons/icon-48.png","128":"icons/icon-128.png"},
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*", "https://youtube.com/*"],
+      "js": ["registry.js", "content.js"],
+      "css": ["apps/youtube/theme-frutiger.css", "apps/youtube/theme-dorfic.css", "wallpaper.css"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["registry.js", "content.js"],
+      "css": ["apps/youtube-music/theme-frutiger.css", "apps/youtube-music/theme-dorfic.css", "wallpaper.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["assets/aero-scene.webp", "assets/dorfic-scene.webp"],
+    "matches": ["https://www.youtube.com/*", "https://youtube.com/*", "https://music.youtube.com/*"]
+  }]
+}

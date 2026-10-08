@@ -1,0 +1,399 @@
+/* DORFic YouTube: luminous white panels and glossy orange 2000s hardware. */
+html[data-yt-tube-theme="dorfic"],
+html[data-yt-tube-theme="dorfic"] ytd-app {
+  color-scheme: light !important;
+  --df-ink: #242e38;
+  --df-muted: #596674;
+  --df-accent-ink: #2d1809;
+  --df-orange: #ef6a0a;
+  --df-border: #bbc5ce;
+  --yt-spec-base-background: #f7f8f9 !important;
+  --yt-spec-raised-background: #ffffff !important;
+  --yt-spec-menu-background: #f7f8f9 !important;
+  --yt-spec-inverted-background: #303944 !important;
+  --yt-spec-general-background-a: #f7f8f9 !important;
+  --yt-spec-general-background-b: #edf0f3 !important;
+  --yt-spec-general-background-c: #e3e8ed !important;
+  --yt-spec-brand-background-primary: #ffffff !important;
+  --yt-spec-brand-background-secondary: #eef2f5 !important;
+  --yt-spec-brand-background-solid: #ffffff !important;
+  --yt-spec-text-primary: #242e38 !important;
+  --yt-spec-text-secondary: #596674 !important;
+  --yt-spec-text-disabled: #8794a0 !important;
+  --yt-spec-text-primary-inverse: #fff !important;
+  --yt-spec-call-to-action: #ad4700 !important;
+  --yt-spec-call-to-action-inverse: #ffb571 !important;
+  --yt-spec-icon-active-other: #a94805 !important;
+  --yt-spec-icon-inactive: #596674 !important;
+  --yt-spec-icon-disabled: #8794a0 !important;
+  --yt-spec-brand-icon-active: #ef6a0a !important;
+  --yt-spec-brand-icon-inactive: #a9683e !important;
+  --yt-spec-brand-button-background: #ef6a0a !important;
+  --yt-spec-static-brand-red: #ef6a0a !important;
+  --yt-spec-badge-chip-background: #e9edf0 !important;
+  --yt-spec-button-chip-background-hover: #f9d9b9 !important;
+  --yt-spec-10-percent-layer: #dfb58a44 !important;
+  --yt-spec-20-percent-layer: #d49e6b66 !important;
+  --yt-spec-outline: #bac5cf !important;
+  --yt-spec-touch-response: #ef6a0a !important;
+  --yt-spec-wordmark-text: #303944 !important;
+  --yt-endpoint-color: #242e38 !important;
+  --yt-endpoint-hover-color: #ad4700 !important;
+  --yt-endpoint-visited-color: #465563 !important;
+  --ytd-searchbox-background: #f7f8f9 !important;
+  --ytd-searchbox-text-color: #242e38 !important;
+  --ytd-searchbox-border-color: #aab7c2 !important;
+  --ytd-searchbox-legacy-border-color: #aab7c2 !important;
+  --ytd-searchbox-legacy-button-color: #e8edf1 !important;
+  --ytd-searchbox-legacy-button-border-color: #aab7c2 !important;
+  --ytd-searchbox-legacy-button-focus-color: #f7d5b5 !important;
+  --ytd-searchbox-legacy-button-hover-color: #ffe0bf !important;
+  --ytd-searchbox-legacy-button-hover-border-color: #d79760 !important;
+  --yt-button-icon-button-text-color: #a94805 !important;
+  --yt-button-icon-button-background-color: #e8edf1 !important;
+  --paper-listbox-background-color: #f7f8f9 !important;
+  --paper-dialog-background-color: #f7f8f9 !important;
+  --paper-menu-background-color: #f7f8f9 !important;
+  background: #f7f8f9 !important;
+}
+html[data-yt-tube-theme="dorfic"] body,
+html[data-yt-tube-theme="dorfic"] ytd-app {
+  color: var(--df-ink) !important;
+  background:
+    radial-gradient(ellipse at 97% 6%, #ffbf7040 0 10%, transparent 10.3%),
+    radial-gradient(ellipse at 94% 2%, transparent 0 19%, #f9a5421f 19.2% 23%, transparent 23.2%),
+    radial-gradient(ellipse at 5% 85%, #ffd29b2c, transparent 55%),
+    linear-gradient(140deg, #fffefa, #fff8ef 57%, #ffead5) !important;
+  background-attachment: fixed !important;
+}
+html[data-yt-tube-theme="dorfic"] #masthead-container,
+html[data-yt-tube-theme="dorfic"] ytd-masthead {
+  background: linear-gradient(#fff 0%, #ffffff 45%, #f9e3cc 100%) !important;
+  border-bottom: 1px solid #dfb98f !important;
+  box-shadow: 0 3px 15px #b7671a18, inset 0 1px #fff !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-masthead #background {
+  background: transparent !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-searchbox #container,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentSearchForm,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentInputBox {
+  border-radius: 8px !important;
+  color: var(--df-ink) !important;
+  background: linear-gradient(#fff, #fff9ef) !important;
+  border: 1px solid #aab7c2 !important;
+  box-shadow: inset 0 2px 5px #94501620, 0 1px #fff !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentHost {
+  color: var(--df-ink) !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-searchbox input,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentInput,
+html[data-yt-tube-theme="dorfic"] yt-searchbox input {
+  color: var(--df-ink) !important;
+  caret-color: var(--df-orange) !important;
+  background: transparent !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-searchbox input::placeholder,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentInput::placeholder,
+html[data-yt-tube-theme="dorfic"] yt-searchbox input::placeholder {
+  color: var(--df-muted) !important;
+}
+html[data-yt-tube-theme="dorfic"] #search-icon-legacy,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentSearchButton {
+  color: var(--df-accent-ink) !important;
+  border: 1px solid #d46b20 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(#ffc16e, #f88420 46%, #e86b0c 51%, #ff9633) !important;
+  box-shadow: inset 0 1px #fff9 !important;
+}
+html[data-yt-tube-theme="dorfic"] #search-icon-legacy yt-icon,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentSearchButton yt-icon {
+  color: var(--df-accent-ink) !important;
+}
+html[data-yt-tube-theme="dorfic"] #voice-search-button .yt-spec-button-shape-next {
+  background: linear-gradient(#fff, #f7e2cd) !important;
+  color: #a84906 !important;
+  border: 1px solid #e0bc99 !important;
+  box-shadow: inset 0 1px #fff, 0 2px 4px #b5651620 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-mini-guide-renderer,
+html[data-yt-tube-theme="dorfic"] #guide-content,
+html[data-yt-tube-theme="dorfic"] #guide-inner-content {
+  background: linear-gradient(95deg, #fffefa, #fff0dd) !important;
+  border-right: 1px solid #ebcfb3 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer a,
+html[data-yt-tube-theme="dorfic"] ytd-mini-guide-entry-renderer a {
+  border-radius: 8px !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[active],
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[is-selected] {
+  background: transparent !important;
+  border-radius: 8px !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[active] a,
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[is-selected] a {
+  background: linear-gradient(#ffbe68, #f77d18 48%, #e96508 51%, #ff9030) !important;
+  border: 1px solid #d66a20 !important;
+  box-shadow: inset 0 1px #fffb, 0 3px 7px #b0580525 !important;
+  color: var(--df-accent-ink) !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[active] .title,
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[active] yt-icon,
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[is-selected] .title,
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[is-selected] yt-icon {
+  color: var(--df-accent-ink) !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer:not([active]):hover a,
+html[data-yt-tube-theme="dorfic"] ytd-mini-guide-entry-renderer:hover a {
+  background: #ffe7cf !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-rich-grid-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-browse,
+html[data-yt-tube-theme="dorfic"] ytd-watch-flexy {
+  background: transparent !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-feed-filter-chip-bar-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-feed-filter-chip-bar-renderer #chips-wrapper,
+html[data-yt-tube-theme="dorfic"] ytd-feed-filter-chip-bar-renderer #background {
+  background: #f7f9fa !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer {
+  background: linear-gradient(#fff, #f8e4cf) !important;
+  border: 1px solid #e4c2a0 !important;
+  color: var(--df-ink) !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 1px #fff, 0 2px 4px #a95a1014 !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer[selected] {
+  background: linear-gradient(#ffbd69, #f97e1b 48%, #e86408 51%, #fc8e2b) !important;
+  border-color: #d2681c !important;
+  color: var(--df-accent-ink) !important;
+  text-shadow: 0 1px #fff9 !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer[selected] yt-formatted-string {
+  color: var(--df-accent-ink) !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-rich-item-renderer #content > ytd-rich-grid-media,
+html[data-yt-tube-theme="dorfic"] ytd-rich-item-renderer #content > ytd-rich-grid-slim-media,
+html[data-yt-tube-theme="dorfic"] yt-lockup-view-model,
+html[data-yt-tube-theme="dorfic"] ytd-video-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-playlist-renderer {
+  background: linear-gradient(150deg, #ffffffed, #fff7ebdd) !important;
+  border: 1px solid #edd2b8 !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 1px #fff, 0 4px 14px #aa601714 !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-rich-item-renderer ytd-thumbnail,
+html[data-yt-tube-theme="dorfic"] ytd-video-renderer ytd-thumbnail,
+html[data-yt-tube-theme="dorfic"] ytd-compact-video-renderer ytd-thumbnail {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 7px #a9561225 !important;
+}
+html[data-yt-tube-theme="dorfic"] #video-title,
+html[data-yt-tube-theme="dorfic"] #video-title-link,
+html[data-yt-tube-theme="dorfic"] ytd-watch-metadata h1,
+html[data-yt-tube-theme="dorfic"] ytd-comment-thread-renderer #content-text {
+  color: var(--df-ink) !important;
+}
+html[data-yt-tube-theme="dorfic"] #metadata-line,
+html[data-yt-tube-theme="dorfic"] ytd-channel-name,
+html[data-yt-tube-theme="dorfic"] #owner-sub-count,
+html[data-yt-tube-theme="dorfic"] #published-time-text {
+  color: var(--df-muted) !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-watch-metadata #description,
+html[data-yt-tube-theme="dorfic"] ytd-watch-metadata #description-inner,
+html[data-yt-tube-theme="dorfic"] ytd-engagement-panel-section-list-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-playlist-panel-renderer #container {
+  background: linear-gradient(145deg, #fffefb, #fff2e1) !important;
+  border-radius: 8px !important;
+  border: 1px solid #e8c9ab !important;
+  box-shadow: inset 0 1px #fff, 0 4px 13px #a85d1612 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-watch-metadata #description-inner {
+  border: none !important;
+  box-shadow: none !important;
+}
+html[data-yt-tube-theme="dorfic"] .yt-spec-button-shape-next--filled {
+  background: linear-gradient(#ffc171, #fa8220 48%, #e96609 51%, #ff9331) !important;
+  border: 1px solid #d66a1d !important;
+  color: var(--df-accent-ink) !important;
+  text-shadow: 0 1px #fff9 !important;
+  box-shadow: inset 0 1px #fffa, 0 2px 5px #a8500524 !important;
+}
+html[data-yt-tube-theme="dorfic"] .yt-spec-button-shape-next--tonal,
+html[data-yt-tube-theme="dorfic"] .yt-spec-button-shape-next--outline {
+  background: linear-gradient(#fff, #f8e4cf) !important;
+  border: 1px solid #e1bc97 !important;
+  color: var(--df-ink) !important;
+  box-shadow: inset 0 1px #fff !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-menu-popup-renderer,
+html[data-yt-tube-theme="dorfic"] tp-yt-paper-dialog,
+html[data-yt-tube-theme="dorfic"] tp-yt-paper-listbox,
+html[data-yt-tube-theme="dorfic"] yt-sheet-view-model {
+  background: linear-gradient(145deg, #fff, #fff2e4) !important;
+  color: var(--df-ink) !important;
+  border: 1px solid #e2bd98 !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 1px #fff, 0 12px 28px #89501929 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-menu-service-item-renderer:hover,
+html[data-yt-tube-theme="dorfic"] ytd-menu-navigation-item-renderer:hover {
+  background: #ffe8ce !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-playlist-panel-video-renderer[selected],
+html[data-yt-tube-theme="dorfic"] ytd-playlist-panel-video-renderer:hover {
+  background: #ffe5c9 !important;
+}
+/* Keep footage, player surfaces, captions, and white controls untouched. */
+html[data-yt-tube-theme="dorfic"] #movie_player,
+html[data-yt-tube-theme="dorfic"] ytd-player {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #ddd !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #ddd !important;
+  --yt-spec-base-background: #0f0f0f !important;
+  --yt-spec-raised-background: #212121 !important;
+  --yt-spec-menu-background: #282828 !important;
+  color-scheme: dark !important;
+}
+html[data-yt-tube-theme="dorfic"] .ytp-play-progress,
+html[data-yt-tube-theme="dorfic"] .ytp-scrubber-button,
+html[data-yt-tube-theme="dorfic"] .ytp-volume-slider-handle::before {
+  background: #f57c19 !important;
+}
+html[data-yt-tube-theme="dorfic"] a:focus-visible,
+html[data-yt-tube-theme="dorfic"] button:focus-visible,
+html[data-yt-tube-theme="dorfic"] [tabindex]:focus-visible {
+  outline: 3px solid #a44c08 !important;
+  outline-offset: 3px !important;
+}
+html[data-yt-tube-theme="dorfic"] ::selection {
+  color: #fff !important;
+  background: #bc4e02 !important;
+}
+html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar { width: 10px; height: 10px; }
+html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-track { background: #f2f5f7; }
+html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-thumb { background: #e7b482; border: 2px solid #f2f5f7; border-radius: 8px !important; }
+html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-thumb:hover { background: #d58a4e; }
+
+/* DORFic industrial finish: crisp porcelain, alloy seams and tangerine rails. */
+html[data-yt-tube-theme="dorfic"] ytd-masthead {
+  background:
+    radial-gradient(circle at 91% 50%, transparent 20px, #f4761344 21px 22px, transparent 23px 34px, #8796a544 35px 36px, transparent 37px),
+    repeating-linear-gradient(90deg, transparent 0 99px, #71849714 99px 100px),
+    linear-gradient(180deg, #fff 0 68%, #edf1f4 68% 95%, #cbd4dc 95%) !important;
+  border-bottom: 1px solid #aebbc6 !important;
+  box-shadow: inset 0 3px #fa7a1d, 0 3px 0 #fff9, 0 5px 16px #263e521c !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-searchbox #container,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentSearchForm,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentInputBox {
+  border-radius: 7px 0 0 7px !important;
+  background: linear-gradient(#e8edf1 0, #fff 5px, #fff) !important;
+  border-color: #a4b1be !important;
+  box-shadow: inset 0 1px 3px #253e5224, 0 1px #fff !important;
+}
+html[data-yt-tube-theme="dorfic"] #search-icon-legacy,
+html[data-yt-tube-theme="dorfic"] yt-searchbox .ytSearchboxComponentSearchButton {
+  border-radius: 0 7px 7px 0 !important;
+  background: linear-gradient(135deg, #ffaf50, #ff831e 55%, #ee7010) !important;
+  border-color: #c96310 !important;
+  box-shadow: inset 1px 1px #ffc987, inset 0 -3px #d05f0e44 !important;
+}
+html[data-yt-tube-theme="dorfic"] #voice-search-button .yt-spec-button-shape-next {
+  background: linear-gradient(#fff 0 70%, #dde5eb 71%) !important;
+  border: 1px solid #acbac6 !important;
+  box-shadow: inset 0 1px #fff, 0 2px 0 #fff8 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-mini-guide-renderer,
+html[data-yt-tube-theme="dorfic"] #guide-content,
+html[data-yt-tube-theme="dorfic"] #guide-inner-content {
+  background: linear-gradient(90deg, #fff, #f6f8fa 92%, #e4eaf0 93%, #fff 96%) !important;
+  border-right: 1px solid #b9c4ce !important;
+  box-shadow: inset -3px 0 #fa7a1d !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[active] a,
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer[is-selected] a {
+  background: linear-gradient(90deg, #ffad53, #ff8928) !important;
+  border-color: #d27020 !important;
+  box-shadow: inset 4px 0 #cf5c05, inset 0 1px #ffd3a1, 0 2px 0 #b9c4ce50 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-guide-entry-renderer:not([active]):hover a,
+html[data-yt-tube-theme="dorfic"] ytd-mini-guide-entry-renderer:hover a {
+  background: #e8eef3 !important;
+  box-shadow: inset 3px 0 #fa7a1d !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-feed-filter-chip-bar-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-feed-filter-chip-bar-renderer #chips-wrapper,
+html[data-yt-tube-theme="dorfic"] ytd-feed-filter-chip-bar-renderer #background {
+  background: #f7f9faf5 !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer {
+  background: linear-gradient(#fff 0 80%, #e0e7ed 81%) !important;
+  border-color: #b5c1cc !important;
+  border-radius: 6px !important;
+  box-shadow: inset 0 1px #fff, 0 2px 0 #fff9 !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer[selected] {
+  background: linear-gradient(135deg, #ffad53, #ff8828) !important;
+  border-color: #d27020 !important;
+  box-shadow: inset 0 -3px #d4600a66, inset 0 1px #ffd5a5 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-rich-item-renderer #content > ytd-rich-grid-media,
+html[data-yt-tube-theme="dorfic"] ytd-rich-item-renderer #content > ytd-rich-grid-slim-media,
+html[data-yt-tube-theme="dorfic"] yt-lockup-view-model,
+html[data-yt-tube-theme="dorfic"] ytd-video-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-playlist-renderer {
+  background:
+    linear-gradient(90deg, #f87819 0 3px, transparent 3px) no-repeat,
+    linear-gradient(135deg, #fff 0 80%, #ecf0f3 80% 88%, #fff 88%) !important;
+  border: 1px solid #c3cdd5 !important;
+  border-radius: 9px !important;
+  box-shadow: inset 0 1px #fff, 0 3px 0 #c4ced740, 0 6px 16px #273f5717 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-watch-metadata #description,
+html[data-yt-tube-theme="dorfic"] ytd-engagement-panel-section-list-renderer,
+html[data-yt-tube-theme="dorfic"] ytd-playlist-panel-renderer #container,
+html[data-yt-tube-theme="dorfic"] ytd-menu-popup-renderer,
+html[data-yt-tube-theme="dorfic"] tp-yt-paper-dialog,
+html[data-yt-tube-theme="dorfic"] tp-yt-paper-listbox,
+html[data-yt-tube-theme="dorfic"] yt-sheet-view-model {
+  background: linear-gradient(135deg, #fff 0 85%, #edf1f4 85%) !important;
+  border: 1px solid #b7c4ce !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 3px #f47c22, inset 0 4px #ffc180, 0 5px 18px #253e5220 !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-watch-metadata #description-inner {
+  background: transparent !important;
+}
+html[data-yt-tube-theme="dorfic"] .yt-spec-button-shape-next--filled {
+  background: linear-gradient(135deg, #ffaf53, #ff8525) !important;
+  border-radius: 7px !important;
+  box-shadow: inset 0 1px #ffd8af, inset 0 -3px #cd570b55, 0 2px 0 #c6d0d94d !important;
+}
+html[data-yt-tube-theme="dorfic"] .yt-spec-button-shape-next--tonal,
+html[data-yt-tube-theme="dorfic"] .yt-spec-button-shape-next--outline {
+  background: linear-gradient(#fff 0 74%, #e0e7ed 75%) !important;
+  border: 1px solid #adbcc8 !important;
+  border-radius: 7px !important;
+}
+html[data-yt-tube-theme="dorfic"] ytd-playlist-panel-video-renderer[selected],
+html[data-yt-tube-theme="dorfic"] ytd-playlist-panel-video-renderer:hover,
+html[data-yt-tube-theme="dorfic"] ytd-menu-service-item-renderer:hover,
+html[data-yt-tube-theme="dorfic"] ytd-menu-navigation-item-renderer:hover {
+  background: #e7edf2 !important;
+  box-shadow: inset 3px 0 #f87920 !important;
+}
+html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-thumb {
+  background: #8e9dac; border-color: #f2f5f7; border-radius: 4px !important;
+}
+html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-thumb:hover { background: #ea741b; }

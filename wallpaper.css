@@ -1,0 +1,16 @@
+/* Shared scenery; site modules supply the controls and content surfaces. */
+html[data-frutiger-theme="frutiger"] {
+  background: linear-gradient(#e7faff18, #f2ffff10), var(--frutiger-scene, none) center / cover fixed, #58b8e9 !important;
+}
+html[data-frutiger-theme="dorfic"] {
+  background: linear-gradient(#ffffff20, #ffffff10), var(--frutiger-scene, none) center / cover fixed, #eef1f4 !important;
+}
+html[data-frutiger-theme] body,
+html[data-frutiger-theme] ytd-app,
+html[data-frutiger-theme] ytmusic-app,
+html[data-frutiger-theme] ytmusic-app-layout {
+  background: transparent !important;
+}
+html[data-frutiger-theme] ytmusic-background-overlay-renderer {
+  opacity: 0 !important;
+}

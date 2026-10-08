@@ -1,0 +1,209 @@
+/* Every surface is opt-in; removing the theme attribute restores the native site. */
+html[data-yt-tube-theme="frutiger"],
+html[data-yt-tube-theme="frutiger"] ytd-app {
+  color-scheme: light !important;
+  --yt-spec-base-background: #e6f5fb !important;
+  --yt-spec-raised-background: #fff !important;
+  --yt-spec-menu-background: #f7fcff !important;
+  --yt-spec-general-background-a: #f0faff !important;
+  --yt-spec-general-background-b: #e6f5fb !important;
+  --yt-spec-general-background-c: #ccecf7 !important;
+  --yt-spec-brand-background-primary: #f0faff !important;
+  --yt-spec-brand-background-secondary: #e6f5fb !important;
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-text-secondary: #45667a !important;
+  --yt-spec-text-disabled: #708d9c !important;
+  --yt-spec-icon-active-other: #126b99 !important;
+  --yt-spec-icon-inactive: #3b7796 !important;
+  --yt-spec-badge-chip-background: #caeaf5 !important;
+  --yt-spec-button-chip-background-hover: #a8dce9 !important;
+  --yt-spec-10-percent-layer: #187bb12b !important;
+  --yt-spec-touch-response: #20b7dc !important;
+  --yt-spec-outline: #5995b37d !important;
+  --yt-spec-call-to-action: #006db2 !important;
+  --yt-spec-inverted-background: #0863a1 !important;
+  --yt-spec-inverted-text: #fff !important;
+  --ytd-searchbox-background: #fff !important;
+  --ytd-searchbox-text-color: #14354d !important;
+  --ytd-searchbox-border-color: #155a8d !important;
+  --ytd-searchbox-legacy-border-color: #155a8d !important;
+  --ytd-searchbox-legacy-border-shadow-color: #124e7940 !important;
+  --ytd-searchbox-legacy-button-color: #b5e88a !important;
+  --ytd-searchbox-legacy-button-border-color: #548a2e !important;
+  --ytd-searchbox-legacy-button-focus-color: #c9ef9c !important;
+  --ytd-searchbox-legacy-button-hover-color: #b5e88a !important;
+  --paper-dialog-background-color: #f7fcff !important;
+  --paper-listbox-background-color: #f7fcff !important;
+  --paper-input-container-input-color: #14354d !important;
+  --frutiger-panel: linear-gradient(180deg, #fff 0%, #f8fdff 64%, #e4f2f9 100%);
+  --frutiger-blue-chrome: linear-gradient(180deg, #b3f0ff 0%, #39b9dc 7%, #1172a0 24%, #075582 47%, #064475 49%, #075791 76%, #23aacd 100%);
+  --frutiger-green-chrome: linear-gradient(180deg, #f2ffd6 0%, #c9f58c 8%, #96d553 47%, #6eb42e 49%, #84c843 77%, #d1f79d 100%);
+  --frutiger-silver-chrome: linear-gradient(180deg, #fff 0%, #edfaff 12%, #d6edf7 47%, #b1d9eb 49%, #d4edf7 82%, #fff 100%);
+}
+/* The page's scenic background is supplied by the shared asset module. */
+html[data-yt-tube-theme="frutiger"] ytd-masthead {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #def6ff !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #def6ff !important;
+  --yt-spec-wordmark-text: #fff !important;
+  background: var(--frutiger-blue-chrome) !important;
+  color: #fff !important;
+  border-bottom: 2px solid #135787;
+  box-shadow: inset 0 1px #e0ffff, inset 0 -1px #a2eaf9, 0 3px 0 #fff9, 0 7px 18px #043b6f40;
+}
+html[data-yt-tube-theme="frutiger"] ytd-masthead #background { background: transparent !important; }
+html[data-yt-tube-theme="frutiger"] ytd-masthead #country-code { color: #dcf6ff !important; }
+html[data-yt-tube-theme="frutiger"] ytd-searchbox #container,
+html[data-yt-tube-theme="frutiger"] .ytSearchboxComponentInputBox {
+  background: linear-gradient(#d2e7f2, #f9feff 26%, #fff 75%, #e8f6fc) !important;
+  border: 1px solid #155a8d !important;
+  box-shadow: inset 0 2px 5px #1c548730, 0 1px 0 1px #ffffff70;
+  color: #14354d !important;
+}
+html[data-yt-tube-theme="frutiger"] .ytSearchboxComponentSearchForm input,
+html[data-yt-tube-theme="frutiger"] ytd-searchbox input { color: #14354d !important; caret-color: #006db2; }
+html[data-yt-tube-theme="frutiger"] .ytSearchboxComponentSearchForm input::placeholder { color: #476b80 !important; }
+html[data-yt-tube-theme="frutiger"] ytd-searchbox #search-icon-legacy,
+html[data-yt-tube-theme="frutiger"] .ytSearchboxComponentSearchButton {
+  background: var(--frutiger-green-chrome) !important;
+  border-color: #548a2e !important;
+  color: #234714 !important;
+  box-shadow: inset 0 1px #f8ffe8, inset 0 -1px #558c24, 0 1px 0 1px #ffffff70;
+}
+html[data-yt-tube-theme="frutiger"] ytd-mini-guide-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-guide-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-app #guide-content {
+  background: linear-gradient(90deg, #fcfffff5, #e4f6ffed 88%, #a8daefed 99%) !important;
+  border-right: 2px solid #348ab6;
+  box-shadow: inset -1px 0 #f1ffff, 3px 0 10px #0061a222;
+}
+html[data-yt-tube-theme="frutiger"] ytd-mini-guide-entry-renderer {
+  margin: 6px;
+  border-radius: 12px;
+  border: 1px solid #93c1d480;
+  background: var(--frutiger-silver-chrome);
+  box-shadow: inset 0 1px #fff, 0 1px 2px #176c9320;
+}
+html[data-yt-tube-theme="frutiger"] ytd-guide-entry-renderer { border-radius: 12px; }
+html[data-yt-tube-theme="frutiger"] ytd-guide-entry-renderer[active],
+html[data-yt-tube-theme="frutiger"] ytd-guide-entry-renderer[active] #endpoint,
+html[data-yt-tube-theme="frutiger"] ytd-mini-guide-entry-renderer[is-active] {
+  background: var(--frutiger-green-chrome) !important;
+  color: #224314 !important;
+  border: 1px solid #548a2e;
+  box-shadow: inset 0 1px #f7ffe3, inset 0 -1px #70a53e, 0 2px 5px #305d2426;
+}
+html[data-yt-tube-theme="frutiger"] ytd-guide-entry-renderer[active] yt-icon,
+html[data-yt-tube-theme="frutiger"] ytd-mini-guide-entry-renderer[is-active] yt-icon { color: #315c21 !important; }
+html[data-yt-tube-theme="frutiger"] ytd-guide-entry-renderer:not([active]):hover,
+html[data-yt-tube-theme="frutiger"] ytd-mini-guide-entry-renderer:not([is-active]):hover {
+  background: var(--frutiger-silver-chrome) !important;
+  box-shadow: inset 0 1px #fff, 0 0 0 1px #70b1ce;
+}
+html[data-yt-tube-theme="frutiger"] ytd-feed-filter-chip-bar-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-feed-filter-chip-bar-renderer #chips-wrapper,
+html[data-yt-tube-theme="frutiger"] ytd-feed-filter-chip-bar-renderer #chips-content,
+html[data-yt-tube-theme="frutiger"] ytd-rich-grid-renderer #header {
+  background: linear-gradient(180deg, #faffffed, #d8f1f8d9) !important;
+  border-bottom: 1px solid #7badc470;
+  box-shadow: inset 0 1px #fff9;
+}
+html[data-yt-tube-theme="frutiger"] yt-chip-cloud-chip-renderer {
+  border: 1px solid #376f9d !important;
+  background: linear-gradient(180deg, #eefcff 0%, #b2e6fa 11%, #77caea 47%, #4badd8 49%, #84d5ef 82%, #d3f6ff 100%) !important;
+  color: #123b61 !important;
+  box-shadow: inset 0 1px #fff, inset 0 -1px #ffffffa6, 0 2px 3px #07518326;
+  border-radius: 18px !important;
+}
+html[data-yt-tube-theme="frutiger"] yt-chip-cloud-chip-renderer[selected] {
+  background: var(--frutiger-green-chrome) !important;
+  color: #224314 !important;
+  border-color: #548a2e !important;
+  box-shadow: inset 0 1px #f5ffe6, inset 0 -1px #70a53e, 0 2px 4px #2f681e33;
+}
+html[data-yt-tube-theme="frutiger"] yt-chip-cloud-chip-renderer #text { color: inherit !important; }
+html[data-yt-tube-theme="frutiger"] ytd-rich-grid-media,
+html[data-yt-tube-theme="frutiger"] ytd-rich-grid-slim-media {
+  background: var(--frutiger-panel) !important;
+  border: 1px solid #4f97b9;
+  border-radius: 16px;
+  padding: 7px;
+  box-shadow: 0 0 0 1px #ffffffbd, 0 2px 0 #0e65822e, 0 8px 18px #04457538, inset 0 0 0 2px #fff;
+}
+html[data-yt-tube-theme="frutiger"] ytd-rich-grid-media #details { padding: 0 6px 8px; }
+html[data-yt-tube-theme="frutiger"] ytd-rich-grid-media ytd-thumbnail { border-radius: 10px !important; }
+html[data-yt-tube-theme="frutiger"] ytd-thumbnail #thumbnail {
+  border-radius: 10px !important;
+  box-shadow: 0 0 0 1px #37749870, 0 1px 0 #fff;
+}
+html[data-yt-tube-theme="frutiger"] yt-lockup-view-model {
+  box-sizing: border-box;
+  background: var(--frutiger-panel) !important;
+  border: 1px solid #4f97b9;
+  border-radius: 16px;
+  padding: 9px;
+  box-shadow: 0 0 0 1px #ffffffbd, 0 2px 0 #0e65822e, 0 8px 18px #04457538, inset 0 0 0 2px #fff;
+}
+html[data-yt-tube-theme="frutiger"] ytd-video-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-playlist-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-shelf-renderer {
+  border: 1px solid #4f97b9;
+  border-radius: 16px;
+  background: var(--frutiger-panel) !important;
+  box-shadow: 0 0 0 1px #ffffffb3, 0 5px 14px #0445752d, inset 0 0 0 2px #fff;
+}
+html[data-yt-tube-theme="frutiger"] ytd-video-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-playlist-renderer { padding: 12px; }
+html[data-yt-tube-theme="frutiger"] ytd-watch-metadata #description,
+html[data-yt-tube-theme="frutiger"] ytd-engagement-panel-section-list-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-playlist-panel-renderer #container {
+  border: 1px solid #4f97b9 !important;
+  border-radius: 16px !important;
+  background: var(--frutiger-panel) !important;
+  box-shadow: 0 0 0 1px #fff9, 0 5px 14px #0445752d, inset 0 1px #fff;
+}
+html[data-yt-tube-theme="frutiger"] ytd-watch-metadata yt-button-shape button,
+html[data-yt-tube-theme="frutiger"] ytd-watch-metadata yt-button-view-model button,
+html[data-yt-tube-theme="frutiger"] ytd-masthead yt-button-shape button {
+  border: 1px solid #4685a9;
+  background: var(--frutiger-silver-chrome) !important;
+  color: #17486a !important;
+  box-shadow: inset 0 1px #fff, inset 0 -1px #93bfd7, 0 2px 3px #003e672b;
+}
+html[data-yt-tube-theme="frutiger"] ytd-subscribe-button-renderer button {
+  background: var(--frutiger-green-chrome) !important;
+  color: #224314 !important;
+  border-color: #548a2e !important;
+}
+html[data-yt-tube-theme="frutiger"] ytd-multi-page-menu-renderer,
+html[data-yt-tube-theme="frutiger"] ytd-menu-popup-renderer,
+html[data-yt-tube-theme="frutiger"] tp-yt-paper-dialog,
+html[data-yt-tube-theme="frutiger"] tp-yt-paper-listbox {
+  background: linear-gradient(180deg, #d7f3ff, #fff 44px, #f1faff) !important;
+  color: #14354d !important;
+  border: 1px solid #317bab;
+  border-radius: 14px !important;
+  box-shadow: 0 0 0 1px #fff9, 0 12px 36px #0638585c, inset 0 0 0 2px #eefcff;
+}
+html[data-yt-tube-theme="frutiger"] ytd-comment-thread-renderer { border-bottom: 1px solid #7aaaca70; padding-bottom: 18px; }
+html[data-yt-tube-theme="frutiger"] ytd-comments-header-renderer { color: #14354d; }
+html[data-yt-tube-theme="frutiger"] ytd-browse[page-subtype="channels"] #page-header-container,
+html[data-yt-tube-theme="frutiger"] ytd-tabbed-page-header,
+html[data-yt-tube-theme="frutiger"] yt-page-header-renderer { background: #effaffd4 !important; }
+/* Keep the player's dark control surfaces and native interaction behavior. */
+html[data-yt-tube-theme="frutiger"] #movie_player,
+html[data-yt-tube-theme="frutiger"] ytd-player {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #ddd !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #ddd !important;
+  --yt-spec-base-background: #0f0f0f !important;
+  --yt-spec-raised-background: #212121 !important;
+  --yt-spec-menu-background: #282828 !important;
+  color-scheme: dark !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-searchbox, yt-searchbox, yt-chip-cloud-chip-renderer, ytd-guide-entry-renderer) :focus-visible {
+  outline: 2px solid #025796 !important;
+  outline-offset: 3px;
+}

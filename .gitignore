@@ -1,0 +1,6 @@
+# Generated previews and local tooling artifacts
+*.zip
+.qa/
+node_modules/
+Thumbs.db
+Desktop.ini

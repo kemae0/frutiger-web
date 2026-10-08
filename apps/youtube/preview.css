@@ -1,0 +1,51 @@
+* { box-sizing: border-box; }
+:root { font-family: "Segoe UI", Arial, sans-serif; color: #f1f1f1; background: #0f0f0f; }
+body { margin: 0; }
+ytd-app,ytd-masthead,ytd-guide-renderer,ytd-guide-entry-renderer,ytd-rich-grid-renderer,ytd-rich-grid-media,ytd-rich-item-renderer,ytd-thumbnail,ytd-feed-filter-chip-bar-renderer { display: block; }
+a { color: inherit; text-decoration: none; }
+ytd-app { min-height: 100vh; background: #0f0f0f; color: var(--yt-spec-text-primary, #f1f1f1); }
+ytd-masthead { height: 70px; display: flex; align-items: center; gap: 24px; padding: 0 28px; background: #0f0f0f; }
+.hamburger { font-size: 22px; }
+.brand { display: flex; align-items: center; gap: 5px; font-size: 23px; font-weight: 750; letter-spacing: -1.3px; white-space: nowrap; }
+.brand-play { display: inline-block; padding: 5px 11px; background: #f03a39; color: #fff; border-radius: 8px; font-size: 17px; }
+.region { font-size: 9px; font-weight: 400; align-self: flex-start; color: var(--yt-spec-text-secondary,#aaa); letter-spacing: 0; margin-left: 2px; }
+yt-searchbox { margin: 0 auto; max-width: 590px; flex: 1; }
+.ytSearchboxComponentSearchForm { display: flex; height: 41px; }
+.ytSearchboxComponentInputBox { border: 1px solid #333; background: #121212; border-radius: 23px 0 0 23px; flex: 1; }
+.ytSearchboxComponentSearchForm input { width: 100%; border: none; background: none; height: 100%; padding: 0 19px; font: inherit; font-size: 14px; color: inherit; outline: none; }
+.ytSearchboxComponentSearchButton { border: 1px solid #333; width: 63px; border-radius: 0 23px 23px 0; font-size: 27px; background: #222; color: inherit; }
+.account { display: flex; align-items: center; gap: 24px; white-space: nowrap; font-size: 13px; }
+.avatar { border-radius: 50%; width: 31px; height: 31px; display: grid; place-items: center; background: #547c92; color: #fff; }
+.shell { display: grid; grid-template-columns: 210px minmax(0,1fr); }
+ytd-guide-renderer { padding: 18px 12px; background: #0f0f0f; min-height: calc(100vh - 70px); }
+ytd-guide-entry-renderer { padding: 10px 13px; font-size: 13px; margin-bottom: 3px; }
+ytd-guide-entry-renderer[active] { background: #272727; }
+ytd-guide-entry-renderer a { display: flex; align-items: center; gap: 23px; }
+ytd-guide-entry-renderer a span { width: 19px; text-align: center; font-size: 22px; }
+ytd-guide-renderer h3 { font-size: 14px; margin: 18px 12px 11px; }
+hr { border: 0; border-top: 1px solid #799cab40; margin: 16px 0; }
+main { min-width: 0; padding: 0 28px; }
+ytd-feed-filter-chip-bar-renderer { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px 0; }
+yt-chip-cloud-chip-renderer { padding: 8px 13px; font-size: 12px; font-weight: 600; border-radius: 9px; background: #272727; white-space: nowrap; }
+yt-chip-cloud-chip-renderer[selected] { background: #eee; color: #111; }
+ytd-rich-grid-renderer { margin: 9px 0 32px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 27px 22px; }
+ytd-rich-grid-media { overflow: hidden; }
+ytd-thumbnail #thumbnail { overflow: hidden; position: relative; aspect-ratio: 16/9; border-radius: 12px; }
+#details { display: flex; gap: 11px; margin-top: 13px; }
+#details > div { flex: 1; min-width: 0; }
+#video-title { font-size: 14px; font-weight: 600; line-height: 1.4; margin: 0 0 7px; }
+#details p { font-size: 11px; color: var(--yt-spec-text-secondary,#aaa); margin: 0; line-height: 1.6; }
+.channel-icon { flex-shrink: 0; border-radius: 50%; width: 30px; height: 30px; display: grid; place-items: center; font-size: 12px; color: #fff; }
+.green { background: #709c66; }.blue { background: #518da9; }.peach { background: #d18a57; }.more { font-size: 22px; }
+.art { color: #fff; }
+.duration { position: absolute; bottom: 9px; right: 9px; background: #000b; padding: 3px 5px; border-radius: 4px; font-size: 10px; z-index: 2; }
+.landscape { background: linear-gradient(#a0dbea,#e9f9fa 72%,#97b887); }.sun { position: absolute; right: 19%; top: 17%; width: 37px; height: 37px; border-radius: 50%; background: #fff6c0; box-shadow: 0 0 40px #fff9cc; }.hill { position: absolute; width: 100%; height: 75%; border-radius: 65% 85% 0 0; background: linear-gradient(135deg,#73a571,#3b7367); bottom: -35%; left: -20%; transform: rotate(8deg); }.hill.back { left: 30%; bottom: -20%; background: #83ad8f; transform: rotate(-12deg); }
+.aqua { background: linear-gradient(140deg,#72d0e1,#168faf); }.glass-orb { position: absolute; width: 53%; aspect-ratio: 1; right: -6%; bottom: -15%; border-radius: 50%; background: radial-gradient(circle at 30% 20%,#fff9,#fff0 50%),linear-gradient(140deg,#ffffff55,#ffffff00); box-shadow: inset 0 0 20px #fff9,0 8px 30px #05496940; border: 1px solid #ffffff88; }
+.orange { background: linear-gradient(140deg,#f6b582,#d87847); }.disc { position: absolute; width: 57%; aspect-ratio: 1; right: -6%; top: 17%; border-radius: 50%; background: radial-gradient(circle,#d4977533 0 7%,#fce6cb 8% 11%,#bb6435 12% 15%,#ffe9cc 16% 43%,#fce9c588 44% 45%,#fff2d2 46%); box-shadow: 0 15px 30px #7f381c20; }
+.night { background: linear-gradient(135deg,#264d7a,#1d243e); }.night .glass-orb { background: radial-gradient(circle at 30% 20%,#c092f6aa,#72cbdd22 60%); }
+.mint { background: linear-gradient(135deg,#88b2a5,#2b776c); }.mint .disc { background: radial-gradient(circle,#8bbfb033 0 7%,#d5e8d1 8% 11%,#6e9e7c 12% 15%,#d8eadb 16% 43%,#f6ffff88 44% 45%,#d1e5d5 46%); }
+.ocean { background: linear-gradient(#66bfd1,#83d3d9 63%,#d8d5b9 64%); }.wave { position: absolute; width: 150%; height: 28%; top: 45%; left: -10%; border: 6px solid #ffffff70; border-radius: 50%; transform: rotate(-6deg); }
+@media(max-width:1000px) { .shell { grid-template-columns: 165px minmax(0,1fr); } ytd-rich-grid-renderer { grid-template-columns: repeat(2,minmax(0,1fr)); } .account span:first-child { display: none; } ytd-masthead { gap: 16px; } }
+@media(max-width:700px) { .shell { grid-template-columns: 1fr; } ytd-guide-renderer { display: none; } main { padding: 0 16px; } .account { display: none; } .brand { font-size: 18px; } ytd-masthead { padding: 0 16px; gap: 12px; } }
+#preview-theme { position: fixed; right: 14px; bottom: 14px; z-index: 100; max-width: 135px; font: 11px "Segoe UI", sans-serif; color: #24465b; background: #fff; border: 1px solid #9fbbca; border-radius: 8px; padding: 5px 8px; box-shadow: 0 2px 8px #183c4c22; }
+#preview-theme:focus-visible { outline: 2px solid #0082b0; outline-offset: 2px; }

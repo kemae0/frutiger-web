@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Frutiger Web</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+  <header><img src="icons/icon-48.png" width="48" height="48" alt=""><h1>Frutiger Web</h1></header>
+  <label class="setting"><strong>Enabled</strong><input id="enabled" type="checkbox" aria-label="Enable Frutiger Web"><span class="switch" aria-hidden="true"></span></label>
+  <label class="picker-label" for="theme">Appearance</label><select id="theme" aria-label="Choose theme"></select>
+  <p class="picker-label">Supported sites</p><div id="sites"></div>
+  <p id="status" class="status" role="status">Loading…</p>
+  <script src="registry.js"></script><script src="popup.js"></script>
+</body>
+</html>
