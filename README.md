@@ -2,8 +2,8 @@
 
 A Chrome extension for YouTube and YouTube Music.
 
-- **Frutiger Aero** — sky/water scenery, blue chrome, green controls, beveled frames.
-- **DORFic** — orange geometry, white and aluminum surfaces, angular controls.
+- **Frutiger Aero** — Exo 2, sky/water scenery, blue chrome, green controls, beveled frames.
+- **DORFic** — Oxanium, orange geometric wallpaper, white surfaces and angular controls.
 
 Currently supports **YouTube** (`www.youtube.com`, `youtube.com`) and **YouTube Music** (`music.youtube.com`). It themes the web versions of these services. One theme choice applies across supported sites, with a global on/off switch and independent switches for each site.
 
@@ -46,7 +46,7 @@ YouTube changes its markup and runs layout experiments, so some less-common surf
 
 1. Add a `sites` entry in `registry.js` with a unique `id`, display `name`, exact `hosts`, and a unique root `attribute`.
 2. Create its module folder `apps/<site-id>/` and scoped CSS for each registered theme.
-3. Add a separate manifest `content_scripts` entry with explicit HTTPS match patterns for those hosts, `registry.js` and `content.js`, that site's theme CSS files, and `wallpaper.css` last. Also add the exact hosts to the wallpaper resources' match list. Avoid broad/all-sites matches. Adding a host in the registry alone does not authorize injection; **the manifest must also be updated**.
+3. Add a separate manifest `content_scripts` entry with explicit HTTPS match patterns for those hosts, `registry.js` and `content.js`, that site's theme CSS files, and the shared `wallpaper.css`, `fonts/extension.css` and `fonts.css`. Also add the exact hosts to the wallpaper/font resources' match list. Avoid broad/all-sites matches. Adding a host in the registry alone does not authorize injection; **the manifest must also be updated**.
 4. Supply a representative local preview and check the live website. The shared popup automatically adds the site's switch, and the content script automatically chooses its module by hostname. New sites default to enabled.
 
 The shared settings object is `{ enabled: true, theme: "frutiger", apps: { youtube: true, "youtube-music": true } }`. The `apps` key stores website/web-app switches for compatibility; it does not imply support for native desktop applications.
@@ -58,7 +58,8 @@ The shared settings object is `{ enabled: true, theme: "frutiger", apps: { youtu
 - `popup.html`, `popup.css`, `popup.js` — global appearance and supported-site controls.
 - `apps/` — independent site styles and local design previews.
 - `icons/` — local PNG icons in Chrome's 16, 32, 48 and 128 pixel sizes.
-- `assets/` and `wallpaper.css` — original local scenery and shared background styling; [artwork and research notes](assets/SOURCES.md).
+- `assets/` and `wallpaper.css` — bundled scenery and shared background styling; [artwork and research notes](assets/SOURCES.md).
+- `fonts/` and `fonts.css` — bundled Exo 2 and Oxanium, their licenses, and scoped typography. Fonts load locally without external requests.
 - `create-icons.ps1` — optional local icon-generation source using Windows System.Drawing.
 
 No build step or package installation is needed.
@@ -66,6 +67,8 @@ No build step or package installation is needed.
 ## Verification
 
 Run `node tools/verify-extensions.cjs` for manifest, host scope, local file references, JavaScript syntax, and icon dimensions. Run `node --test tools/test-content.cjs tools/test-popup.cjs` for saved preferences, both hosts, theme switching, per-site and global off, loading races, popup controls, errors, and unsupported-host behavior.
+
+Run `node tools/test-rendering.cjs` with Chrome or Edge installed to check actual browser rendering against native-style white labels and stretched chips. It verifies contrast, packaged font loading, channel/Shorts/menu text, Music queues, compact filters, circular square artwork, rectangular video artwork, shadows, dark media controls and off restoration. Add `--screenshots` to refresh the four images above. Test profiles and reports remain under ignored `.qa/`.
 
 The previews use the actual theme stylesheets against representative local markup. Their layouts are illustrative. The source package has been checked with these fixtures and behavioral tests; it still needs an installed-extension check against live signed-in pages for account-specific layouts and playback.
 

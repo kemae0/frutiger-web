@@ -18,3 +18,17 @@ function apply() {
 }
 picker.addEventListener('change', apply);
 apply();
+const menu = document.getElementById('fixture-menu');
+for (const trigger of document.querySelectorAll('[data-menu-toggle]')) {
+  trigger.addEventListener('click', (event) => {
+    event.stopPropagation();
+    menu.hidden = !menu.hidden;
+  });
+}
+document.addEventListener('click', (event) => {
+  if (!menu.contains(event.target)) menu.hidden = true;
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') menu.hidden = true;
+});
+if (new URLSearchParams(location.search).get('menu') === '1') menu.hidden = false;

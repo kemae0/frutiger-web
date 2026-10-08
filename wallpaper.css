@@ -3,7 +3,7 @@ html[data-frutiger-theme="frutiger"] {
   background: linear-gradient(#e7faff18, #f2ffff10), var(--frutiger-scene, none) center / cover fixed, #58b8e9 !important;
 }
 html[data-frutiger-theme="dorfic"] {
-  background: linear-gradient(#ffffff20, #ffffff10), var(--frutiger-scene, none) center / cover fixed, #eef1f4 !important;
+  background: var(--frutiger-scene, none) center / cover fixed, #f48200 !important;
 }
 html[data-frutiger-theme] body,
 html[data-frutiger-theme] ytd-app,

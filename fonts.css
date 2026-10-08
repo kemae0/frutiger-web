@@ -1,0 +1,15 @@
+html[data-frutiger-theme="frutiger"] {
+  --frutiger-font: "Frutiger Exo 2", "Segoe UI", sans-serif;
+}
+html[data-frutiger-theme="dorfic"] {
+  --frutiger-font: "Frutiger Oxanium", "Segoe UI", sans-serif;
+}
+html[data-frutiger-theme] :is(body, ytd-app, ytmusic-app, yt-formatted-string,
+  yt-attributed-string, .yt-core-attributed-string, .yt-core-attributed-string__link,
+  .ytAttributedStringHost, .ytAttributedStringLinkInheritColor, .ytTabShapeTab,
+  .ytSpecButtonShapeNextButtonTextContent,
+  .yt-spec-button-shape-next, .yt-spec-button-shape-next__button-text-content,
+  input, textarea, select, button, h1, h2, h3, h4, p, .title, .subtitle,
+  .song-title, .byline, #video-title, #channel-name, #text) {
+  font-family: var(--frutiger-font) !important;
+}

@@ -21,6 +21,8 @@ for (const site of registry.sites) {
   assert.deepEqual(script.js, ['registry.js', 'content.js']);
   assert.deepEqual([...script.matches].sort(), Array.from(site.hosts, host => `https://${host}/*`).sort());
   assert.ok(script.css.includes('wallpaper.css'));
+  assert.ok(script.css.includes('fonts.css'));
+  assert.ok(script.css.includes('fonts/extension.css'));
   for (const file of [...script.css, ...script.js]) required.add(file);
   for (const theme of registry.themes) {
     const file = `apps/${site.id}/theme-${theme.id}.css`;
@@ -43,6 +45,16 @@ for (const theme of registry.themes) {
     required.add(theme.wallpaper);
   }
 }
+for (const font of ['Exo2', 'Oxanium']) {
+  const file = `fonts/${font}.ttf`;
+  assert.ok(resources[0].resources.includes(file), `Font must be accessible: ${file}`);
+  required.add(file);
+  required.add(`fonts/${font}-OFL.txt`);
+  const bytes = fs.readFileSync(path.join(root, file));
+  assert.equal(bytes.readUInt32BE(0), 0x00010000, 'Packaged font must be valid TrueType');
+  assert.match(fs.readFileSync(path.join(root, `fonts/${font}-OFL.txt`), 'utf8'), /SIL OPEN FONT LICENSE/);
+  assert.ok(fs.readFileSync(path.join(root, 'fonts/extension.css'), 'utf8').includes(file));
+}
 for (const size of ['16', '32', '48', '128']) {
   const file = manifest.icons[size];
   assert.ok(file, `Missing ${size}px icon`);
@@ -55,7 +67,7 @@ for (const size of ['16', '32', '48', '128']) {
 for (const file of Object.values(manifest.action.default_icon)) required.add(file);
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
-    if (entry.name === '.git') return [];
+    if (entry.name === '.git' || entry.name === '.qa' || entry.name === 'node_modules') return [];
     const absolute = path.join(dir, entry.name);
     return entry.isDirectory() ? walk(absolute) : [absolute];
   });

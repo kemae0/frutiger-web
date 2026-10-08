@@ -397,3 +397,131 @@ html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-thumb {
   background: #8e9dac; border-color: #f2f5f7; border-radius: 4px !important;
 }
 html[data-yt-tube-theme="dorfic"] ::-webkit-scrollbar-thumb:hover { background: #ea741b; }
+/* Native dark-mode components may redeclare tokens below ytd-app.
+   Reset tokens on the surfaces we paint light, rather than on every element. */
+html[data-yt-tube-theme="dorfic"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer, ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, ytd-playlist-renderer, yt-lockup-view-model, ytd-shelf-renderer, ytd-rich-shelf-renderer, ytd-reel-shelf-renderer, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, ytd-watch-metadata, ytd-comments, ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer, yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, ytd-channel-header-renderer, ytd-c4-tabbed-header-renderer, ytd-tabbed-page-header, ytd-browse[page-subtype="channels"], yt-tab-group-shape, yt-tab-shape, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, tp-yt-paper-listbox, yt-sheet-view-model, yt-searchbox, ytd-searchbox) {
+  --yt-spec-text-primary: #38210f !important;
+  --yt-spec-text-secondary: #6b513e !important;
+  --yt-spec-text-disabled: #6b513e !important;
+  --yt-spec-icon-active-other: #38210f !important;
+  --yt-spec-icon-inactive: #6b513e !important;
+  --yt-endpoint-color: #38210f !important;
+  --yt-endpoint-visited-color: #38210f !important;
+  --yt-spec-base-background: #fffaf4 !important;
+  --yt-spec-raised-background: #fffaf4 !important;
+  --yt-spec-menu-background: #fffaf4 !important;
+  --paper-listbox-background-color: #fffaf4 !important;
+  --paper-dialog-background-color: #fffaf4 !important;
+  color: #38210f !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+}
+/* Explicit native text colors also cover components with hardcoded dark colors. */
+html[data-yt-tube-theme="dorfic"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, ytd-playlist-renderer, yt-lockup-view-model, ytd-shelf-renderer, ytd-rich-shelf-renderer, ytd-reel-shelf-renderer, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, ytd-watch-metadata, ytd-comments, ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer, ytd-browse[page-subtype="channels"], yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, yt-tab-group-shape, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, tp-yt-paper-listbox, yt-sheet-view-model) :where(yt-formatted-string, yt-attributed-string, .yt-core-attributed-string, .ytAttributedStringHost, .title, #video-title, #video-title-link, #title, #text, #channel-name, #content-text, .yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent, .yt-tab-shape-wiz__tab, .ytTabShapeTab, .ytContentMetadataViewModelTitle, .ytLockupMetadataViewModelTitle, .ytPageHeaderViewModelTitle, .ytShortsLockupViewModelHostMetadataTitle):not(:where(#movie_player, ytd-player, ytd-thumbnail, yt-thumbnail-view-model, .ytThumbnailViewModelHost, ytd-reel-video-renderer, yt-shorts-video-view-model, ytd-reel-player-overlay-renderer) *) {
+  color: #38210f !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+  text-shadow: none !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer) :is(a, yt-icon, .title, #title, yt-formatted-string) { color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] :is(ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, page-header-view-model, yt-page-header-renderer) :is(#metadata-line, #metadata, #metadata-container, #subscribers, #owner-sub-count, ytd-channel-name, .ytContentMetadataViewModelMetadataText, .ytShortsLockupViewModelHostMetadataSubhead, .shortsLockupViewModelHostOutsideMetadataSubhead) { color: #6b513e !important; }
+html[data-yt-tube-theme="dorfic"] :is(yt-chip-cloud-chip-renderer, ytd-searchbox, yt-searchbox) :is(yt-formatted-string, #text, .yt-core-attributed-string, .ytAttributedStringHost, input) { color: #38210f !important; font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important; }
+html[data-yt-tube-theme="dorfic"] :is(ytd-watch-metadata, page-header-view-model, yt-page-header-renderer, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer) button {
+  --yt-spec-text-primary: #38210f !important;
+  --yt-spec-icon-active-other: #38210f !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-masthead, ytd-watch-metadata, page-header-view-model, yt-page-header-renderer) button :is(.yt-core-attributed-string, .ytAttributedStringHost, .yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) { color: #38210f !important; }
+/* Opaque popup frames. Keep native sizing, positioning, scrolling and focus. */
+html[data-yt-tube-theme="dorfic"] :is(ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, yt-sheet-view-model) {
+  background: #fffaf4 !important;
+  border: 1px solid #cf681f !important;
+  box-shadow: inset 0 3px #f67814, inset 0 4px #fff, 0 2px 0 #fff8, 0 14px 32px #71340055 !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, tp-yt-paper-dialog, yt-sheet-view-model) tp-yt-paper-listbox {
+  background: #fffaf4 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, yt-sheet-view-model) :is(#container, #header, #sections, #items, #footer, ytd-active-account-header-renderer, ytd-simple-menu-header-renderer, ytd-multi-page-menu-renderer) { background: #fffaf4 !important; color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] :is(ytd-menu-service-item-renderer, ytd-menu-navigation-item-renderer, yt-list-item-view-model) :is(yt-icon, .yt-core-attributed-string, .ytAttributedStringHost, yt-formatted-string) { color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] :is(ytd-menu-service-item-renderer, ytd-menu-navigation-item-renderer, yt-list-item-view-model):hover { background: #ffe2c0 !important; }
+html[data-yt-tube-theme="dorfic"] :is(.ytSearchboxComponentSuggestionsContainer, .ytSearchboxComponentSuggestions, .gstl_50, .gstl_50 .sbsb_a) {
+  --yt-spec-text-primary: #38210f !important;
+  background: #fffaf4 !important;
+  color: #38210f !important;
+  border-color: #cf681f !important;
+  box-shadow: 0 8px 20px #71340055 !important;
+}
+/* Channel chrome and tabs are light too; banners/avatars keep native dimensions. */
+html[data-yt-tube-theme="dorfic"] ytd-browse[page-subtype="channels"] :is(#page-header-container, #channel-header-container, ytd-tabbed-page-header, ytd-c4-tabbed-header-renderer, yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, yt-tab-group-shape, tp-yt-paper-tabs) {
+  background: #fffaf4 !important;
+  color: #38210f !important;
+  border-color: #cf681f !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, ytd-c4-tabbed-header-renderer) :is(h1, h2, #channel-title, #channel-name, .yt-core-attributed-string, .ytAttributedStringHost, yt-formatted-string) { color: #38210f !important; font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important; }
+html[data-yt-tube-theme="dorfic"] :is(yt-tab-shape, tp-yt-paper-tab) { color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] :is(yt-tab-shape, tp-yt-paper-tab)[selected] { border-bottom-color: #f67814 !important; }
+html[data-yt-tube-theme="dorfic"] :is(page-header-view-model, yt-page-header-renderer, yt-page-header-view-model, ytd-c4-tabbed-header-renderer) :is(.yt-spec-button-shape-next--tonal, .yt-spec-button-shape-next--outline) {
+  background: #ffe2c0 !important;
+  border-color: #cf681f !important;
+  color: #38210f !important;
+}
+/* Shorts shelves and tiles need the same bezel, with a deeper drop shadow. */
+html[data-yt-tube-theme="dorfic"] :is(ytd-rich-shelf-renderer, ytd-reel-shelf-renderer) { background: #fffaf4 !important; border: 1px solid #cf681f; border-radius: 14px; box-shadow: 0 7px 18px #71340055; }
+html[data-yt-tube-theme="dorfic"] :is(ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) {
+  background: #fffaf4 !important;
+  border: 1px solid #cf681f;
+  border-radius: 13px;
+  box-shadow: inset 0 1px #fff, 0 3px 0 #fff7, 0 9px 18px #71340055 !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) :is(ytd-thumbnail, yt-thumbnail-view-model, .ytShortsLockupViewModelHostThumbnailContainer) { box-shadow: 0 4px 10px #71340055 !important; }
+/* White text is reserved for native footage/thumbnail overlays and dark players. */
+html[data-yt-tube-theme="dorfic"] :is(#movie_player, ytd-player, ytd-reel-video-renderer, ytd-reel-player-overlay-renderer, yt-shorts-video-view-model) {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #ddd !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #ddd !important;
+  --yt-spec-base-background: #0f0f0f !important;
+  --yt-spec-raised-background: #212121 !important;
+  --yt-spec-menu-background: #282828 !important;
+  color-scheme: dark !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-thumbnail-overlay-time-status-renderer, ytd-thumbnail-overlay-toggle-button-renderer, ytd-thumbnail-overlay-bottom-panel-renderer) { --yt-spec-text-primary: #fff !important; color: #fff !important; }
+/* Bold orange/white console chrome; the shared module supplies the orange scene. */
+html[data-yt-tube-theme="dorfic"] ytd-masthead {
+  background: linear-gradient(180deg, #fff 0 62%, #ffd19a 63%, #ff9f3c 82%, #f27410 100%) !important;
+  box-shadow: inset 0 4px #fa7814, inset 0 -1px #ffcf94, 0 3px 0 #fff9, 0 6px 18px #81360045 !important;
+  border-bottom: 2px solid #bd560e !important;
+  --yt-spec-text-primary: #38210f !important;
+  --yt-spec-icon-active-other: #b24b09 !important;
+  --yt-spec-wordmark-text: #38210f !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, #guide-content, #guide-inner-content) {
+  background: linear-gradient(90deg, #fff 0 89%, #fff1df 90% 97%, #ff851f 98%) !important;
+  border-right: 2px solid #c46519 !important;
+  box-shadow: 3px 0 10px #81360033 !important;
+}
+html[data-yt-tube-theme="dorfic"] :is(ytd-rich-grid-media, ytd-rich-grid-slim-media, yt-lockup-view-model, ytd-video-renderer, ytd-playlist-renderer) {
+  background: linear-gradient(90deg, #ff811f 0 4px, #fff 4px) !important;
+  border-color: #d08242 !important;
+  box-shadow: inset 0 1px #fff, 0 3px 0 #ffa95666, 0 8px 20px #81360048 !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer {
+  background: linear-gradient(#fff 0 75%, #ffdfb4 76%) !important;
+  border-color: #cf8e56 !important;
+  color: #38210f !important;
+}
+html[data-yt-tube-theme="dorfic"] yt-chip-cloud-chip-renderer[selected] {
+  background: linear-gradient(180deg, #ffd3a1 0%, #ffad50 12%, #ff901e 48%, #ee6f09 49%, #ffad50 100%) !important;
+  color: #38210f !important;
+  border-color: #a94e0e !important;
+  box-shadow: inset 0 1px #fff2dc, inset 0 -2px #cf5e08, 0 3px 5px #81360033 !important;
+}
+
+
+html[data-yt-tube-theme="dorfic"] :is(yt-page-header-renderer, yt-page-header-view-model, page-header-view-model) :is(.ytPageHeaderViewModelContent, .ytPageHeaderViewModelHeadline, .ytPageHeaderViewModelHeadlineInfo) { background: #fffaf4 !important; color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] :is(yt-page-header-renderer, yt-page-header-view-model, page-header-view-model) :is(.ytSpecButtonShapeNextHost, .ytSpecButtonShapeNextButtonTextContent) { color: #38210f !important; background: #ffe2c0 !important; border-color: #cf681f !important; font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important; }
+html[data-yt-tube-theme="dorfic"] yt-tab-group-shape :is(.tabGroupShapeTabs, .ytTabShapeTab) { background: #fffaf4 !important; color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] .ytTabShapeTabSelected { border-bottom-color: #cf681f !important; }
+html[data-yt-tube-theme="dorfic"] ytm-shorts-lockup-view-model-v2 > ytm-shorts-lockup-view-model { background: transparent !important; border: none !important; box-shadow: none !important; }
+html[data-yt-tube-theme="dorfic"] :is(ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) :is(.shortsLockupViewModelHostOutsideMetadata, .shortsLockupViewModelHostOutsideMetadataTitle) { color: #38210f !important; }
+html[data-yt-tube-theme="dorfic"] :is(ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) .shortsLockupViewModelHostOutsideMetadataSubhead :is(span, .ytAttributedStringHost) { color: #6b513e !important; }

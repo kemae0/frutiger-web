@@ -207,3 +207,101 @@ html[data-yt-tube-theme="frutiger"] :is(ytd-searchbox, yt-searchbox, yt-chip-clo
   outline: 2px solid #025796 !important;
   outline-offset: 3px;
 }
+/* Native dark-mode components may redeclare tokens below ytd-app.
+   Reset tokens on the surfaces we paint light, rather than on every element. */
+html[data-yt-tube-theme="frutiger"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer, ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, ytd-playlist-renderer, yt-lockup-view-model, ytd-shelf-renderer, ytd-rich-shelf-renderer, ytd-reel-shelf-renderer, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, ytd-watch-metadata, ytd-comments, ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer, yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, ytd-channel-header-renderer, ytd-c4-tabbed-header-renderer, ytd-tabbed-page-header, ytd-browse[page-subtype="channels"], yt-tab-group-shape, yt-tab-shape, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, tp-yt-paper-listbox, yt-sheet-view-model, yt-searchbox, ytd-searchbox) {
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-text-secondary: #45667a !important;
+  --yt-spec-text-disabled: #45667a !important;
+  --yt-spec-icon-active-other: #14354d !important;
+  --yt-spec-icon-inactive: #45667a !important;
+  --yt-endpoint-color: #14354d !important;
+  --yt-endpoint-visited-color: #14354d !important;
+  --yt-spec-base-background: #f7fcff !important;
+  --yt-spec-raised-background: #f7fcff !important;
+  --yt-spec-menu-background: #f7fcff !important;
+  --paper-listbox-background-color: #f7fcff !important;
+  --paper-dialog-background-color: #f7fcff !important;
+  color: #14354d !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+}
+/* Explicit native text colors also cover components with hardcoded dark colors. */
+html[data-yt-tube-theme="frutiger"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, ytd-playlist-renderer, yt-lockup-view-model, ytd-shelf-renderer, ytd-rich-shelf-renderer, ytd-reel-shelf-renderer, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, ytd-watch-metadata, ytd-comments, ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer, ytd-browse[page-subtype="channels"], yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, yt-tab-group-shape, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, tp-yt-paper-listbox, yt-sheet-view-model) :where(yt-formatted-string, yt-attributed-string, .yt-core-attributed-string, .ytAttributedStringHost, .title, #video-title, #video-title-link, #title, #text, #channel-name, #content-text, .yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent, .yt-tab-shape-wiz__tab, .ytTabShapeTab, .ytContentMetadataViewModelTitle, .ytLockupMetadataViewModelTitle, .ytPageHeaderViewModelTitle, .ytShortsLockupViewModelHostMetadataTitle):not(:where(#movie_player, ytd-player, ytd-thumbnail, yt-thumbnail-view-model, .ytThumbnailViewModelHost, ytd-reel-video-renderer, yt-shorts-video-view-model, ytd-reel-player-overlay-renderer) *) {
+  color: #14354d !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+  text-shadow: none !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer) :is(a, yt-icon, .title, #title, yt-formatted-string) { color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, yt-lockup-view-model, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, page-header-view-model, yt-page-header-renderer) :is(#metadata-line, #metadata, #metadata-container, #subscribers, #owner-sub-count, ytd-channel-name, .ytContentMetadataViewModelMetadataText, .ytShortsLockupViewModelHostMetadataSubhead, .shortsLockupViewModelHostOutsideMetadataSubhead) { color: #45667a !important; }
+html[data-yt-tube-theme="frutiger"] :is(yt-chip-cloud-chip-renderer, ytd-searchbox, yt-searchbox) :is(yt-formatted-string, #text, .yt-core-attributed-string, .ytAttributedStringHost, input) { color: #14354d !important; font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-watch-metadata, page-header-view-model, yt-page-header-renderer, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer) button {
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-icon-active-other: #14354d !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-masthead, ytd-watch-metadata, page-header-view-model, yt-page-header-renderer) button :is(.yt-core-attributed-string, .ytAttributedStringHost, .yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) { color: #14354d !important; }
+/* Opaque popup frames. Keep native sizing, positioning, scrolling and focus. */
+html[data-yt-tube-theme="frutiger"] :is(ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, yt-sheet-view-model) {
+  background: #f7fcff !important;
+  border: 1px solid #4f97b9 !important;
+  box-shadow: inset 0 3px #199ec8, inset 0 4px #fff, 0 2px 0 #fff8, 0 14px 32px #04385c55 !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, tp-yt-paper-dialog, yt-sheet-view-model) tp-yt-paper-listbox {
+  background: #f7fcff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, yt-sheet-view-model) :is(#container, #header, #sections, #items, #footer, ytd-active-account-header-renderer, ytd-simple-menu-header-renderer, ytd-multi-page-menu-renderer) { background: #f7fcff !important; color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-menu-service-item-renderer, ytd-menu-navigation-item-renderer, yt-list-item-view-model) :is(yt-icon, .yt-core-attributed-string, .ytAttributedStringHost, yt-formatted-string) { color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-menu-service-item-renderer, ytd-menu-navigation-item-renderer, yt-list-item-view-model):hover { background: #d3edf7 !important; }
+html[data-yt-tube-theme="frutiger"] :is(.ytSearchboxComponentSuggestionsContainer, .ytSearchboxComponentSuggestions, .gstl_50, .gstl_50 .sbsb_a) {
+  --yt-spec-text-primary: #14354d !important;
+  background: #f7fcff !important;
+  color: #14354d !important;
+  border-color: #4f97b9 !important;
+  box-shadow: 0 8px 20px #04385c55 !important;
+}
+/* Channel chrome and tabs are light too; banners/avatars keep native dimensions. */
+html[data-yt-tube-theme="frutiger"] ytd-browse[page-subtype="channels"] :is(#page-header-container, #channel-header-container, ytd-tabbed-page-header, ytd-c4-tabbed-header-renderer, yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, yt-tab-group-shape, tp-yt-paper-tabs) {
+  background: #f7fcff !important;
+  color: #14354d !important;
+  border-color: #4f97b9 !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, ytd-c4-tabbed-header-renderer) :is(h1, h2, #channel-title, #channel-name, .yt-core-attributed-string, .ytAttributedStringHost, yt-formatted-string) { color: #14354d !important; font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important; }
+html[data-yt-tube-theme="frutiger"] :is(yt-tab-shape, tp-yt-paper-tab) { color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(yt-tab-shape, tp-yt-paper-tab)[selected] { border-bottom-color: #199ec8 !important; }
+html[data-yt-tube-theme="frutiger"] :is(page-header-view-model, yt-page-header-renderer, yt-page-header-view-model, ytd-c4-tabbed-header-renderer) :is(.yt-spec-button-shape-next--tonal, .yt-spec-button-shape-next--outline) {
+  background: #d3edf7 !important;
+  border-color: #4f97b9 !important;
+  color: #14354d !important;
+}
+/* Shorts shelves and tiles need the same bezel, with a deeper drop shadow. */
+html[data-yt-tube-theme="frutiger"] :is(ytd-rich-shelf-renderer, ytd-reel-shelf-renderer) { background: #f7fcff !important; border: 1px solid #4f97b9; border-radius: 14px; box-shadow: 0 7px 18px #04385c55; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) {
+  background: #f7fcff !important;
+  border: 1px solid #4f97b9;
+  border-radius: 13px;
+  box-shadow: inset 0 1px #fff, 0 3px 0 #fff7, 0 9px 18px #04385c55 !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) :is(ytd-thumbnail, yt-thumbnail-view-model, .ytShortsLockupViewModelHostThumbnailContainer) { box-shadow: 0 4px 10px #04385c55 !important; }
+/* White text is reserved for native footage/thumbnail overlays and dark players. */
+html[data-yt-tube-theme="frutiger"] :is(#movie_player, ytd-player, ytd-reel-video-renderer, ytd-reel-player-overlay-renderer, yt-shorts-video-view-model) {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #ddd !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #ddd !important;
+  --yt-spec-base-background: #0f0f0f !important;
+  --yt-spec-raised-background: #212121 !important;
+  --yt-spec-menu-background: #282828 !important;
+  color-scheme: dark !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-thumbnail-overlay-time-status-renderer, ytd-thumbnail-overlay-toggle-button-renderer, ytd-thumbnail-overlay-bottom-panel-renderer) { --yt-spec-text-primary: #fff !important; color: #fff !important; }
+
+
+html[data-yt-tube-theme="frutiger"] :is(yt-page-header-renderer, yt-page-header-view-model, page-header-view-model) :is(.ytPageHeaderViewModelContent, .ytPageHeaderViewModelHeadline, .ytPageHeaderViewModelHeadlineInfo) { background: #f7fcff !important; color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(yt-page-header-renderer, yt-page-header-view-model, page-header-view-model) :is(.ytSpecButtonShapeNextHost, .ytSpecButtonShapeNextButtonTextContent) { color: #14354d !important; background: #d3edf7 !important; border-color: #4f97b9 !important; font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important; }
+html[data-yt-tube-theme="frutiger"] yt-tab-group-shape :is(.tabGroupShapeTabs, .ytTabShapeTab) { background: #f7fcff !important; color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] .ytTabShapeTabSelected { border-bottom-color: #4f97b9 !important; }
+html[data-yt-tube-theme="frutiger"] ytm-shorts-lockup-view-model-v2 > ytm-shorts-lockup-view-model { background: transparent !important; border: none !important; box-shadow: none !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) :is(.shortsLockupViewModelHostOutsideMetadata, .shortsLockupViewModelHostOutsideMetadataTitle) { color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) .shortsLockupViewModelHostOutsideMetadataSubhead :is(span, .ytAttributedStringHost) { color: #45667a !important; }
