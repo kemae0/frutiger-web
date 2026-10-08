@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Frutiger Web",
-  "version": "1.1.0",
-  "description": "Bring Frutiger Aero glass and orange-and-white DORFic to YouTube and YouTube Music.",
+  "version": "1.2.0",
+  "description": "Frutiger Aero and orange-and-white DORFic themes for YouTube, YouTube Music and Instagram.",
   "permissions": ["storage"],
   "action": {
     "default_title": "Frutiger Web",
@@ -22,10 +22,16 @@
       "js": ["registry.js", "content.js"],
       "css": ["apps/youtube-music/theme-frutiger.css", "apps/youtube-music/theme-dorfic.css", "wallpaper.css", "fonts/extension.css", "fonts.css"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.instagram.com/*", "https://instagram.com/*"],
+      "js": ["registry.js", "content.js"],
+      "css": ["apps/instagram/theme-frutiger.css", "apps/instagram/theme-dorfic.css", "apps/instagram/base.css", "wallpaper.css", "fonts/extension.css", "fonts.css"],
+      "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [{
     "resources": ["assets/aero-scene.webp", "assets/dorfic-scene.webp", "fonts/Exo2.ttf", "fonts/Oxanium.ttf"],
-    "matches": ["https://www.youtube.com/*", "https://youtube.com/*", "https://music.youtube.com/*"]
+    "matches": ["https://www.youtube.com/*", "https://youtube.com/*", "https://music.youtube.com/*", "https://www.instagram.com/*", "https://instagram.com/*"]
   }]
 }

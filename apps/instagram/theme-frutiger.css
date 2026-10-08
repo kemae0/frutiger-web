@@ -1,0 +1,20 @@
+html[data-ig-theme="frutiger"] {
+  --fw-ig-paper: #f4fbff;
+  --fw-ig-soft: #e3f2fa;
+  --fw-ig-ink: #12374e;
+  --fw-ig-muted: #3d6177;
+  --fw-ig-link: #075b8b;
+  --fw-ig-edge: #599ab9;
+  --fw-ig-radius: 18px;
+  --fw-ig-chrome: linear-gradient(#ffffff 0%, #dcf4fd 46%, #aad7eb 49%, #e8f8ff 100%);
+  --fw-ig-active: linear-gradient(#e8ffd0, #a8d75e 48%, #74b72f 49%, #acd966);
+  --fw-ig-shadow: 0 9px 19px #123f6550, 0 2px 3px #123f6540, inset 0 0 0 1px #fff;
+  --fw-ig-bg-rgb: 244, 251, 255;
+  --fw-ig-soft-rgb: 227, 242, 250;
+  --fw-ig-text-rgb: 18, 55, 78;
+  --fw-ig-muted-rgb: 61, 97, 119;
+  --fw-ig-link-rgb: 7, 91, 139;
+  --fw-ig-line-rgb: 89, 154, 185;
+  --fw-ig-accent-rgb: 7, 104, 159;
+  --fw-ig-accent: #07689f;
+}

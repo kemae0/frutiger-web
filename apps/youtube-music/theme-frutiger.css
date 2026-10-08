@@ -446,7 +446,7 @@ html[data-yt-music-theme="frutiger"] ytmusic-queue-header-renderer {
   color: #103b52 !important; text-shadow: none !important;
   border-bottom: 2px solid #5d93b2 !important;
 }
-html[data-yt-music-theme="frutiger"] :is(ytmusic-description-shelf-renderer, ytmusic-lyrics-renderer, ytmusic-comments-renderer, ytmusic-tab-renderer) :is(yt-formatted-string, .description, .lyrics, .content, #content, .title, #title, .message, .author-text, #author-text) {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-description-shelf-renderer, ytmusic-lyrics-renderer, ytmusic-comments-renderer) :is(yt-formatted-string, .description, .lyrics, .content, #content, .title, #title, .message, .author-text, #author-text) {
   color: #103b52 !important;
 }
 html[data-yt-music-theme="frutiger"] :is(ytmusic-menu-popup-renderer, ytmusic-multi-select-menu-renderer, ytmusic-search-suggestions-section, ytmusic-popup-container tp-yt-paper-dialog) {
@@ -466,12 +466,12 @@ html[data-yt-music-theme="frutiger"] ytmusic-queue-header-renderer tp-yt-paper-t
   --paper-toggle-button-unchecked-bar-color: #35596d;
 }
 /* Rounded HOME artwork only; playback video and thumbnail overlays remain native. */
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer :is(#image, .image, #thumbnail, .thumbnail, ytmusic-thumbnail-renderer),
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer ytmusic-thumbnail-renderer :is(img, #img, yt-img-shadow),
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer .image > img {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer :is(#image, .image, #thumbnail, .thumbnail, ytmusic-thumbnail-renderer),
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer ytmusic-thumbnail-renderer :is(img, #img, yt-img-shadow),
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer .image > img {
   border-radius: 18px !important;
 }
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer :is(#image, .image, #thumbnail, .thumbnail, ytmusic-thumbnail-renderer) {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer :is(#image, .image, #thumbnail, .thumbnail, ytmusic-thumbnail-renderer) {
   box-shadow: 0 0 0 2px #fff, 0 0 0 3px #5d93b2, 0 8px 13px #042d4d55 !important;
   overflow: hidden;
 }
@@ -519,7 +519,7 @@ html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-rendere
   line-height: 30px !important;
 }
 html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-renderer :is(.strapline, #strapline) { font-size: 12px !important; line-height: 16px !important; }
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer {
   background: #f5fbff !important;
   border: 1px solid #6698b4;
   border-radius: 18px 18px 8px 8px;
@@ -559,11 +559,11 @@ html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-rendere
 html[data-yt-music-theme="frutiger"] :is(ytmusic-chip-cloud-chip-renderer, yt-chip-cloud-chip-renderer):is([selected], [is-selected]) :is(#text, yt-formatted-string) { color: #163d09 !important; }
 
 /* Observed native square artwork metadata separates album covers from video thumbnails. */
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer[aspect-ratio="MUSIC_TWO_ROW_ITEM_THUMBNAIL_ASPECT_RATIO_SQUARE"] :is(ytmusic-thumbnail-renderer.image, yt-img-shadow#image.image, img#img, .image) {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer[aspect-ratio="MUSIC_TWO_ROW_ITEM_THUMBNAIL_ASPECT_RATIO_SQUARE"] :is(ytmusic-thumbnail-renderer.image, yt-img-shadow#image.image, img#img, .image) {
   border-radius: 50% !important;
   overflow: hidden;
 }
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer:not([aspect-ratio="MUSIC_TWO_ROW_ITEM_THUMBNAIL_ASPECT_RATIO_SQUARE"]) :is(ytmusic-thumbnail-renderer.image, yt-img-shadow#image.image, img#img, .image) {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer:not([aspect-ratio="MUSIC_TWO_ROW_ITEM_THUMBNAIL_ASPECT_RATIO_SQUARE"]) :is(ytmusic-thumbnail-renderer.image, yt-img-shadow#image.image, img#img, .image) {
   border-radius: 4px !important;
 }
 html[data-yt-music-theme="frutiger"] :is(ytmusic-chip-cloud-chip-renderer, yt-chip-cloud-chip-renderer) :is(.gradient-box, a.yt-simple-endpoint[role="tab"]) {
@@ -591,7 +591,7 @@ html[data-yt-music-theme="frutiger"] ytmusic-carousel-shelf-basic-header-rendere
 
 html[data-yt-music-theme="frutiger"] ytmusic-player-page #side-panel tp-yt-paper-tab :is(.tab-content, .tab-label, yt-formatted-string, #text),
 html[data-yt-music-theme="frutiger"] ytmusic-player-page #side-panel :is(#tabs, .tab-header) :is(yt-formatted-string, .tab-label, #text),
-html[data-yt-music-theme="frutiger"] :is(ytmusic-description-shelf-renderer, ytmusic-lyrics-renderer, ytmusic-comments-renderer, ytmusic-tab-renderer) :is(yt-attributed-string, .yt-core-attributed-string, #content-text, #author-text),
+html[data-yt-music-theme="frutiger"] :is(ytmusic-description-shelf-renderer, ytmusic-lyrics-renderer, ytmusic-comments-renderer) :is(yt-attributed-string, .yt-core-attributed-string, #content-text, #author-text),
 html[data-yt-music-theme="frutiger"] ytmusic-player-bar :is(.title, #title),
 html[data-yt-music-theme="frutiger"] ytmusic-player-bar :is(.title, #title) :is(a, span, yt-formatted-string) { color: #103b52 !important; }
 html[data-yt-music-theme="frutiger"] ytmusic-player-bar :is(.byline, .subtitle, .time-info) :is(a, span, yt-formatted-string) { color: #35596d !important; }
@@ -599,11 +599,11 @@ html[data-yt-music-theme="frutiger"] :is(ytmusic-menu-navigation-item-renderer, 
 
 
 /* Do not shrink the native thumbnail box when framing carousel cells. */
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer {
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer {
   padding: 0 0 8px !important;
   border: 0 !important;
 }
-html[data-yt-music-theme="frutiger"] ytmusic-browse-response ytmusic-two-row-item-renderer > :is(.title, .subtitle, #title, #subtitle) { margin-inline: 6px; }
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer > :is(.title, .subtitle, #title, #subtitle) { margin-inline: 6px; }
 
 
 /* Queue row shadows add separation without changing the native list dimensions. */
@@ -623,4 +623,60 @@ html[data-yt-music-theme="frutiger"] ytmusic-player-queue-item {
 }
 html[data-yt-music-theme="frutiger"] ytmusic-player-queue-item[selected] {
   box-shadow: 0 3px 6px #0836523d !important;
+}
+
+/* Browse and Related use several native item renderers; keep their layout and media sizes. */
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) {
+  --ytmusic-color-white1: #103b52 !important;
+  --ytmusic-color-white2: #35596d !important;
+  --ytmusic-text-primary: #103b52 !important;
+  --ytmusic-text-secondary: #35596d !important;
+  --yt-endpoint-color: #103b52 !important;
+  color: #103b52 !important;
+  background: #f5fbff !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 0 0 1px #6698b480, inset 0 1px #fff, 0 4px 8px #07345140 !important;
+}
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) :is(.title, .song-title, #title),
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) :is(.title, .song-title, #title) :is(a, span, yt-formatted-string) {
+  color: #103b52 !important; opacity: 1 !important; text-shadow: none !important;
+}
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) :is(.subtitle, .byline, .secondary-flex-columns, .displayed-text, .progress-text, .podcast-name, .secondary-title),
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) :is(.subtitle, .byline, .secondary-flex-columns, .displayed-text, .progress-text, .podcast-name, .secondary-title) :is(a, span, yt-formatted-string) {
+  color: #35596d !important; opacity: 1 !important; text-shadow: none !important;
+}
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) .text-container { color: #103b52 !important; }
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) :is(ytmusic-multi-row-list-item-renderer, ytmusic-responsive-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer) ytmusic-thumbnail-renderer { border-radius: 4px !important; }
+html[data-yt-music-theme="frutiger"] ytmusic-navigation-button-renderer {
+  --ytmusic-color-white1: #103b52 !important;
+  color: #103b52 !important;
+  border-radius: 7px;
+  box-shadow: 0 4px 7px #07345140;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-navigation-button-renderer > button {
+  color: #103b52 !important;
+  background: #f5fbff !important;
+  box-shadow: inset 0 1px #fff, inset 0 -1px #6698b460;
+  /* Keep the native left border / --ytmusic-navigation-button-left-stripe-color. */
+}
+html[data-yt-music-theme="frutiger"] ytmusic-navigation-button-renderer > button > yt-formatted-string,
+html[data-yt-music-theme="frutiger"] ytmusic-navigation-button-renderer > button > yt-formatted-string :is(a, span) {
+  color: #103b52 !important; opacity: 1 !important; text-shadow: none !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-navigation-button-renderer[button-style="STYLE_ICON"] > button > yt-icon { color: #103b52 !important; }
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-carousel-shelf-basic-header-renderer :is(.title, #title, [role="heading"]),
+html[data-yt-music-theme="frutiger"] :is(ytmusic-browse-response, ytmusic-player-page #side-panel) ytmusic-carousel-shelf-basic-header-renderer :is(.title, #title, [role="heading"]) :is(a, span, yt-formatted-string) {
+  color: #fff !important;
+}
+/* Native tab controls keep their own selection logic and hidden/disabled states. */
+html[data-yt-music-theme="frutiger"] ytmusic-player-page #side-panel tp-yt-paper-tabs {
+  height: 48px !important; min-height: 48px !important;
+  --paper-tabs-selection-bar-color: #087aac !important;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-page #side-panel tp-yt-paper-tab {
+  min-height: 48px !important;
+  box-sizing: border-box;
+}
+html[data-yt-music-theme="frutiger"] ytmusic-player-page #side-panel tp-yt-paper-tabs #selectionBar {
+  background-color: #087aac !important;
 }

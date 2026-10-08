@@ -7,6 +7,7 @@ globalThis.FRUTIGER_WEB = Object.freeze({
   ]),
   sites: Object.freeze([
     { id: 'youtube', name: 'YouTube', hosts: ['www.youtube.com', 'youtube.com'], attribute: 'data-yt-tube-theme' },
-    { id: 'youtube-music', name: 'YouTube Music', hosts: ['music.youtube.com'], attribute: 'data-yt-music-theme' }
+    { id: 'youtube-music', name: 'YouTube Music', hosts: ['music.youtube.com'], attribute: 'data-yt-music-theme' },
+    { id: 'instagram', name: 'Instagram', hosts: ['www.instagram.com', 'instagram.com'], attribute: 'data-ig-theme' }
   ])
 });

@@ -1,0 +1,106 @@
+/* Instagram's native RGB tokens style dynamic feed, profile, inbox and overlays.
+   Media's always-white/on-media tokens deliberately retain their native values. */
+html[data-ig-theme] {
+  color-scheme: light;
+  --ig-primary-background: var(--fw-ig-bg-rgb) !important;
+  --ig-secondary-background: var(--fw-ig-soft-rgb) !important;
+  --ig-elevated-background: var(--fw-ig-bg-rgb) !important;
+  --ig-secondary-elevated-background: var(--fw-ig-soft-rgb) !important;
+  --ig-menu-background-color: var(--fw-ig-bg-rgb) !important;
+  --ig-menu-text-color: var(--fw-ig-text-rgb) !important;
+  --ig-bubble-background: var(--fw-ig-bg-rgb) !important;
+  --ig-incoming-message-bubble: var(--fw-ig-soft-rgb) !important;
+  --ig-primary-text: var(--fw-ig-text-rgb) !important;
+  --ig-secondary-text: var(--fw-ig-muted-rgb) !important;
+  --ig-tertiary-text: var(--fw-ig-muted-rgb) !important;
+  --ig-primary-icon: var(--fw-ig-text-rgb) !important;
+  --ig-secondary-icon: var(--fw-ig-muted-rgb) !important;
+  --ig-link: var(--fw-ig-link-rgb) !important;
+  --ig-separator: var(--fw-ig-line-rgb) !important;
+  --ig-elevated-separator: var(--fw-ig-line-rgb) !important;
+  --ig-stroke: var(--fw-ig-line-rgb) !important;
+  --ig-focus-stroke: var(--fw-ig-accent-rgb) !important;
+  --ig-highlight-background: var(--fw-ig-soft-rgb) !important;
+  --ig-primary-button: var(--fw-ig-accent-rgb) !important;
+  --ig-primary-button-hover: var(--fw-ig-link-rgb) !important;
+  --ig-secondary-button: var(--fw-ig-text-rgb) !important;
+  --ig-secondary-button-background: var(--fw-ig-soft-rgb) !important;
+  --ig-secondary-button-hover: var(--fw-ig-bg-rgb) !important;
+  --ig-tertiary-button-background: var(--fw-ig-bg-rgb) !important;
+  --ig-tertiary-button-text: var(--fw-ig-text-rgb) !important;
+  --ig-tertiary-button-border: var(--fw-ig-line-rgb) !important;
+  --ig-colors-button-primary-background: var(--fw-ig-accent-rgb) !important;
+  --ig-colors-button-primary-background--hover: var(--fw-ig-link-rgb) !important;
+  --ig-colors-button-primary-background--pressed: var(--fw-ig-link-rgb) !important;
+  --ig-colors-button-primary-link-text: var(--fw-ig-link-rgb) !important;
+  --ig-colors-button-secondary-background: var(--fw-ig-soft-rgb) !important;
+  --ig-colors-button-secondary-background--hover: var(--fw-ig-bg-rgb) !important;
+  --ig-colors-button-secondary-background--pressed: var(--fw-ig-bg-rgb) !important;
+  --ig-colors-button-secondary-text: var(--fw-ig-text-rgb) !important;
+  --ig-colors-button-secondary-link-text: var(--fw-ig-text-rgb) !important;
+  --ig-colors-button-borderless-text: var(--fw-ig-link-rgb) !important;
+  --ig-colors-link-text: var(--fw-ig-link-rgb) !important;
+  --primary-text: var(--fw-ig-ink) !important;
+  --secondary-text: var(--fw-ig-muted) !important;
+  --placeholder-text: var(--fw-ig-muted) !important;
+  --card-background: var(--fw-ig-paper) !important;
+  --card-background-flat: var(--fw-ig-soft) !important;
+  --surface-background: var(--fw-ig-paper) !important;
+  --web-wash: var(--fw-ig-paper) !important;
+  --wash: var(--fw-ig-soft) !important;
+  --popover-background: var(--fw-ig-paper) !important;
+  --popover-card-background: var(--fw-ig-paper) !important;
+  --nav-bar-background: var(--fw-ig-paper) !important;
+  --input-background: var(--fw-ig-paper) !important;
+  --input-background-hover: var(--fw-ig-soft) !important;
+  --comment-background: var(--fw-ig-soft) !important;
+  --divider: var(--fw-ig-edge) !important;
+  --accent: var(--fw-ig-accent) !important;
+  --primary-button-background: var(--fw-ig-accent) !important;
+  --secondary-button-text: var(--fw-ig-link) !important;
+  --secondary-button-background-floating: var(--fw-ig-paper) !important;
+  --toast-text: var(--fw-ig-ink) !important;
+}
+html[data-ig-theme] :is(span, a, p, label, h1, h2, h3, button, input, textarea, [contenteditable="true"]) {
+  font-family: var(--frutiger-font) !important;
+}
+html[data-ig-theme] :is(article, nav, [role="navigation"], [role="dialog"], [role="menu"], [role="listbox"], form) {
+  background-color: var(--fw-ig-paper) !important;
+  border: 1px solid var(--fw-ig-edge) !important;
+  border-radius: var(--fw-ig-radius) !important;
+  box-shadow: var(--fw-ig-shadow) !important;
+}
+/* Paint structural surfaces without changing Instagram's grids or media geometry. */
+html[data-ig-theme] :is(article, [role="dialog"], form) > header {
+  background: var(--fw-ig-chrome) !important;
+  border-bottom: 1px solid var(--fw-ig-edge) !important;
+}
+html[data-ig-theme] :is(input:not([type="checkbox"]):not([type="radio"]), textarea, [role="textbox"]) {
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-paper) !important;
+  border-color: var(--fw-ig-edge) !important;
+  border-radius: 6px !important;
+  box-shadow: inset 0 2px 4px #173e5526 !important;
+  caret-color: var(--fw-ig-accent) !important;
+}
+html[data-ig-theme] :is(input, textarea)::placeholder { color: var(--fw-ig-muted) !important; }
+html[data-ig-theme] :is(input, textarea, a, button, [role="button"]):focus-visible {
+  outline: 2px solid var(--fw-ig-accent) !important;
+  outline-offset: 2px !important;
+}
+/* Native navigation links remain in place; no labels or overlay controls added. */
+html[data-ig-theme] :is(nav, [role="navigation"]) a {
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-chrome) !important;
+  border: 1px solid var(--fw-ig-edge) !important;
+  border-radius: var(--fw-ig-radius) !important;
+  box-shadow: inset 0 1px 0 #fff, 0 2px 3px #173e5530 !important;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) a[aria-current="page"] {
+  background: var(--fw-ig-active) !important;
+}
+html[data-ig-theme] :is([role="dialog"], [role="menu"], [role="listbox"]) {
+  --ig-primary-background: var(--fw-ig-bg-rgb) !important;
+  --ig-primary-text: var(--fw-ig-text-rgb) !important;
+  --ig-secondary-text: var(--fw-ig-muted-rgb) !important;
+}

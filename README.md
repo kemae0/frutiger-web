@@ -1,11 +1,11 @@
 # Frutiger Web
 
-A Chrome extension for YouTube and YouTube Music.
+A Chrome extension for YouTube, YouTube Music and Instagram.
 
 - **Frutiger Aero** — Exo 2, sky/water scenery, blue chrome, green controls, beveled frames.
 - **DORFic** — Oxanium, orange geometric wallpaper, white surfaces and angular controls.
 
-Currently supports **YouTube** (`www.youtube.com`, `youtube.com`) and **YouTube Music** (`music.youtube.com`). It themes the web versions of these services. One theme choice applies across supported sites, with a global on/off switch and independent switches for each site.
+Currently supports **YouTube** (`www.youtube.com`, `youtube.com`), **YouTube Music** (`music.youtube.com`) and **Instagram** (`www.instagram.com`, `instagram.com`). It themes the web versions of these services. One theme choice applies across supported sites, with a global on/off switch and independent switches for each site.
 
 ## Install in Google Chrome
 
@@ -13,19 +13,20 @@ Currently supports **YouTube** (`www.youtube.com`, `youtube.com`) and **YouTube 
 2. Open `chrome://extensions`.
 3. Turn on **Developer mode** in the upper-right corner.
 4. Click **Load unpacked** and select this `frutiger-web` folder, which contains `manifest.json`.
-5. Reload any YouTube or YouTube Music tabs opened before installation.
+5. Reload supported tabs opened before installation.
 6. Click the extension's icon (pin it from Chrome's Extensions menu if desired), select **Frutiger Aero** or **DORFic**, and adjust the site switches.
 
 Theme changes apply to all open supported tabs without reloading after installation. Turning the theme off removes the attribute that activates its styles and restores the site's own appearance. Selecting another theme while globally off saves that choice for when the theme is turned on again. After editing extension files, click **Reload** on its card in `chrome://extensions`, then reload supported tabs.
 
 ## Design previews
 
-Open `apps/youtube/preview.html` or `apps/youtube-music/preview.html` in a browser to review the two themes and the off state. These are self-contained visual fixtures with representative site elements and local illustrations; they are not live YouTube pages. A preview URL may use `?theme=frutiger`, `?theme=dorfic`, or `?theme=off`.
+Open `apps/youtube/preview.html`, `apps/youtube-music/preview.html` or `apps/instagram/preview.html` in a browser to review the two themes and the off state. These are self-contained visual fixtures with representative site elements and local illustrations; they are not live service pages. A preview URL may use `?theme=frutiger`, `?theme=dorfic`, or `?theme=off`.
 
 | | Frutiger Aero | DORFic |
 | --- | --- | --- |
 | YouTube | ![YouTube Aero fixture](docs/previews/tube-aero.png) | ![YouTube DORFic fixture](docs/previews/tube-dorfic.png) |
 | YouTube Music | ![Music Aero fixture](docs/previews/music-aero.png) | ![Music DORFic fixture](docs/previews/music-dorfic.png) |
+| Instagram | ![Instagram Aero fixture](docs/previews/instagram-aero.png) | ![Instagram DORFic fixture](docs/previews/instagram-dorfic.png) |
 
 ## Behavior and privacy
 
@@ -33,7 +34,7 @@ The extension uses Manifest V3, bundled stylesheets, and a small content script.
 
 The content script sets a theme attribute on the document root after reading saved settings. CSS selectors are scoped to the selected theme and each site's attribute. The attribute remains in place during the site's normal navigation, so dynamically loaded pages receive the same theme. Site layouts, links, playback behavior, video images and thumbnails are preserved; the native video player keeps its dark control surface. Chrome-managed UI, cross-origin frames, and content inside inaccessible shadow roots are not themed.
 
-YouTube changes its markup and runs layout experiments, so some less-common surfaces may retain native colors or require a selector update. The design fixtures do not guarantee every live-site surface. These are independent visual themes, not official YouTube products.
+Supported sites change their markup and run layout experiments, so some less-common surfaces may retain native colors or require a selector update. The design fixtures do not guarantee every live-site surface. These are independent visual themes, not official YouTube or Instagram products. Instagram uses native color tokens and semantic content, navigation, form and menu surfaces; its on-media colors are preserved. Its signed-out markup was inspected, but signed-in feed, inbox and profile layouts still need an installed-extension check.
 
 ## Add another theme
 
@@ -49,7 +50,7 @@ YouTube changes its markup and runs layout experiments, so some less-common surf
 3. Add a separate manifest `content_scripts` entry with explicit HTTPS match patterns for those hosts, `registry.js` and `content.js`, that site's theme CSS files, and the shared `wallpaper.css`, `fonts/extension.css` and `fonts.css`. Also add the exact hosts to the wallpaper/font resources' match list. Avoid broad/all-sites matches. Adding a host in the registry alone does not authorize injection; **the manifest must also be updated**.
 4. Supply a representative local preview and check the live website. The shared popup automatically adds the site's switch, and the content script automatically chooses its module by hostname. New sites default to enabled.
 
-The shared settings object is `{ enabled: true, theme: "frutiger", apps: { youtube: true, "youtube-music": true } }`. The `apps` key stores website/web-app switches for compatibility; it does not imply support for native desktop applications.
+The shared settings object is `{ enabled: true, theme: "frutiger", apps: { youtube: true, "youtube-music": true, instagram: true } }`. The `apps` key stores website/web-app switches for compatibility; it does not imply support for native desktop applications.
 
 ## Files
 
@@ -66,9 +67,9 @@ No build step or package installation is needed.
 
 ## Verification
 
-Run `node tools/verify-extensions.cjs` for manifest, host scope, local file references, JavaScript syntax, and icon dimensions. Run `node --test tools/test-content.cjs tools/test-popup.cjs` for saved preferences, both hosts, theme switching, per-site and global off, loading races, popup controls, errors, and unsupported-host behavior.
+Run `node tools/verify-extensions.cjs` for manifest, host scope, local file references, JavaScript syntax, and icon dimensions. Run `node --test tools/test-content.cjs tools/test-popup.cjs` for saved preferences, supported hosts, theme switching, per-site and global off, loading races, popup controls, errors, and unsupported-host behavior.
 
-Run `node tools/test-rendering.cjs` with Chrome or Edge installed to check actual browser rendering against native-style white labels and stretched chips. It verifies contrast, packaged font loading, channel/Shorts/menu text, Music queues, compact filters, circular square artwork, rectangular video artwork, shadows, dark media controls and off restoration. Add `--screenshots` to refresh the four images above. Test profiles and reports remain under ignored `.qa/`.
+Run `node tools/test-rendering.cjs` with Chrome or Edge installed to check browser rendering against native-style labels and stretched chips. It verifies contrast, packaged fonts, opaque watch/comment panels, Shorts playback overlays, reply toggling, Music genres/episodes/Related tabs, compact filters, artwork shapes, shadows, Instagram content/forms/menus, media colors and off restoration. Add `--screenshots` to refresh the six images above. Test profiles and reports remain under ignored `.qa/`.
 
 The previews use the actual theme stylesheets against representative local markup. Their layouts are illustrative. The source package has been checked with these fixtures and behavioral tests; it still needs an installed-extension check against live signed-in pages for account-specific layouts and playback.
 

@@ -14,13 +14,13 @@ fs.mkdirSync(qa, { recursive: true });
 let checks = 0;
 const failures = [];
 const screenshots = process.argv.includes('--screenshots');
-for (const site of ['youtube', 'youtube-music']) {
+for (const site of ['youtube', 'youtube-music', 'instagram']) {
   for (const theme of ['frutiger', 'dorfic', 'off']) {
     const profile = fs.mkdtempSync(path.join(qa, 'render-'));
     const url = pathToFileURL(path.join(root, 'apps', site, 'preview.html'));
     url.search = `theme=${theme}&menu=1&verify=1`;
     const screenshotArgs = screenshots && theme !== 'off'
-      ? [`--screenshot=${path.join(root, 'docs', 'previews', `${site === 'youtube' ? 'tube' : 'music'}-${theme === 'frutiger' ? 'aero' : 'dorfic'}.png`)}`]
+      ? [`--screenshot=${path.join(root, 'docs', 'previews', `${site === 'youtube' ? 'tube' : site === 'youtube-music' ? 'music' : 'instagram'}-${theme === 'frutiger' ? 'aero' : 'dorfic'}.png`)}`]
       : [];
     const result = spawnSync(browser, [
       '--headless', '--disable-gpu', '--no-first-run', '--disable-background-networking',

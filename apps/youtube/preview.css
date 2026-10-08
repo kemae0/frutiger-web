@@ -87,3 +87,52 @@ ytd-thumbnail-overlay-time-status-renderer { position: absolute; bottom: 8px; ri
 yt-page-header-renderer, yt-page-header-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model { display: block; }
 .shorts-grid ytm-shorts-lockup-view-model-v2 { min-width: 0; padding: 7px; }
 .shorts-player-fixture { display: inline-block; padding: 13px 18px; margin: 0 0 30px; background: #111; color: var(--yt-spec-text-primary,#fff); border-radius: 9px; }
+.watch-fixture { display: grid; grid-template-columns: minmax(0,2.1fr) minmax(210px,1fr); gap: 18px; margin: 35px 0; }
+.watch-fixture :is(ytd-watch-metadata,ytd-comments,ytd-comments-header-renderer,ytd-comment-simplebox-renderer,ytd-comment-thread-renderer,ytd-comment-view-model,ytd-comment-replies-renderer,ytd-watch-next-secondary-results-renderer) { display: block; }
+.watch-fixture #primary,.watch-fixture #secondary { min-width: 0; }
+.watch-video { position: relative; height: 190px; overflow: hidden; border-radius: 12px; }
+.watch-video .ytp-chrome-controls { position: absolute; bottom: 0; left: 0; right: 0; }
+.watch-fixture ytd-watch-metadata { padding: 13px; margin: 14px 0; }
+.watch-fixture h1 { margin: 0 0 12px; font-size: 18px; line-height: 1.4; }
+.watch-fixture #top-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+.watch-fixture #owner { display: flex; align-items: center; gap: 9px; font-size: 12px; }
+.watch-fixture #owner p { font-size: 10px; margin: 3px 0 0; color: var(--yt-spec-text-secondary,#aaa); }
+.watch-fixture #actions { display: flex; gap: 6px; align-items: center; }
+.watch-fixture segmented-like-dislike-button-view-model { display: inline-flex; border-radius: 17px; background: #ffffff33; }
+.watch-fixture button { font: inherit; font-size: 11px; padding: 7px 10px; color: #fff; background: #ffffff33; border: 1px solid #ffffff55; border-radius: 18px; cursor: pointer; }
+.watch-fixture #description { margin-top: 13px; padding: 11px; font-size: 11px; line-height: 1.7; }
+.watch-fixture ytd-comments { padding: 12px; }
+.watch-fixture ytd-comments-header-renderer { display: flex; align-items: center; gap: 20px; }
+.watch-fixture h2 { font-size: 17px; margin: 0; }
+.watch-fixture ytd-comment-simplebox-renderer { display: flex; align-items: center; gap: 12px; margin: 17px 0; }
+.watch-fixture #contenteditable-root { flex: 1; border-bottom: 1px solid #aeb8c3; padding: 9px 0; font-size: 12px; }
+.watch-fixture ytd-comment-thread-renderer { padding: 11px; }
+.watch-fixture .comment-owner { display: flex; align-items: center; gap: 8px; font-size: 10px; }
+.watch-fixture #content-text { margin: 11px 0; font-size: 12px; line-height: 1.5; }
+.watch-fixture .comment-actions { display: flex; align-items: center; gap: 6px; }
+.watch-fixture ytd-comment-replies-renderer { margin: 12px 0 0 28px; padding: 10px; font-size: 10px; }
+.watch-fixture ytd-watch-next-secondary-results-renderer { padding: 9px; }
+.watch-fixture ytd-compact-video-renderer { display: flex; gap: 9px; margin: 0 0 14px; }
+.watch-fixture ytd-compact-video-renderer ytd-thumbnail { width: 45%; flex-shrink: 0; }
+.watch-fixture ytd-compact-video-renderer h3 { font-size: 12px; line-height: 1.4; margin: 3px 0 8px; }
+.watch-fixture ytd-compact-video-renderer p { margin: 0; font-size: 10px; line-height: 1.5; color: var(--yt-spec-text-secondary,#aaa); }
+[hidden] { display: none !important; }
+@media(max-width:1000px) { .watch-fixture { grid-template-columns: minmax(0,1fr); } }
+.shorts-playback-fixture { display: flex; gap: 18px; align-items: flex-end; margin: 35px 0; }
+.shorts-playback-fixture ytd-reel-video-renderer { display: block; width: 260px; }
+.shorts-playback-fixture .shorts-video { position: relative; height: 340px; overflow: hidden; border-radius: 12px; }
+.shorts-playback-fixture ytd-reel-player-header-renderer { display: block; position: absolute; left: 0; right: 0; bottom: 0; padding: 35px 15px 18px; font-size: 13px; line-height: 1.5; }
+.shorts-playback-fixture ytd-reel-player-header-renderer p { margin: 9px 0 6px; font-size: 11px; }
+.shorts-playback-fixture #actions { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 15px 10px; border-radius: 12px; background: #202020; color: #fff; font-size: 11px; }
+.shorts-playback-fixture #actions button { color: #fff; background: #343434; border: none; border-radius: 50%; width: 38px; height: 38px; font: inherit; font-size: 23px; }
+.modern-shorts-playback-fixture { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; margin: 35px 0; }
+.modern-shorts-video { position: relative; width: 290px; height: 350px; overflow: hidden; border-radius: 12px; }
+.modern-shorts-playback-fixture .ytReelPlayerOverlayViewModelMetadataContainer { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 15px 15px; font-size: 12px; }
+.modern-shorts-playback-fixture yt-reel-channel-bar-view-model { display: flex; align-items: center; gap: 10px; }
+.modern-shorts-playback-fixture .ytSpecButtonShapeNextFilled.ytSpecButtonShapeNextMono { background: #fff; color: #0f0f0f; border: none; border-radius: 17px; padding: 8px 11px; font: inherit; font-size: 11px; }
+.modern-shorts-playback-fixture h1 { font-size: 15px; line-height: 1.4; margin: 14px 0 0; }
+.modern-shorts-playback-fixture .ytReelPlayerOverlayViewModelActionsContainer { padding: 15px; border-radius: 12px; background: #202020; }
+.modern-shorts-playback-fixture reel-action-bar-view-model { display: flex; flex-direction: column; gap: 20px; }
+.modern-shorts-playback-fixture .ytSpecButtonShapeWithLabelHost { display: flex; flex-direction: column; gap: 8px; align-items: center; font-size: 11px; }
+.modern-shorts-playback-fixture .ytSpecButtonShapeWithLabelHost button { background: #343434; color: #fff; width: 40px; height: 40px; border: none; border-radius: 50%; font-size: 23px; }
+.modern-shorts-playback-fixture ytd-engagement-panel-section-list-renderer { display: block; padding: 18px; font-size: 12px; max-width: 220px; }

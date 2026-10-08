@@ -226,7 +226,7 @@ html[data-yt-tube-theme="frutiger"] :is(ytd-guide-renderer, ytd-mini-guide-rende
   font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
 }
 /* Explicit native text colors also cover components with hardcoded dark colors. */
-html[data-yt-tube-theme="frutiger"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, ytd-playlist-renderer, yt-lockup-view-model, ytd-shelf-renderer, ytd-rich-shelf-renderer, ytd-reel-shelf-renderer, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, ytd-watch-metadata, ytd-comments, ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer, ytd-browse[page-subtype="channels"], yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, yt-tab-group-shape, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, tp-yt-paper-listbox, yt-sheet-view-model) :where(yt-formatted-string, yt-attributed-string, .yt-core-attributed-string, .ytAttributedStringHost, .title, #video-title, #video-title-link, #title, #text, #channel-name, #content-text, .yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent, .yt-tab-shape-wiz__tab, .ytTabShapeTab, .ytContentMetadataViewModelTitle, .ytLockupMetadataViewModelTitle, .ytPageHeaderViewModelTitle, .ytShortsLockupViewModelHostMetadataTitle):not(:where(#movie_player, ytd-player, ytd-thumbnail, yt-thumbnail-view-model, .ytThumbnailViewModelHost, ytd-reel-video-renderer, yt-shorts-video-view-model, ytd-reel-player-overlay-renderer) *) {
+html[data-yt-tube-theme="frutiger"] :is(ytd-guide-renderer, ytd-mini-guide-renderer, ytd-rich-grid-media, ytd-rich-grid-slim-media, ytd-video-renderer, ytd-compact-video-renderer, ytd-playlist-renderer, yt-lockup-view-model, ytd-shelf-renderer, ytd-rich-shelf-renderer, ytd-reel-shelf-renderer, ytd-reel-item-renderer, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model, ytd-watch-metadata, ytd-comments, ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer, ytd-browse[page-subtype="channels"], yt-page-header-renderer, yt-page-header-view-model, page-header-view-model, yt-tab-group-shape, ytd-multi-page-menu-renderer, ytd-menu-popup-renderer, tp-yt-paper-dialog, tp-yt-paper-listbox, yt-sheet-view-model) :where(yt-formatted-string, yt-attributed-string, .yt-core-attributed-string, .ytAttributedStringHost, .title, #video-title, #video-title-link, #title, #text, #channel-name, #content-text, .yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent, .yt-tab-shape-wiz__tab, .ytTabShapeTab, .ytContentMetadataViewModelTitle, .ytLockupMetadataViewModelTitle, .ytPageHeaderViewModelTitle, .ytShortsLockupViewModelHostMetadataTitle):not(:where(#movie_player, ytd-player, ytd-thumbnail, yt-thumbnail-view-model, .ytThumbnailViewModelHost, ytd-reel-video-renderer, yt-shorts-video-view-model, ytd-reel-player-overlay-renderer, yt-reel-player-overlay-view-model) *) {
   color: #14354d !important;
   font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
   text-shadow: none !important;
@@ -305,3 +305,118 @@ html[data-yt-tube-theme="frutiger"] .ytTabShapeTabSelected { border-bottom-color
 html[data-yt-tube-theme="frutiger"] ytm-shorts-lockup-view-model-v2 > ytm-shorts-lockup-view-model { background: transparent !important; border: none !important; box-shadow: none !important; }
 html[data-yt-tube-theme="frutiger"] :is(ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) :is(.shortsLockupViewModelHostOutsideMetadata, .shortsLockupViewModelHostOutsideMetadataTitle) { color: #14354d !important; }
 html[data-yt-tube-theme="frutiger"] :is(ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model) .shortsLockupViewModelHostOutsideMetadataSubhead :is(span, .ytAttributedStringHost) { color: #45667a !important; }
+/* Watch-page content sits on opaque surfaces instead of the scenic wallpaper.
+   These declarations do not change native widths, display, overflow or collapsing. */
+html[data-yt-tube-theme="frutiger"] :is(ytd-watch-metadata, ytd-comments, ytd-comment-simplebox-renderer, ytd-comment-thread-renderer, ytd-comment-view-model, ytd-comment-replies-renderer, ytd-watch-next-secondary-results-renderer) {
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-text-secondary: #45667a !important;
+  --yt-spec-text-disabled: #45667a !important;
+  --yt-spec-icon-active-other: #14354d !important;
+  --yt-spec-icon-inactive: #45667a !important;
+  --yt-spec-base-background: #f7fcff !important;
+  --yt-spec-raised-background: #f7fcff !important;
+  --yt-spec-menu-background: #f7fcff !important;
+  --yt-endpoint-color: #005a92 !important;
+  --yt-endpoint-visited-color: #005a92 !important;
+  background: #f7fcff !important;
+  color: #14354d !important;
+  border: 1px solid #4f97b9;
+  border-radius: 13px;
+  box-shadow: inset 0 1px #fff, 0 4px 13px #04385c33;
+  box-sizing: border-box;
+}
+html[data-yt-tube-theme="frutiger"] ytd-watch-metadata :is(#top-row, #bottom-row, #owner, #actions, #menu, #description, #description-inner, ytd-text-inline-expander, yt-text-inline-expander, yt-video-description-header-renderer) {
+  background: #f7fcff !important;
+  color: #14354d !important;
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-icon-active-other: #14354d !important;
+}
+html[data-yt-tube-theme="frutiger"] ytd-comments :is(ytd-comments-header-renderer, ytd-comment-simplebox-renderer, #contents, #header, #footer, #body, #contenteditable-root, #simplebox-placeholder) {
+  background: #f7fcff !important;
+  color: #14354d !important;
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-text-secondary: #45667a !important;
+  --yt-spec-icon-active-other: #14354d !important;
+}
+html[data-yt-tube-theme="frutiger"] ytd-watch-flexy #secondary,
+html[data-yt-tube-theme="frutiger"] ytd-watch-flexy #secondary-inner { background: #f7fcff !important; color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-watch-metadata, ytd-comments, ytd-watch-next-secondary-results-renderer) :where(yt-formatted-string, yt-attributed-string, yt-attributedstring, .ytAttributedStringHost, .yt-core-attributed-string, .ytSpecButtonShapeNextButtonTextContent, .yt-spec-button-shape-next__button-text-content, #contenteditable-root, #simplebox-placeholder, #author-text, #content-text, #vote-count-middle, #title, h1, h2, h3, span):not(:where(#movie_player, ytd-player, ytd-thumbnail, yt-thumbnail-view-model, .ytThumbnailViewModelHost, ytd-reel-video-renderer, yt-shorts-video-view-model, ytd-reel-player-overlay-renderer, yt-reel-player-overlay-view-model) *) {
+  color: #14354d !important;
+  font-family: var(--frutiger-font, "Segoe UI", sans-serif) !important;
+  text-shadow: none !important;
+}
+html[data-yt-tube-theme="frutiger"] ytd-watch-metadata :is(#description, #description-inner, ytd-text-inline-expander, yt-text-inline-expander) :is(a, a span, .yt-core-attributed-string--link, .ytAttributedStringLink) { color: #005a92 !important; }
+html[data-yt-tube-theme="frutiger"] ytd-comments :is(#published-time-text, #published-time-text a, #published-time-text span, #author-comment-badge, #vote-count-middle) { color: #45667a !important; }
+html[data-yt-tube-theme="frutiger"] :is(ytd-watch-metadata, ytd-comments) :is(button, .ytSpecButtonShapeNextHost, .yt-spec-button-shape-next, segmented-like-dislike-button-view-model, yt-segmented-like-dislike-button-view-model, .segmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper):not(:where(#movie_player, ytd-player, ytd-reel-video-renderer, yt-shorts-video-view-model, yt-reel-player-overlay-view-model) *) {
+  background: #d3edf7 !important;
+  color: #14354d !important;
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-icon-active-other: #14354d !important;
+  border-color: #4f97b9 !important;
+  box-shadow: inset 0 1px #fff, 0 2px 4px #04385c33;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-watch-metadata, ytd-comments) :is(yt-icon, .ytIconWrapperHost, .ytSpecButtonShapeNextButtonTextContent, .yt-spec-button-shape-next__button-text-content):not(:where(#movie_player, ytd-player, ytd-thumbnail, yt-thumbnail-view-model, ytd-reel-video-renderer, yt-shorts-video-view-model, yt-reel-player-overlay-view-model) *) { color: #14354d !important; }
+html[data-yt-tube-theme="frutiger"] ytd-watch-metadata ytd-subscribe-button-renderer button { background: var(--frutiger-green-chrome) !important; color: #14354d !important; }
+/* Browse Shorts cards are light; actual Shorts playback has dark video overlays. */
+html[data-yt-tube-theme="frutiger"] :is(ytd-reel-player-header-renderer, ytd-reel-player-overlay-renderer, yt-shorts-video-view-model, ytd-shorts #actions) {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #f0f0f0 !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #f0f0f0 !important;
+  --yt-endpoint-color: #fff !important;
+  color: #fff !important;
+}
+html[data-yt-tube-theme="frutiger"] :is(ytd-reel-player-header-renderer, ytd-reel-player-overlay-renderer, yt-shorts-video-view-model, ytd-shorts #actions) :where(yt-formatted-string, yt-attributed-string, .ytAttributedStringHost, .yt-core-attributed-string, .ytSpecButtonShapeNextButtonTextContent, .yt-spec-button-shape-next__button-text-content, #title, #text, #description, #channel-name, span, a):not(:where(ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, yt-sheet-view-model, tp-yt-paper-dialog, ytd-comments) *) {
+  color: #fff !important;
+  text-shadow: 0 1px 3px #000, 0 0 8px #0008 !important;
+}
+html[data-yt-tube-theme="frutiger"] ytd-reel-player-header-renderer { background: linear-gradient(transparent, #0008) !important; }
+html[data-yt-tube-theme="frutiger"] ytd-shorts #actions :is(yt-icon, .ytIconWrapperHost) { color: #fff !important; }
+/* Current Shorts playback uses reel overlay view-models, separate from browse cards. */
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #eee !important;
+  --yt-spec-icon-active-other: #fff !important;
+  --yt-spec-icon-inactive: #eee !important;
+  --yt-spec-base-background: #0f0f0f !important;
+  --yt-spec-raised-background: #212121 !important;
+  --yt-spec-menu-background: #282828 !important;
+  --yt-spec-inverted-background: #fff !important;
+  --yt-spec-inverted-text: #0f0f0f !important;
+  --yt-spec-text-primary-inverse: #0f0f0f !important;
+  --yt-spec-10-percent-layer: #ffffff33 !important;
+  --yt-spec-badge-chip-background: #ffffff1a !important;
+  --yt-spec-button-chip-background-hover: #ffffff55 !important;
+  color: #fff !important;
+  color-scheme: dark !important;
+}
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model :is(.ytReelPlayerOverlayViewModelMetadataContainer, .ytReelPlayerOverlayViewModelActionsContainer) {
+  --yt-spec-text-primary: #fff !important;
+  --yt-spec-text-secondary: #eee !important;
+  --yt-spec-icon-active-other: #fff !important;
+  color: #fff !important;
+  background: linear-gradient(transparent, #0009) !important;
+}
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model :is(yt-reel-metapanel-view-model, yt-reel-channel-bar-view-model, yt-shorts-video-title-view-model, reel-action-bar-view-model) :where(.ytAttributedStringHost, .ytAttributedStringLinkInheritColor, .ytShortsVideoTitleViewModelShortsVideoTitle, .ytReelChannelBarViewModelChannelName, .ytSpecButtonShapeWithLabelLabel, .ytSpecButtonShapeNextButtonTextContent, yt-formatted-string, span, a):not(:where(ytd-engagement-panel-section-list-renderer, yt-engagement-panel-view-model, ytd-comments, ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, yt-sheet-view-model, tp-yt-paper-dialog) *) {
+  color: #fff !important;
+  text-shadow: 0 1px 3px #000, 0 0 8px #0008 !important;
+}
+/* Subscribe retains the native white monochrome button and its dark label. */
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model yt-reel-channel-bar-view-model :is(.ytSpecButtonShapeNextFilled.ytSpecButtonShapeNextMono, .ytSpecButtonShapeNextFilledMono, .yt-spec-button-shape-next--filled.yt-spec-button-shape-next--mono) {
+  --yt-spec-text-primary: #0f0f0f !important;
+  --yt-spec-icon-active-other: #0f0f0f !important;
+  color: #0f0f0f !important;
+  background: #fff !important;
+}
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model yt-reel-channel-bar-view-model :is(.ytSpecButtonShapeNextFilled.ytSpecButtonShapeNextMono, .ytSpecButtonShapeNextFilledMono, .yt-spec-button-shape-next--filled.yt-spec-button-shape-next--mono) :where(.ytSpecButtonShapeNextButtonTextContent, .ytAttributedStringHost, .yt-core-attributed-string, span, yt-formatted-string) { color: #0f0f0f !important; text-shadow: none !important; }
+/* Open descriptions, comments and menus remain opaque reading surfaces. */
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model :is(ytd-engagement-panel-section-list-renderer, yt-engagement-panel-view-model, ytd-comments, ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, yt-sheet-view-model, tp-yt-paper-dialog) {
+  --yt-spec-text-primary: #14354d !important;
+  --yt-spec-text-secondary: #45667a !important;
+  --yt-spec-icon-active-other: #14354d !important;
+  --yt-spec-base-background: #f7fcff !important;
+  background: #f7fcff !important;
+  color: #14354d !important;
+}
+html[data-yt-tube-theme="frutiger"]  yt-reel-player-overlay-view-model :is(ytd-engagement-panel-section-list-renderer, yt-engagement-panel-view-model, ytd-comments, ytd-menu-popup-renderer, ytd-multi-page-menu-renderer, yt-sheet-view-model, tp-yt-paper-dialog) :where(.ytAttributedStringHost, .ytAttributedStringLinkInheritColor, .yt-core-attributed-string, span, a, yt-formatted-string, yt-icon) { color: #14354d !important; text-shadow: none !important; }
+html[data-yt-tube-theme="frutiger"] yt-reel-player-overlay-view-model .ytReelPlayerOverlayViewModelActionsContainer { background: #000a !important; border-radius: 12px; }

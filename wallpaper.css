@@ -11,6 +11,3 @@ html[data-frutiger-theme] ytmusic-app,
 html[data-frutiger-theme] ytmusic-app-layout {
   background: transparent !important;
 }
-html[data-frutiger-theme] ytmusic-background-overlay-renderer {
-  opacity: 0 !important;
-}

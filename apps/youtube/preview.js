@@ -32,3 +32,9 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') menu.hidden = true;
 });
 if (new URLSearchParams(location.search).get('menu') === '1') menu.hidden = false;
+for (const trigger of document.querySelectorAll('[data-replies-toggle]')) {
+  trigger.addEventListener('click', () => {
+    const replies = document.querySelector('[data-testid="watch-replies-panel"]');
+    replies.hidden = !replies.hidden;
+  });
+}

@@ -39,7 +39,9 @@ function create(host = 'www.youtube.com', hasRoot = true) {
 for (const [host, site, attr] of [
   ['www.youtube.com', 'youtube', 'data-yt-tube-theme'],
   ['youtube.com', 'youtube', 'data-yt-tube-theme'],
-  ['music.youtube.com', 'youtube-music', 'data-yt-music-theme']
+  ['music.youtube.com', 'youtube-music', 'data-yt-music-theme'],
+  ['www.instagram.com', 'instagram', 'data-ig-theme'],
+  ['instagram.com', 'instagram', 'data-ig-theme']
 ]) {
   test(`${host}: saved theme, live switching, site toggle, master toggle`, () => {
     const app = create(host);
@@ -79,9 +81,11 @@ test('Unknown stored theme falls back; removed preferences use defaults', () => 
   assert.equal(app.attrs.get('data-yt-tube-theme'), 'frutiger');
 });
 test('Unsupported hosts stay untouched', () => {
-  const app = create('example.com');
-  assert.equal(app.reads, 0);
-  assert.equal(app.attrs.size, 0);
+  for (const host of ['example.com', 'help.instagram.com', 'studio.youtube.com']) {
+    const app = create(host);
+    assert.equal(app.reads, 0);
+    assert.equal(app.attrs.size, 0);
+  }
 });
 test('Root arriving after settings gets the saved theme', () => {
   const app = create('music.youtube.com', false);

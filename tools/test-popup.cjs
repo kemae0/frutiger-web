@@ -26,8 +26,9 @@ async function create(initial = {}, options = {}) {
       async sendMessage(_id, message) {
         assert.equal(message.type, 'frutiger-web-status');
         if (options.unsupported) throw new Error('No content script');
-        const active = stored.enabled !== false && stored.apps.youtube !== false;
-        return { initialized: true, site: 'youtube', siteName: 'YouTube', activeTheme: active ? stored.theme : null };
+        const site = options.site || 'youtube';
+        const active = stored.enabled !== false && stored.apps[site] !== false;
+        return { initialized: true, site, siteName: site === 'instagram' ? 'Instagram' : 'YouTube', activeTheme: active ? stored.theme : null };
       }
     }
   };
@@ -47,13 +48,14 @@ test('Popup populates themes/sites and shows saved choice', async () => {
   assert.equal(app.body.dataset.theme, 'dorfic');
   assert.equal(app.siteInput('YouTube').checked, true);
   assert.equal(app.siteInput('YouTube Music').checked, false);
+  assert.equal(app.siteInput('Instagram').checked, true);
   assert.equal(app.elements.status.textContent, 'On · YouTube');
 });
 test('Theme and site changes preserve other preferences', async () => {
   const app = await create({ apps: { 'youtube-music': false } });
   app.elements.theme.value = 'dorfic';
   await app.elements.theme.change();
-  assert.deepEqual(app.writes[0], { enabled: true, theme: 'dorfic', apps: { youtube: true, 'youtube-music': false } });
+  assert.deepEqual(app.writes[0], { enabled: true, theme: 'dorfic', apps: { youtube: true, 'youtube-music': false, instagram: true } });
   app.siteInput('YouTube').checked = false;
   await app.siteInput('YouTube').change();
   assert.equal(app.writes[1].apps.youtube, false);
@@ -65,8 +67,18 @@ test('Master off retains theme and site preferences', async () => {
   const app = await create({ theme: 'dorfic', apps: { 'youtube-music': false } });
   app.elements.enabled.checked = false;
   await app.elements.enabled.change();
-  assert.deepEqual(app.writes[0], { enabled: false, theme: 'dorfic', apps: { youtube: true, 'youtube-music': false } });
+  assert.deepEqual(app.writes[0], { enabled: false, theme: 'dorfic', apps: { youtube: true, 'youtube-music': false, instagram: true } });
   assert.equal(app.elements.status.textContent, 'Off');
+});
+test('Instagram switch and status preserve existing site preferences', async () => {
+  const app = await create({ apps: { youtube: false } }, { site: 'instagram' });
+  assert.equal(app.elements.status.textContent, 'On · Instagram');
+  app.siteInput('Instagram').checked = false;
+  await app.siteInput('Instagram').change();
+  assert.equal(app.writes[0].apps.instagram, false);
+  assert.equal(app.writes[0].apps.youtube, false);
+  assert.equal(app.writes[0].apps['youtube-music'], true);
+  assert.equal(app.elements.status.textContent, 'Off · Instagram');
 });
 test('Unsupported tab offers installation/reload guidance', async () => {
   const app = await create({}, { unsupported: true });

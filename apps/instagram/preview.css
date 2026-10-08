@@ -1,0 +1,32 @@
+/* Local representative markup only; these layout rules are not shipped to Instagram. */
+:root { --ig-primary-text: 245,245,245; --ig-secondary-text: 200,200,200; --ig-primary-background: 20,20,20; --ig-primary-icon: 255,255,255; --always-white:#fff; --primary-text-on-media:#fff; }
+* { box-sizing:border-box; }
+body { margin:0; padding:26px; color:rgb(var(--ig-primary-text)); background:#111; font-family:Arial,sans-serif; display:grid; grid-template-columns:215px minmax(0,590px) minmax(230px,320px); gap:28px; justify-content:center; }
+nav { padding:22px 15px; align-self:start; position:sticky; top:24px; }
+nav h1 { font-family:cursive; font-size:30px; margin:0 0 28px; }
+nav a { display:block; padding:14px; margin:10px 0; color:inherit; text-decoration:none; }
+select { width:100%; margin-top:20px; padding:8px; }
+article, [role=dialog],form { background:rgb(var(--ig-primary-background)); margin-bottom:28px; overflow:hidden; }
+header { display:flex; align-items:center; gap:12px; padding:15px; }
+header p { margin:5px 0 0; }
+header button { margin-left:auto; }
+.avatar { width:44px; height:44px; border-radius:50%; background:radial-gradient(circle at 38% 28%,#fff3d5 10%,#f386b7 40%,#963994); border:3px solid #d45181; }
+.muted { color:rgb(var(--ig-secondary-text)); }
+.post-photo { height:350px; position:relative; overflow:hidden; background:linear-gradient(175deg,transparent 54%,#548467 54%,#a7c08f 66%,transparent 66%),linear-gradient(195deg,transparent 50%,#558cb4 50%,#97b6c7 64%,transparent 64%),linear-gradient(#4da9e0 0%,#cceeff 59%,#39a1c8 60%,#93d2cf 100%); }
+.sun { position:absolute; width:60px; height:60px; border-radius:50%; background:#fffacf; right:85px; top:50px; box-shadow:0 0 40px #fff; }
+.post-details { padding:16px 20px 22px; }
+button { border:0; background:transparent; color:rgb(var(--ig-primary-text)); font:inherit; cursor:pointer; }
+.actions { display:flex; gap:18px; }
+.actions button { font-size:27px; }
+.actions button:last-child { margin-left:auto; }
+input { width:100%; border:1px solid #888; padding:13px; font:inherit; background:rgb(var(--ig-primary-background)); color:rgb(var(--ig-primary-text)); }
+aside [role=dialog],form { padding:22px; }
+aside button { display:block; padding:13px; width:100%; border-bottom:1px solid #aaa; }
+form h2 { text-align:center; font-family:cursive; }
+label { display:block; margin:16px 0; font-size:13px; }
+form .modern-login { background:rgb(var(--ig-colors-button-primary-background,74,93,249)); color:rgb(var(--ig-colors-button-primary-text,255,255,255)); border-radius:6px; padding:13px; text-align:center; cursor:pointer; }
+.reel-media { position:relative; height:270px; background:radial-gradient(ellipse at 70% 70%,#115a5c,#10172a 70%); }
+.reel-copy { position:absolute; bottom:25px; left:22px; color:var(--primary-text-on-media); text-shadow:0 2px 4px #000; }
+.reel-like { position:absolute; right:22px; bottom:35px; color:var(--always-white); font-size:35px; }
+@media(max-width:1000px) { body { grid-template-columns:170px minmax(0,590px); } aside { grid-column:2; } }
+@media(max-width:650px) { body { display:block; padding:12px; } nav { position:static; } }
