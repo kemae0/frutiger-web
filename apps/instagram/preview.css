@@ -25,6 +25,8 @@ button { border:0; background:transparent; color:rgb(var(--ig-primary-text)); fo
 .actions button:last-child { margin-left:auto; }
 input { width:100%; border:1px solid #888; padding:13px; font:inherit; background:rgb(var(--ig-primary-background)); color:rgb(var(--ig-primary-text)); }
 aside [role=dialog],form { padding:22px; }
+aside :is([role=menu], [role=log]) { padding:22px; margin-bottom:28px; background:rgb(var(--ig-primary-background)); }
+.message-bubble { padding:12px; border-radius:16px 16px 16px 4px; background:rgb(var(--ig-incoming-message-bubble,45,45,45)); }
 aside button { display:block; padding:13px; width:100%; border-bottom:1px solid #aaa; }
 form h2 { text-align:center; font-family:cursive; }
 label { display:block; margin:16px 0; font-size:13px; }

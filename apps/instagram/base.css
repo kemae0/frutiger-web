@@ -111,3 +111,118 @@ html[data-ig-theme] :is([role="dialog"], [role="menu"], [role="listbox"]) {
   --ig-primary-text: var(--fw-ig-text-rgb) !important;
   --ig-secondary-text: var(--fw-ig-muted-rgb) !important;
 }
+
+/* Dimensional shells use local vector ribbons, not a blur over reading content. */
+html[data-ig-theme] :is(article, form, main > header, [role="dialog"], [role="menu"], [role="listbox"], [role="log"]) {
+  background-color: var(--fw-ig-paper) !important;
+  background-image: var(--fw-ig-detail) !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% auto !important;
+  background-position: right top !important;
+  border-radius: var(--fw-ig-corner) !important;
+  border: 1px solid var(--fw-ig-edge) !important;
+  box-shadow: var(--fw-ig-shadow) !important;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) {
+  background-color: var(--fw-ig-paper) !important;
+  background-image: var(--fw-ig-detail), var(--fw-ig-shell) !important;
+  background-size: auto 220px, 100% 100% !important;
+  background-position: right bottom, center !important;
+  background-repeat: no-repeat !important;
+  border-radius: var(--fw-ig-corner) !important;
+  box-shadow: var(--fw-ig-shadow) !important;
+}
+/* The real signed-out route has no <main>; clear only its outer form ancestors. */
+html[data-ig-theme] [id^="mount_"] div:has(form#login_form):not(:is(form *, article, [role="dialog"])) {
+  background: transparent !important;
+}
+html[data-ig-theme] :is(article, form, [role="dialog"]) > header {
+  background-color: var(--fw-ig-paper) !important;
+  background-image: var(--fw-ig-detail), var(--fw-ig-chrome) !important;
+  background-size: auto 140px, 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: right center, center !important;
+  border-radius: inherit !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  box-shadow: inset 0 4px var(--fw-ig-ring), inset 0 5px #ffffff9c, 0 1px 0 #fff !important;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]),
+html[data-ig-theme] a:is([href="/"], [href="/explore/"], [href="/reels/"], [href="/direct/inbox/"]):has(svg) {
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-control) !important;
+  border-radius: 8px 22px 22px 8px !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 5px #0002 !important;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]):hover,
+html[data-ig-theme] a:is([href="/"], [href="/explore/"], [href="/reels/"], [href="/direct/inbox/"]):has(svg):hover {
+  background: var(--fw-ig-chrome) !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-accent), inset 0 2px #fff, 0 4px 9px #0003 !important;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) a[aria-current="page"],
+html[data-ig-theme] a[aria-current="page"]:has(svg) {
+  background: var(--fw-ig-active) !important;
+  box-shadow: inset 4px 0 var(--fw-ig-accent), inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, 0 3px 6px #0003 !important;
+}
+/* Only reading-area controls get button chrome. Story/reel media controls stay native. */
+html[data-ig-theme] :is(form, article > header, article > section, [role="menu"], [role="listbox"]) :is(button, [role="button"]),
+html[data-ig-theme] [role="dialog"] > button {
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-control) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 6px #0002 !important;
+}
+html[data-ig-theme] :is(form, article > header, article > section, [role="menu"], [role="listbox"]) :is(button, [role="button"]):hover {
+  background: var(--fw-ig-active) !important;
+}
+html[data-ig-theme] :is(form, form#login_form) :is(button[type="submit"], [role="button"]:not(:has(svg, img))) {
+  background: var(--fw-ig-cap) #0b608a !important;
+  --primary-button-text: #fff !important;
+  --ig-colors-button-primary-text: 255, 255, 255 !important;
+  color: #fff !important;
+  text-shadow: 0 1px 2px #0008;
+}
+html[data-ig-theme="dorfic"] :is(form, form#login_form) :is(button[type="submit"], [role="button"]:not(:has(svg, img))) {
+  background-color: #ffc252 !important;
+  --primary-button-text: #452414 !important;
+  --ig-colors-button-primary-text: 69, 36, 20 !important;
+  color: #452414 !important;
+  text-shadow: 0 1px #fff7;
+}
+html[data-ig-theme] :is(form, form#login_form) :is(button[type="submit"], [role="button"]:not(:has(svg, img))) span { color: inherit !important; }
+html[data-ig-theme] :is(button, [role="button"]):is(:disabled, [aria-disabled="true"]) {
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge) !important;
+}
+html[data-ig-theme] :is(article, form, [role="dialog"], [role="menu"], [role="listbox"]) :is(input:not([type="checkbox"]):not([type="radio"]), textarea, [role="textbox"]) {
+  background: linear-gradient(#d6e3e980, #ffffff00 8px), var(--fw-ig-paper) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 3px 6px #00000016, 0 1px #fff !important;
+}
+html[data-ig-theme] :is(article, main > header) img[alt*="profile picture" i] {
+  border-radius: 50% !important;
+  outline: 2px solid var(--fw-ig-ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--fw-ig-paper), 0 4px 10px #0003;
+}
+html[data-ig-theme] :is(article, main > header) :is(a, button, [role="button"]):has(> img[alt*="profile picture" i]) {
+  border-radius: 50% !important;
+  background: transparent !important;
+}
+html[data-ig-theme] [role="tablist"] {
+  background: var(--fw-ig-chrome) !important;
+  border-radius: var(--fw-ig-radius) !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), 0 4px 8px #0002 !important;
+}
+html[data-ig-theme] [role="tab"] {
+  color: var(--fw-ig-muted) !important;
+}
+html[data-ig-theme] [role="tab"][aria-selected="true"] {
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-active) !important;
+  border-radius: var(--fw-ig-radius) !important;
+  box-shadow: inset 0 -3px var(--fw-ig-accent) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]) { transition: none !important; }
+}

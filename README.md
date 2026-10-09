@@ -36,6 +36,8 @@ The content script sets a theme attribute on the document root after reading sav
 
 Supported sites change their markup and run layout experiments, so some less-common surfaces may retain native colors or require a selector update. The design fixtures do not guarantee every live-site surface. These are independent visual themes, not official YouTube or Instagram products. Instagram uses native color tokens and semantic content, navigation, form and menu surfaces; its on-media colors are preserved. Its signed-out markup was inspected, but signed-in feed, inbox and profile layouts still need an installed-extension check.
 
+Version 1.3.0 preserves Music's immersive content wrapper instead of hiding its entire home page. Search results, playlist headers, artist/album columns and durations now receive readable text colors, including the shared row structure used by Liked Music. Instagram adds local vector chrome, beveled navigation and reading-area controls, aligned panel corners and opaque text surfaces in both themes.
+
 ## Add another theme
 
 1. Add a new theme's `id` and `name` to `registry.js` under `themes`. Optionally add a local `wallpaper` path. The popup reads this list automatically. Add a wallpaper to the manifest's web-accessible resources and a scoped background rule in `wallpaper.css`.
@@ -72,6 +74,8 @@ Run `node tools/verify-extensions.cjs` for manifest, host scope, local file refe
 Run `node tools/test-rendering.cjs` with Chrome or Edge installed to check browser rendering against native-style labels and stretched chips. It verifies contrast, packaged fonts, opaque watch/comment panels, Shorts playback overlays, reply toggling, Music genres/episodes/Related tabs, compact filters, artwork shapes, shadows, Instagram content/forms/menus, media colors and off restoration. Add `--screenshots` to refresh the six images above. Test profiles and reports remain under ignored `.qa/`.
 
 Sidebar checks exercise expanded and compact Music guides, including mounted hidden panels and native SVG icons. Use `--site=youtube-music --width=960 --guide=compact` for a narrower layout or `--site=youtube-music --guide=fullscreen` to verify the guide stays hidden during fullscreen. Comment checks cover transparent inner replies and circular avatar wrappers; Instagram checks verify that canvas layers expose the wallpaper while posts remain opaque.
+
+Music home checks reproduce the live site's `.background-gradient > #content-wrapper` nesting and immersive attributes. Search and playlist checks start with native white nested links, metadata, owner names and fixed duration columns. Instagram checks include media colors, menu/inbox surfaces, nested button text, header corners, keyboard focus and horizontal overflow. Use `--site=instagram --width=600` for the narrow fixture.
 
 The previews use the actual theme stylesheets against representative local markup. Their layouts are illustrative. The source package has been checked with these fixtures and behavioral tests; it still needs an installed-extension check against live signed-in pages for account-specific layouts and playback.
 

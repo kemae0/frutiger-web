@@ -132,6 +132,11 @@
     const home = () => {
       const item = inspect('music-home-content');
       if (!item) return null;
+      for (let ancestor = item.element.parentElement; ancestor; ancestor = ancestor.parentElement) {
+        const style = getComputedStyle(ancestor);
+        assert(style.display !== 'none' && style.visibility === 'visible' && Number(style.opacity) > 0,
+          `Music home ancestor ${ancestor.tagName}.${ancestor.className} must not hide its content`);
+      }
       assert(item.rect.height > 0 && item.rect.width > 0 && item.style.display !== 'none' &&
         item.style.visibility === 'visible' && Number(item.style.opacity) > 0,
         'Music home must remain visible and retain nonzero content dimensions');
@@ -259,6 +264,32 @@
         for (const id of ['ig-post', 'ig-dialog', 'ig-nav', 'ig-login']) solid(id);
         canvasVisible();
         white('ig-reel-text');
+        for (const id of ['ig-menu', 'ig-inbox']) solid(id);
+        nestedDark('ig-message');
+        const igPost = inspect('ig-post');
+        if (igPost) {
+          assert(igPost.style.backgroundImage.includes(`instagram-${theme === 'frutiger' ? 'aero' : 'dorfic'}-chrome.svg`),
+            'Instagram panels must use the selected local decorative artwork');
+          const header = igPost.element.querySelector('header');
+          const headerStyle = getComputedStyle(header);
+          assert(parseFloat(headerStyle.borderTopLeftRadius) === parseFloat(igPost.style.borderTopLeftRadius) &&
+            parseFloat(headerStyle.borderTopRightRadius) === parseFloat(igPost.style.borderTopRightRadius),
+            'Instagram post header corners must match the outer frame');
+          const media = igPost.element.querySelector('.post-photo');
+          assert(getComputedStyle(media).filter === 'none' && media.getBoundingClientRect().height === 350,
+            'Instagram media must retain its original colors and native geometry');
+        }
+        const igNav = node('ig-nav');
+        if (igNav) {
+          const navLink = igNav.querySelector('a');
+          assert(navLink.getAttribute('href') === 'https://www.instagram.com/' && navLink.getAttribute('aria-current') === 'page',
+            'Instagram navigation must retain its real link and native selection state');
+          navLink.focus();
+          assert(getComputedStyle(navLink).outlineStyle !== 'none', 'Instagram keyboard focus must remain visible');
+          navLink.blur();
+        }
+        assert(document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+          'Instagram frames must not introduce horizontal page overflow');
         const input = node('ig-input');
         if (input) {
           assert(input.matches('input, textarea, [contenteditable="true"]') && !input.disabled,
@@ -268,10 +299,12 @@
         }
         const login = solid('ig-modern-login');
         if (login) {
-          assert(luminance(login.style.color) > .8 && contrast(login.style.color, login.style.backgroundColor) >= 4.5,
-            'Native Instagram DIV login button must retain a white label with strong accent-background contrast');
+          assert(contrast(login.style.color, login.style.backgroundColor) >= 4.5,
+            'Native Instagram DIV login button must retain strong contrast over its themed accent surface');
           assert(login.element.getAttribute('role') === 'button' && login.element.tabIndex >= 0,
             'Instagram login must retain its native keyboard-operable button semantics');
+          assert(contrast(getComputedStyle(login.element.querySelector('span')).color, login.style.backgroundColor) >= 4.5,
+            'Instagram primary button nested label must use the selected readable text color');
         }
         const form = node('ig-login');
         if (form) {
@@ -292,6 +325,16 @@
             `${token}: native Instagram RGB triplet must produce a valid color`);
         }
       } else if (music) {
+        for (const id of ['music-search-title', 'music-search-metadata', 'music-search-card-title',
+          'music-search-card-subtitle', 'music-playlist-title', 'music-playlist-owner',
+          'music-playlist-count', 'music-playlist-description', 'music-playlist-song',
+          'music-playlist-artist', 'music-playlist-album', 'music-playlist-duration', 'music-playlist-index']) nestedDark(id);
+        for (const id of ['music-search-shelf', 'music-search-row', 'music-search-card',
+          'music-playlist-header', 'music-playlist-row']) solid(id);
+        white('music-thumbnail-overlay');
+        const homeWrapper = inspect('music-home-wrapper');
+        if (homeWrapper) assert(homeWrapper.style.backgroundImage === 'none' && alpha(homeWrapper.style.backgroundColor) === 0,
+          'Music immersive content wrapper must expose wallpaper without hiding content');
         for (const id of ['music-browse-title', 'music-video-title', 'music-queue-title', 'music-queue-byline',
           'music-autoplay', 'music-tab', 'music-menu-item', 'music-lyrics', 'music-dialog-text']) dark(id);
         const chip = inspect('music-chip');

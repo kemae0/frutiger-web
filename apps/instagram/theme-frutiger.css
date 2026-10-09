@@ -5,10 +5,16 @@ html[data-ig-theme="frutiger"] {
   --fw-ig-muted: #3d6177;
   --fw-ig-link: #075b8b;
   --fw-ig-edge: #599ab9;
-  --fw-ig-radius: 18px;
+  --fw-ig-radius: 22px;
+  --fw-ig-corner: 22px 22px 14px 14px;
+  --fw-ig-detail: url("../../assets/instagram-aero-chrome.svg");
+  --fw-ig-shell: linear-gradient(110deg, #f6fdff, #d3eef9 87%, #a8d0e4);
+  --fw-ig-cap: linear-gradient(#7de1f7 0px, #15658a 2px, #085d89 47%, #094a73 49%, #176c96);
+  --fw-ig-control: linear-gradient(#fff, #effaff 45%, #c0e5f5 48%, #e0f3fb);
+  --fw-ig-ring: #0f97bc;
   --fw-ig-chrome: linear-gradient(#ffffff 0%, #dcf4fd 46%, #aad7eb 49%, #e8f8ff 100%);
   --fw-ig-active: linear-gradient(#e8ffd0, #a8d75e 48%, #74b72f 49%, #acd966);
-  --fw-ig-shadow: 0 9px 19px #123f6550, 0 2px 3px #123f6540, inset 0 0 0 1px #fff;
+  --fw-ig-shadow: 0 14px 32px #093e6640, 0 3px 5px #093e6633, inset 0 1px 0 #fff, inset 0 -2px 0 #9fc9dc;
   --fw-ig-bg-rgb: 244, 251, 255;
   --fw-ig-soft-rgb: 227, 242, 250;
   --fw-ig-text-rgb: 18, 55, 78;

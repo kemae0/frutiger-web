@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300" fill="none">
+  <defs><linearGradient id="ribbon" x1="470" y1="200" x2="990" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb53d" stop-opacity="0"/><stop offset=".55" stop-color="#ff8400" stop-opacity=".2"/><stop offset="1" stop-color="#ffdb6b" stop-opacity=".45"/></linearGradient></defs>
+  <path d="M180 310C390 125 575 360 740 160S990-40 1020 30V240C840 20 800 295 675 300Z" fill="url(#ribbon)"/>
+  <g stroke="#f29618" stroke-opacity=".25"><path d="M285 305C520 155 630 345 790 140S980 70 1030 95"/><path d="M295 315C530 165 640 355 800 150S990 80 1040 105"/><path d="M305 325C540 175 650 365 810 160S1000 90 1050 115"/><path d="M315 335C550 185 660 375 820 170S1010 100 1060 125"/><path d="M325 345C560 195 670 385 830 180S1020 110 1070 135"/></g>
+  <g stroke="#ed8300" stroke-opacity=".3" stroke-width="2"><path d="m837 18 39 22v45l-39 22-39-22V40Z"/><path d="m955 157 31 18v36l-31 18-31-18v-36Z"/><path d="m745 206 17 10v20l-17 10-17-10v-20Z"/></g>
+  <path d="m926 35 29 14-9 42-30-17Z" fill="#f57900" fill-opacity=".15" stroke="white" stroke-opacity=".9"/>
+  <path d="M535 292C740 280 750 118 1040 162" stroke="white" stroke-opacity=".8" stroke-width="4"/>
+  <path d="M610 285 840 278M873 278h92" stroke="#e57700" stroke-opacity=".2" stroke-width="2"/>
+</svg>

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Frutiger Web",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Frutiger Aero and orange-and-white DORFic themes for YouTube, YouTube Music and Instagram.",
   "permissions": ["storage"],
   "action": {
@@ -31,7 +31,7 @@
     }
   ],
   "web_accessible_resources": [{
-    "resources": ["assets/aero-scene.webp", "assets/dorfic-scene.webp", "fonts/Exo2.ttf", "fonts/Oxanium.ttf"],
+    "resources": ["assets/aero-scene.webp", "assets/dorfic-scene.webp", "assets/instagram-aero-chrome.svg", "assets/instagram-dorfic-chrome.svg", "fonts/Exo2.ttf", "fonts/Oxanium.ttf"],
     "matches": ["https://www.youtube.com/*", "https://youtube.com/*", "https://music.youtube.com/*", "https://www.instagram.com/*", "https://instagram.com/*"]
   }]
 }

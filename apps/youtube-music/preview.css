@@ -1,4 +1,12 @@
 /* Layout only for this illustrative local mockup; never injected into YouTube Music. */
+ytmusic-browse-response > .background-gradient { background: linear-gradient(#18121d, #101010); }
+ytmusic-search-page, ytmusic-card-shelf-renderer, ytmusic-responsive-header-renderer, ytmusic-playlist-shelf-renderer { display: block; }
+ytmusic-search-page, .fixture-playlist { margin: 24px 34px; }
+ytmusic-card-shelf-renderer, ytmusic-responsive-header-renderer { padding: 16px; margin-block: 16px; }
+ytmusic-search-page h2 { margin: 0 0 12px; font-size: 22px; }
+.flex-columns { min-width: 0; flex: 1; }
+.flex-columns yt-formatted-string { display: block; }
+.secondary-flex-columns { display: flex; gap: 12px; }
 * { box-sizing: border-box; }
 html { color-scheme: dark; }
 body { margin: 0; background: #101010; color: #eee; font: 14px/1.5 "Segoe UI", Arial, sans-serif; }

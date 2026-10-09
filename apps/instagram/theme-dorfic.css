@@ -5,10 +5,16 @@ html[data-ig-theme="dorfic"] {
   --fw-ig-muted: #79533e;
   --fw-ig-link: #944000;
   --fw-ig-edge: #c86a15;
-  --fw-ig-radius: 5px;
+  --fw-ig-radius: 8px;
+  --fw-ig-corner: 24px 8px 24px 8px;
+  --fw-ig-detail: url("../../assets/instagram-dorfic-chrome.svg");
+  --fw-ig-shell: linear-gradient(110deg, #fffdf8, #fff0dc 87%, #ffc988);
+  --fw-ig-cap: linear-gradient(#fff1a8, #ffc252 45%, #f78308 48%, #ffad24);
+  --fw-ig-control: linear-gradient(#fff, #fff8ea 44%, #ffdeb4 48%, #fff0d7);
+  --fw-ig-ring: #ed8009;
   --fw-ig-chrome: linear-gradient(#fff 0%, #fff5e3 48%, #ffcf92 49%, #fff2d9 100%);
   --fw-ig-active: linear-gradient(#fff3c2, #ffd271 48%, #ffa322 49%, #ffc563);
-  --fw-ig-shadow: 4px 5px 0 #ad490039, 0 10px 22px #69310048, inset 0 0 0 1px #fff;
+  --fw-ig-shadow: 4px 5px 0 #ad490025, 0 16px 30px #69310038, inset 0 1px 0 #fff, inset 0 -2px 0 #ffd1a0;
   --fw-ig-bg-rgb: 255, 250, 242;
   --fw-ig-soft-rgb: 255, 236, 213;
   --fw-ig-text-rgb: 69, 36, 20;
@@ -17,7 +23,4 @@ html[data-ig-theme="dorfic"] {
   --fw-ig-line-rgb: 200, 106, 21;
   --fw-ig-accent-rgb: 162, 67, 0;
   --fw-ig-accent: #a24300;
-}
-html[data-ig-theme="dorfic"] :is(article, [role="dialog"], form) {
-  border-top: 5px solid #ef8b17 !important;
 }

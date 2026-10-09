@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300" fill="none">
+  <defs>
+    <linearGradient id="ribbon" x1="300" y1="40" x2="1000" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="#5fcce9" stop-opacity="0"/><stop offset=".5" stop-color="#23a8cf" stop-opacity=".22"/><stop offset="1" stop-color="#b4efff" stop-opacity=".5"/></linearGradient>
+    <radialGradient id="bubble" cx=".32" cy=".23" r=".72"><stop stop-color="white" stop-opacity=".85"/><stop offset=".3" stop-color="#d6faff" stop-opacity=".18"/><stop offset=".7" stop-color="#4fb8d7" stop-opacity=".08"/><stop offset="1" stop-color="#228bae" stop-opacity=".3"/></radialGradient>
+  </defs>
+  <path d="M200 300C480 40 720 390 1010 35V230C730 415 520 130 340 300Z" fill="url(#ribbon)"/>
+  <path d="M170 310C450 80 770 355 1020 85M245 310C515 145 830 340 1010 140" stroke="white" stroke-opacity=".6" stroke-width="2"/>
+  <path d="M510 320C680 210 835 205 1020 270" stroke="#65b02e" stroke-opacity=".2" stroke-width="24"/>
+  <circle cx="890" cy="65" r="64" fill="url(#bubble)" stroke="white" stroke-opacity=".7"/>
+  <ellipse cx="877" cy="29" rx="29" ry="12" fill="white" fill-opacity=".45" transform="rotate(-22 877 29)"/>
+  <circle cx="770" cy="107" r="23" fill="url(#bubble)" stroke="white" stroke-opacity=".6"/>
+  <circle cx="954" cy="184" r="34" fill="url(#bubble)" stroke="white" stroke-opacity=".5"/>
+</svg>
