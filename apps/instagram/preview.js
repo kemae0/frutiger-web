@@ -1,6 +1,7 @@
 'use strict';
 const picker = document.getElementById('preview-theme');
 const initial = new URLSearchParams(location.search).get('theme');
+document.body.dataset.previewView = new URLSearchParams(location.search).get('view') || 'feed';
 if (['frutiger', 'dorfic', 'off'].includes(initial)) picker.value = initial;
 function apply() {
   const theme = picker.value;

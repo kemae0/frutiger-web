@@ -1,5 +1,7 @@
 html[data-ig-theme="dorfic"] {
   --fw-ig-paper: #fffaf2;
+  --fw-ig-comment-paper: #fffdf9;
+  --fw-ig-comment-rgb: 255, 253, 249;
   --fw-ig-soft: #ffecd5;
   --fw-ig-ink: #452414;
   --fw-ig-muted: #79533e;

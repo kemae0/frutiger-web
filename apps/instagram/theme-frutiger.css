@@ -1,5 +1,7 @@
 html[data-ig-theme="frutiger"] {
   --fw-ig-paper: #f4fbff;
+  --fw-ig-comment-paper: #fff;
+  --fw-ig-comment-rgb: 255, 255, 255;
   --fw-ig-soft: #e3f2fa;
   --fw-ig-ink: #12374e;
   --fw-ig-muted: #3d6177;

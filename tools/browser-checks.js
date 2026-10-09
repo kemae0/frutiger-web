@@ -244,6 +244,7 @@
     const music = location.pathname.includes('youtube-music');
     const instagram = location.pathname.includes('instagram');
     const attr = instagram ? 'data-ig-theme' : music ? 'data-yt-music-theme' : 'data-yt-tube-theme';
+    if (instagram) await new Promise(resolve => setTimeout(resolve, 140));
     if (theme === 'off') {
       assert(!document.documentElement.hasAttribute(attr), 'Off removes site theme');
       assert(!document.documentElement.hasAttribute('data-frutiger-theme'), 'Off removes shared theme');
@@ -251,6 +252,13 @@
       const id = instagram ? 'ig-title' : music ? 'music-queue-title' : 'nav-text';
       const item = inspect(id);
       if (item) assert(luminance(item.style.color) > .8, 'Off restores native white labels');
+      if (instagram) {
+        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer]'),
+          'Instagram off must remove every decoration marker');
+        assert(!document.documentElement.hasAttribute('data-fw-ig-page'), 'Instagram off must remove the route marker');
+        const reelCanvas = inspect('ig-reels-canvas');
+        if (reelCanvas) assert(luminance(reelCanvas.style.backgroundColor) < .02, 'Instagram off restores the native black Reels canvas');
+      }
     } else {
       const family = theme === 'dorfic' ? 'Frutiger Oxanium' : 'Frutiger Exo 2';
       const faces = await document.fonts.load(`400 16px "${family}"`);
@@ -263,7 +271,38 @@
         for (const id of ['ig-title', 'ig-byline', 'ig-comment', 'ig-dialog-text', 'ig-input']) nestedDark(id);
         for (const id of ['ig-post', 'ig-dialog', 'ig-nav', 'ig-login']) solid(id);
         canvasVisible();
-        white('ig-reel-text');
+        for (const id of ['ig-reel-text', 'ig-reel-caption', 'ig-reel-count', 'ig-reel-comment-text',
+          'ig-byline', 'ig-comment', 'ig-message']) {
+          nestedDark(id);
+          const unit = node(id)?.closest('[data-fw-ig-text]');
+          assert(Boolean(unit) && alpha(getComputedStyle(unit).backgroundColor) === 1,
+            `${id}: native text must have its own opaque reading box`);
+        }
+        for (const id of ['ig-notifications', 'ig-create', 'ig-more', 'ig-reel-like', 'ig-reel-comment-icon']) {
+          const control = solid(id);
+          if (control) assert(control.element.hasAttribute('data-fw-ig-control') && control.style.boxShadow !== 'none',
+            `${id}: native DIV icon control must receive the same bubble as navigation links`);
+        }
+        white('ig-badge');
+        const profileIcon = inspect('ig-profile-icon');
+        if (profileIcon) assert(profileIcon.style.borderTopLeftRadius === '50%',
+          'Instagram profile bubble must remain circular');
+        for (const id of ['ig-reels-canvas', 'ig-reels-track']) {
+          const canvas = inspect(id);
+          if (canvas) assert(alpha(canvas.style.backgroundColor) === 0 && canvas.style.backgroundImage === 'none',
+            `${id}: opaque Reels route layers must expose the selected wallpaper`);
+        }
+        const reel = inspect('ig-reel-video');
+        if (reel) {
+          assert(reel.style.filter === 'none' && Math.abs(reel.rect.width / reel.rect.height - 9 / 16) < .01,
+            'Instagram Reels must retain original media colors and vertical geometry');
+        }
+        const commentPanel = solid('ig-reel-comments');
+        const commentLayer = solid('ig-comment-layer');
+        if (commentPanel) assert(luminance(commentPanel.style.backgroundColor) > .95,
+          'Reels comment panel must use bright white/ivory paper');
+        if (commentLayer) assert(luminance(commentLayer.style.backgroundColor) > .95,
+          'Hard-coded dark comment layers must become bright reading surfaces');
         for (const id of ['ig-menu', 'ig-inbox']) solid(id);
         nestedDark('ig-message');
         const igPost = inspect('ig-post');
@@ -276,7 +315,8 @@
             parseFloat(headerStyle.borderTopRightRadius) === parseFloat(igPost.style.borderTopRightRadius),
             'Instagram post header corners must match the outer frame');
           const media = igPost.element.querySelector('.post-photo');
-          assert(getComputedStyle(media).filter === 'none' && media.getBoundingClientRect().height === 350,
+          assert(getComputedStyle(media).filter === 'none' &&
+            (query.get('view') === 'reels' || media.getBoundingClientRect().height === 350),
             'Instagram media must retain its original colors and native geometry');
         }
         const igNav = node('ig-nav');
@@ -290,7 +330,7 @@
         }
         assert(document.documentElement.scrollWidth <= document.documentElement.clientWidth,
           'Instagram frames must not introduce horizontal page overflow');
-        const input = node('ig-input');
+        const input = query.get('view') === 'reels' ? node('ig-reel-comments').querySelector('input') : node('ig-input');
         if (input) {
           assert(input.matches('input, textarea, [contenteditable="true"]') && !input.disabled,
             'Instagram fields must remain editable native controls');
@@ -307,7 +347,7 @@
             'Instagram primary button nested label must use the selected readable text color');
         }
         const form = node('ig-login');
-        if (form) {
+        if (form && query.get('view') !== 'reels') {
           const fields = [...form.querySelectorAll('input')];
           assert(fields.length >= 2, 'Instagram login form must retain username and password fields');
           for (const field of fields) {
@@ -324,6 +364,36 @@
           assert(Boolean(value) && CSS.supports('color', `rgb(${value})`),
             `${token}: native Instagram RGB triplet must produce a valid color`);
         }
+        // React-style content arriving after first paint must be covered, with
+        // no wrappers or content rewrites, and everything must restore on off.
+        const late = document.createElement('section');
+        late.id = 'ig-late-content';
+        late.innerHTML = '<p>A newly loaded comment <a href="/kemae/">kemae</a></p><div role="button" tabindex="0" aria-label="Share"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M2 12h20"/></svg></div>';
+        const original = late.textContent;
+        const childCount = late.querySelectorAll('*').length;
+        document.querySelector('main').append(late);
+        await new Promise(resolve => setTimeout(resolve, 140));
+        assert(late.querySelector('p').hasAttribute('data-fw-ig-text') && late.querySelector('[role="button"]').hasAttribute('data-fw-ig-control'),
+          'Instagram decoration must cover dynamically loaded text and icons');
+        assert(luminance(getComputedStyle(node('ig-comment-layer')).backgroundColor) > .95,
+          'Bright comment backplates must survive subsequent content scans');
+        assert(late.textContent === original && late.querySelectorAll('*').length === childCount,
+          'Instagram decoration must preserve native content and element structure');
+        const root = document.documentElement;
+        root.removeAttribute('data-ig-theme');
+        root.removeAttribute('data-frutiger-theme');
+        await new Promise(resolve => setTimeout(resolve, 140));
+        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer]'),
+          'Instagram switching off must remove all existing and dynamically added markers');
+        assert(alpha(getComputedStyle(late.querySelector('p')).backgroundColor) === 0,
+          'Instagram switching off must restore native text backgrounds');
+        root.setAttribute('data-ig-theme', theme);
+        root.setAttribute('data-frutiger-theme', theme);
+        await new Promise(resolve => setTimeout(resolve, 140));
+        assert(late.querySelector('p').hasAttribute('data-fw-ig-text'),
+          'Instagram switching back on must decorate already-mounted content');
+        late.remove();
+        await new Promise(resolve => setTimeout(resolve, 140));
       } else if (music) {
         for (const id of ['music-search-title', 'music-search-metadata', 'music-search-card-title',
           'music-search-card-subtitle', 'music-playlist-title', 'music-playlist-owner',

@@ -79,7 +79,7 @@ html[data-ig-theme] :is(main, [role="main"]) > div:has(article):not([role="dialo
 }
 /* Paint structural surfaces without changing Instagram's grids or media geometry. */
 html[data-ig-theme] :is(article, [role="dialog"], form) > header {
-  background: var(--fw-ig-chrome) !important;
+  background: var(--fw-ig-chrome) var(--fw-ig-paper) !important;
   border-bottom: 1px solid var(--fw-ig-edge) !important;
 }
 html[data-ig-theme] :is(input:not([type="checkbox"]):not([type="radio"]), textarea, [role="textbox"]) {
@@ -91,20 +91,20 @@ html[data-ig-theme] :is(input:not([type="checkbox"]):not([type="radio"]), textar
   caret-color: var(--fw-ig-accent) !important;
 }
 html[data-ig-theme] :is(input, textarea)::placeholder { color: var(--fw-ig-muted) !important; }
-html[data-ig-theme] :is(input, textarea, a, button, [role="button"]):focus-visible {
+html[data-ig-theme] :is(input, textarea, a, button, [role="button"], [role="link"]):focus-visible {
   outline: 2px solid var(--fw-ig-accent) !important;
   outline-offset: 2px !important;
 }
 /* Native navigation links remain in place; no labels or overlay controls added. */
 html[data-ig-theme] :is(nav, [role="navigation"]) a {
   color: var(--fw-ig-ink) !important;
-  background: var(--fw-ig-chrome) !important;
+  background: var(--fw-ig-chrome) var(--fw-ig-paper) !important;
   border: 1px solid var(--fw-ig-edge) !important;
   border-radius: var(--fw-ig-radius) !important;
   box-shadow: inset 0 1px 0 #fff, 0 2px 3px #173e5530 !important;
 }
 html[data-ig-theme] :is(nav, [role="navigation"]) a[aria-current="page"] {
-  background: var(--fw-ig-active) !important;
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
 }
 html[data-ig-theme] :is([role="dialog"], [role="menu"], [role="listbox"]) {
   --ig-primary-background: var(--fw-ig-bg-rgb) !important;
@@ -150,31 +150,31 @@ html[data-ig-theme] :is(article, form, [role="dialog"]) > header {
 html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]),
 html[data-ig-theme] a:is([href="/"], [href="/explore/"], [href="/reels/"], [href="/direct/inbox/"]):has(svg) {
   color: var(--fw-ig-ink) !important;
-  background: var(--fw-ig-control) !important;
+  background: var(--fw-ig-control) var(--fw-ig-paper) !important;
   border-radius: 8px 22px 22px 8px !important;
   box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 5px #0002 !important;
-  transition: background-color 150ms ease, box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
 }
 html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]):hover,
 html[data-ig-theme] a:is([href="/"], [href="/explore/"], [href="/reels/"], [href="/direct/inbox/"]):has(svg):hover {
-  background: var(--fw-ig-chrome) !important;
+  background: var(--fw-ig-chrome) var(--fw-ig-paper) !important;
   box-shadow: inset 0 0 0 1px var(--fw-ig-accent), inset 0 2px #fff, 0 4px 9px #0003 !important;
 }
 html[data-ig-theme] :is(nav, [role="navigation"]) a[aria-current="page"],
 html[data-ig-theme] a[aria-current="page"]:has(svg) {
-  background: var(--fw-ig-active) !important;
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
   box-shadow: inset 4px 0 var(--fw-ig-accent), inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, 0 3px 6px #0003 !important;
 }
 /* Only reading-area controls get button chrome. Story/reel media controls stay native. */
 html[data-ig-theme] :is(form, article > header, article > section, [role="menu"], [role="listbox"]) :is(button, [role="button"]),
 html[data-ig-theme] [role="dialog"] > button {
   color: var(--fw-ig-ink) !important;
-  background: var(--fw-ig-control) !important;
+  background: var(--fw-ig-control) var(--fw-ig-paper) !important;
   border-radius: 12px !important;
   box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 6px #0002 !important;
 }
 html[data-ig-theme] :is(form, article > header, article > section, [role="menu"], [role="listbox"]) :is(button, [role="button"]):hover {
-  background: var(--fw-ig-active) !important;
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
 }
 html[data-ig-theme] :is(form, form#login_form) :is(button[type="submit"], [role="button"]:not(:has(svg, img))) {
   background: var(--fw-ig-cap) #0b608a !important;
@@ -205,12 +205,12 @@ html[data-ig-theme] :is(article, main > header) img[alt*="profile picture" i] {
   outline-offset: 2px;
   box-shadow: 0 0 0 5px var(--fw-ig-paper), 0 4px 10px #0003;
 }
-html[data-ig-theme] :is(article, main > header) :is(a, button, [role="button"]):has(> img[alt*="profile picture" i]) {
+html[data-ig-theme] :is(article, main > header) :is(a, button, [role="button"], [role="link"]):has(> img[alt*="profile picture" i]) {
   border-radius: 50% !important;
   background: transparent !important;
 }
 html[data-ig-theme] [role="tablist"] {
-  background: var(--fw-ig-chrome) !important;
+  background: var(--fw-ig-chrome) var(--fw-ig-paper) !important;
   border-radius: var(--fw-ig-radius) !important;
   box-shadow: inset 0 0 0 1px var(--fw-ig-edge), 0 4px 8px #0002 !important;
 }
@@ -219,10 +219,90 @@ html[data-ig-theme] [role="tab"] {
 }
 html[data-ig-theme] [role="tab"][aria-selected="true"] {
   color: var(--fw-ig-ink) !important;
-  background: var(--fw-ig-active) !important;
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
   border-radius: var(--fw-ig-radius) !important;
   box-shadow: inset 0 -3px var(--fw-ig-accent) !important;
 }
 @media (prefers-reduced-motion: reduce) {
   html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]) { transition: none !important; }
+}
+
+/* Every native label/paragraph gets its own reading surface, including captions
+   over Reels. Markers group inline runs rather than boxing each word/span. */
+html[data-ig-theme] [data-fw-ig-text] {
+  --primary-text-on-media: var(--fw-ig-ink) !important;
+  --secondary-text-on-media: var(--fw-ig-muted) !important;
+  --ig-primary-text: var(--fw-ig-text-rgb) !important;
+  --ig-secondary-text: var(--fw-ig-muted-rgb) !important;
+  color: var(--fw-ig-ink) !important;
+  background-color: var(--fw-ig-text-paper, var(--fw-ig-paper)) !important;
+  background-image: linear-gradient(#ffffffa6, #ffffff00 14px) !important;
+  border-radius: 8px !important;
+  padding: 2px 5px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 1px #fff, 0 2px 4px #00000018 !important;
+  text-shadow: none !important;
+}
+html[data-ig-theme] [data-fw-ig-text] :is(span, a, strong, b, em, i, small, time, code) {
+  color: inherit !important;
+  text-shadow: none !important;
+}
+/* Icons may live in links OR DIV buttons: notifications, create, more and profile
+   all need the same chrome. Badges retain their native colors and positioning. */
+html[data-ig-theme] [data-fw-ig-control] {
+  --ig-primary-icon: var(--fw-ig-text-rgb) !important;
+  --ig-secondary-icon: var(--fw-ig-muted-rgb) !important;
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-control) var(--fw-ig-paper) !important;
+  border-radius: 10px 24px 24px 10px !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 6px #0002 !important;
+}
+html[data-ig-theme] [data-fw-ig-control="icon"] {
+  min-width: 40px; min-height: 40px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, button, [role="button"], [role="link"])[data-fw-ig-control] {
+  background: var(--fw-ig-control) var(--fw-ig-paper) !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 6px #0002 !important;
+}
+html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, button, [role="button"], [role="link"])[data-fw-ig-control]:is(:hover, [aria-current="page"]) {
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
+}
+html[data-ig-theme] [data-fw-ig-control] svg {
+  color: var(--fw-ig-ink) !important;
+}
+html[data-ig-theme] :is(a, button, [role="button"], [role="link"])[data-fw-ig-control="avatar"],
+html[data-ig-theme] [data-fw-ig-control="avatar"] img {
+  border-radius: 50% !important;
+}
+html[data-ig-theme] :is(a, button, [role="button"], [role="link"])[data-fw-ig-control="avatar"] {
+  box-shadow: 0 0 0 2px var(--fw-ig-paper), 0 0 0 3px var(--fw-ig-ring), 0 4px 8px #0003 !important;
+}
+html[data-ig-theme] [data-fw-ig-control]:hover {
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
+}
+html[data-ig-theme] [data-fw-ig-control]:is([aria-current="page"], [aria-pressed="true"], [aria-selected="true"]) {
+  background: var(--fw-ig-active) var(--fw-ig-paper) !important;
+}
+html[data-ig-theme] [data-fw-ig-canvas] {
+  background: transparent !important;
+}
+/* Reels comments use bright white/ivory paper, including hard-coded dark layers. */
+html[data-ig-theme] [data-fw-ig-comments] {
+  --fw-ig-text-paper: var(--fw-ig-comment-paper);
+  --ig-primary-background: var(--fw-ig-comment-rgb) !important;
+  --ig-secondary-background: var(--fw-ig-comment-rgb) !important;
+  --ig-elevated-background: var(--fw-ig-comment-rgb) !important;
+  --card-background: var(--fw-ig-comment-paper) !important;
+  --comment-background: var(--fw-ig-comment-paper) !important;
+  color: var(--fw-ig-ink) !important;
+  background-color: var(--fw-ig-comment-paper) !important;
+  border-radius: var(--fw-ig-corner) !important;
+  box-shadow: var(--fw-ig-shadow) !important;
+}
+html[data-ig-theme] [data-fw-ig-comment-layer] {
+  background: var(--fw-ig-comment-paper) !important;
+  border-radius: inherit;
 }

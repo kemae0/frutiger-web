@@ -18,7 +18,7 @@ for (const site of registry.sites) {
   const script = manifest.content_scripts.find(entry => entry.matches.includes(`https://${site.hosts[0]}/*`));
   assert.ok(script, `Missing content script for ${site.id}`);
   assert.equal(script.run_at, 'document_start');
-  assert.deepEqual(script.js, ['registry.js', 'content.js']);
+  assert.deepEqual(script.js, ['registry.js', 'content.js', ...(site.id === 'instagram' ? ['apps/instagram/decorate.js'] : [])]);
   assert.deepEqual([...script.matches].sort(), Array.from(site.hosts, host => `https://${host}/*`).sort());
   assert.ok(script.css.includes('wallpaper.css'));
   assert.ok(script.css.includes('fonts.css'));
