@@ -56,3 +56,17 @@ form .modern-login { background:rgb(var(--ig-colors-button-primary-background,74
 body[data-preview-view="reels"] main > article, body[data-preview-view="reels"] aside > :not(.reel-comments) { display:none; }
 @media(max-width:1000px) { .fixture-layout { grid-template-columns:170px minmax(0,590px); } aside { grid-column:2; } }
 @media(max-width:650px) { .fixture-layout { display:block; padding:12px; } nav { position:static; } }
+
+/* Native inline links and hover sizing reproduce the screenshot regressions. */
+nav a.native-hover { display:inline; height:22px; padding:0; }
+.native-action { display:flex; align-items:center; gap:0; }
+.actions { gap:10px; flex-wrap:wrap; }
+.actions .native-action button { font-size:inherit; margin:0; }
+.carousel-next { position:absolute; right:10px; top:45%; }
+.native-reel-action { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.profile-header { margin-top:24px; margin-bottom:20px; }
+.profile-header p a { color:inherit; }
+.profile-tabs { display:flex; justify-content:space-around; padding:8px; margin-bottom:24px; }
+.profile-tabs a { display:flex; padding:8px; color:inherit; }
+body[data-preview-view="reels"] .profile-fixture { display:none; }
+body[data-preview-view="profile"] main > :not(.profile-fixture), body[data-preview-view="profile"] aside { display:none; }

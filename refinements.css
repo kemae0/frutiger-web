@@ -1,0 +1,43 @@
+
+html[data-frutiger-theme="frutiger"] {
+ --fw-ref-ink: #14354d; --fw-ref-paper: #f7fcff; --fw-ref-muted: #45667a; --fw-ref-edge: #4f97b9;
+}
+
+html[data-frutiger-theme="dorfic"] {
+ --fw-ref-ink: #452414; --fw-ref-paper: #fffaf2; --fw-ref-muted: #79533e; --fw-ref-edge: #c86a15;
+}
+
+/* Room inside native Music reading panels; do not pad individual words. */
+html[data-yt-music-theme] :is(ytmusic-responsive-list-item-renderer, ytmusic-multi-row-list-item-renderer, ytmusic-podcast-episode-item-renderer, ytmusic-list-item-renderer, ytmusic-player-queue-item) {
+  box-sizing: border-box !important; padding-inline: 12px !important; padding-block: 8px !important;
+}
+html[data-yt-music-theme] :is(ytmusic-card-shelf-renderer, ytmusic-responsive-header-renderer, ytmusic-detail-header-renderer, ytmusic-description-shelf-renderer, ytmusic-lyrics-renderer) { box-sizing: border-box !important; padding: 16px !important; }
+html[data-yt-music-theme] ytmusic-carousel-shelf-basic-header-renderer { padding: 8px 14px !important; }
+html[data-yt-music-theme] :is(ytmusic-browse-response, ytmusic-search-page, ytmusic-search-suggestions-section, ytmusic-player-page #side-panel) ytmusic-two-row-item-renderer > :is(.title, .subtitle, #title, #subtitle) { margin-inline: 10px !important; }
+/* Live Playables card markup inspected in the signed-out Playables browser. */
+html[data-yt-tube-theme] :is(ytd-horizontal-card-list-renderer[has-portrait-mini-app], ytd-rich-shelf-renderer[is-mini-game-card-shelf], ytd-rich-shelf-renderer:has(ytd-mini-game-card-view-model), ytd-item-section-renderer[page-subtype="playables"]) {
+  --yt-spec-text-primary: var(--fw-ref-ink) !important; --yt-spec-text-secondary: var(--fw-ref-muted) !important;
+  --yt-spec-icon-active-other: var(--fw-ref-ink) !important; --yt-spec-icon-inactive: var(--fw-ref-muted) !important;
+  --yt-spec-base-background: var(--fw-ref-paper) !important; --yt-spec-raised-background: var(--fw-ref-paper) !important;
+  color: var(--fw-ref-ink) !important; background: var(--fw-ref-paper) !important;
+  padding: 14px !important; box-sizing: border-box !important;
+}
+html[data-yt-tube-theme] :is(ytd-mini-game-card-view-model, mini-game-card-view-model) :is(.ytMiniGameCardViewModelMetadataDetails, .ytMiniGameCardViewModelTitle, .ytMiniGameCardViewModelGenre, .ytMiniGameCardViewModelOverflowButton),
+html[data-yt-tube-theme] :is(ytd-horizontal-card-list-renderer[has-portrait-mini-app], ytd-rich-shelf-renderer[is-mini-game-card-shelf], ytd-rich-shelf-renderer:has(ytd-mini-game-card-view-model)) :is(ytd-rich-list-header-renderer, #title, #subtitle, #show-more-button, #show-more) :is(yt-formatted-string, yt-attributed-string, .ytAttributedStringHost, span, yt-icon) {
+  color: var(--fw-ref-ink) !important; opacity: 1 !important; text-shadow: none !important;
+}
+html[data-yt-tube-theme] :is(ytd-horizontal-card-list-renderer[has-portrait-mini-app], ytd-rich-shelf-renderer[is-mini-game-card-shelf], ytd-rich-shelf-renderer:has(ytd-mini-game-card-view-model)) :is(#show-more-button, #show-more, #collapse-button, #expand-button) {
+  background: transparent !important; color: var(--fw-ref-ink) !important;
+}
+html[data-yt-tube-theme] :is(ytd-horizontal-card-list-renderer[has-portrait-mini-app], ytd-rich-shelf-renderer[is-mini-game-card-shelf], ytd-rich-shelf-renderer:has(ytd-mini-game-card-view-model)) :is(#show-more-button, #show-more, #collapse-button, #expand-button) :is(button, .ytSpecButtonShapeNextHost) {
+  color: var(--fw-ref-ink) !important; background: var(--fw-ref-paper) !important;
+  border-radius: 20px !important; box-shadow: inset 0 0 0 1px var(--fw-ref-edge), inset 0 2px #fff, 0 3px 6px #0002 !important;
+}
+html[data-yt-tube-theme] .ytMiniGameCardViewModelOverflowButton :is(button, .ytIconWrapperHost) { color: var(--fw-ref-ink) !important; }
+/* Late-mounted Shorts route backplates stay transparent. Actual footage and
+   movie-player controls retain their original appearance and dimensions. */
+html[data-yt-tube-theme] :is(ytd-shorts, ytd-reel-video-renderer, yt-shorts-video-view-model, yt-reel-player-overlay-view-model),
+html[data-yt-tube-theme] ytd-shorts :is(#shorts-container, #shorts-inner-container, #reel-overlay-container, #background, .ytShortsVideoViewModelHostBackground) { background: transparent !important; }
+
+/* These inspected containers hold Shorts ambient light/scrims, not the player. */
+html[data-yt-tube-theme] ytd-shorts :is(#cinematic-shorts-scrim, #cinematic-container, #shorts-cinematic-container) { display: none !important; }

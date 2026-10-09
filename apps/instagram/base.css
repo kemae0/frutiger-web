@@ -227,27 +227,9 @@ html[data-ig-theme] [role="tab"][aria-selected="true"] {
   html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, [role="button"]) { transition: none !important; }
 }
 
-/* Every native label/paragraph gets its own reading surface, including captions
-   over Reels. Markers group inline runs rather than boxing each word/span. */
-html[data-ig-theme] [data-fw-ig-text] {
-  --primary-text-on-media: var(--fw-ig-ink) !important;
-  --secondary-text-on-media: var(--fw-ig-muted) !important;
-  --ig-primary-text: var(--fw-ig-text-rgb) !important;
-  --ig-secondary-text: var(--fw-ig-muted-rgb) !important;
-  color: var(--fw-ig-ink) !important;
-  background-color: var(--fw-ig-text-paper, var(--fw-ig-paper)) !important;
-  background-image: linear-gradient(#ffffffa6, #ffffff00 14px) !important;
-  border-radius: 8px !important;
-  padding: 2px 5px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 1px #fff, 0 2px 4px #00000018 !important;
-  text-shadow: none !important;
-}
-html[data-ig-theme] [data-fw-ig-text] :is(span, a, strong, b, em, i, small, time, code) {
-  color: inherit !important;
-  text-shadow: none !important;
-}
+/* Native text stays unboxed; shared panels supply its reading surface. */
+html[data-ig-theme] [data-fw-ig-text] { color: var(--fw-ig-ink) !important; text-shadow: none !important; }
+html[data-ig-theme] [data-fw-ig-text] :is(span, a, strong, b, em, i, small, time, code) { color: inherit !important; text-shadow: none !important; }
 /* Icons may live in links OR DIV buttons: notifications, create, more and profile
    all need the same chrome. Badges retain their native colors and positioning. */
 html[data-ig-theme] [data-fw-ig-control] {
@@ -259,9 +241,11 @@ html[data-ig-theme] [data-fw-ig-control] {
   box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, inset 0 -2px #0000000d, 0 3px 6px #0002 !important;
 }
 html[data-ig-theme] [data-fw-ig-control="icon"] {
-  min-width: 40px; min-height: 40px;
-  padding: 6px;
-  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center !important; justify-content: center !important;
+  min-width: 52px !important; min-height: 44px !important;
+  padding: 8px 12px !important; gap: 8px;
+  box-sizing: border-box !important;
 }
 html[data-ig-theme] :is(nav, [role="navigation"]) :is(a, button, [role="button"], [role="link"])[data-fw-ig-control] {
   background: var(--fw-ig-control) var(--fw-ig-paper) !important;
@@ -306,3 +290,47 @@ html[data-ig-theme] [data-fw-ig-comment-layer] {
   background: var(--fw-ig-comment-paper) !important;
   border-radius: inherit;
 }
+
+/* Keep sidebar hit areas roomy even when native hover styles change display. */
+html[data-ig-theme] [data-fw-ig-control="nav"],
+html[data-ig-theme] [data-fw-ig-control="nav"]:hover {
+  display: flex !important; align-items: center !important;
+  min-width: 52px !important; min-height: 48px !important;
+  height: auto !important; padding: 10px 14px !important; gap: 12px !important;
+  box-sizing: border-box !important;
+}
+html[data-ig-theme] :is([data-fw-ig-control="nav"], [data-fw-ig-control="icon"]) svg { flex-shrink: 0 !important; }
+html[data-ig-theme] [data-fw-ig-action] {
+  color: var(--fw-ig-ink) !important;
+  background: var(--fw-ig-control) var(--fw-ig-paper) !important;
+  border-radius: 12px 24px 24px 12px !important;
+  box-shadow: inset 0 0 0 1px var(--fw-ig-edge), inset 0 2px #fff, 0 3px 6px #0002 !important;
+  padding: 8px 12px !important; gap: 6px !important;
+  min-width: 52px !important; min-height: 44px !important;
+  box-sizing: border-box !important;
+}
+html[data-ig-theme] [data-fw-ig-action]:hover { background: var(--fw-ig-active) var(--fw-ig-paper) !important; }
+html[data-ig-theme] [data-fw-ig-panel]:is([data-fw-ig-panel="profile"], [data-fw-ig-panel="reel"]) {
+  color: var(--fw-ig-ink) !important;
+  --primary-text-on-media: var(--fw-ig-ink) !important;
+  --secondary-text-on-media: var(--fw-ig-muted) !important;
+  background: var(--fw-ig-paper) !important;
+  border-radius: var(--fw-ig-corner) !important;
+  box-shadow: var(--fw-ig-shadow) !important;
+  padding: 14px !important; box-sizing: border-box !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="profile"] { background-image: var(--fw-ig-detail) !important; background-size: 100% auto; background-repeat: no-repeat; }
+html[data-ig-theme] [data-fw-ig-panel="tabs"] { background: var(--fw-ig-chrome) var(--fw-ig-paper) !important; border-radius: var(--fw-ig-radius); box-shadow: inset 0 0 0 1px var(--fw-ig-edge), 0 3px 6px #0002; }
+/* Arrows and controls inside shared action/info surfaces stay unframed. */
+html[data-ig-theme] :is(a, button, [role="button"], [role="link"], [role="tab"])[data-fw-ig-bare],
+html[data-ig-theme] :is(a, button, [role="button"], [role="link"], [role="tab"])[data-fw-ig-bare]:is(:hover, [aria-selected="true"]) {
+  background: transparent !important; border: none !important;
+  box-shadow: none !important; border-radius: 0 !important;
+  color: var(--fw-ig-ink) !important;
+}
+html[data-ig-theme] [data-fw-ig-bare="action"] { padding: 0 !important; min-width: 0 !important; min-height: 0 !important; }
+html[data-ig-theme] [data-fw-ig-bare="tab"][aria-selected="true"] { box-shadow: inset 0 -3px var(--fw-ig-accent) !important; }
+html[data-ig-theme] [data-fw-ig-bare="arrow"] { color: #fff !important; }
+html[data-ig-theme] [data-fw-ig-bare="arrow"] svg { filter: drop-shadow(0 1px 3px #0009); }
+
+html[data-ig-theme] [data-fw-ig-control="label"] { min-height: 36px; padding: 7px 12px; box-sizing: border-box; }

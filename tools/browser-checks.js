@@ -253,7 +253,7 @@
       const item = inspect(id);
       if (item) assert(luminance(item.style.color) > .8, 'Off restores native white labels');
       if (instagram) {
-        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer]'),
+        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer], [data-fw-ig-panel], [data-fw-ig-action], [data-fw-ig-bare]'),
           'Instagram off must remove every decoration marker');
         assert(!document.documentElement.hasAttribute('data-fw-ig-page'), 'Instagram off must remove the route marker');
         const reelCanvas = inspect('ig-reels-canvas');
@@ -272,29 +272,50 @@
         for (const id of ['ig-post', 'ig-dialog', 'ig-nav', 'ig-login']) solid(id);
         canvasVisible();
         for (const id of ['ig-reel-text', 'ig-reel-caption', 'ig-reel-count', 'ig-reel-comment-text',
-          'ig-byline', 'ig-comment', 'ig-message']) {
+          'ig-byline', 'ig-comment'].filter(id => query.get('view') !== 'profile' || !id.startsWith('ig-reel'))) {
           nestedDark(id);
-          const unit = node(id)?.closest('[data-fw-ig-text]');
-          assert(Boolean(unit) && alpha(getComputedStyle(unit).backgroundColor) === 1,
-            `${id}: native text must have its own opaque reading box`);
+          const unit = node(id)?.closest('[data-fw-ig-text]') || node(id);
+          assert(Boolean(unit) && alpha(getComputedStyle(unit).backgroundColor) === 0 && getComputedStyle(unit).boxShadow === 'none',
+            `${id}: general text must remain unboxed on its shared reading surface`);
         }
-        for (const id of ['ig-notifications', 'ig-create', 'ig-more', 'ig-reel-like', 'ig-reel-comment-icon']) {
+        for (const id of ['ig-notifications', 'ig-create', 'ig-more', 'ig-reel-comment-icon']) {
           const control = solid(id);
           if (control) assert(control.element.hasAttribute('data-fw-ig-control') && control.style.boxShadow !== 'none',
             `${id}: native DIV icon control must receive the same bubble as navigation links`);
         }
+        for (const kind of ['like', 'comment', 'repost', 'share']) {
+          const group = solid(`ig-post-${kind}-group`);
+          const icon = inspect(`ig-post-${kind}-icon`);
+          const count = inspect(`ig-post-${kind}-count`);
+          if (group && icon && count) {
+            assert(group.element.hasAttribute('data-fw-ig-action') && group.element.contains(icon.element) && group.element.contains(count.element), 'Action icon and count must share one native wrapper');
+            assert(alpha(icon.style.backgroundColor) === 0 && icon.style.boxShadow === 'none' && alpha(count.style.backgroundColor) === 0, 'Action children must not create extra bubbles');
+          }
+        }
+        solid('ig-reel-like-group');
+        const reelInfo = query.get('view') === 'profile' ? null : solid('ig-reel-info');
+        if (reelInfo) assert(reelInfo.element.getAttribute('data-fw-ig-panel') === 'reel', 'Author and caption must share one Reel information panel');
+        const profile = solid('ig-profile-header');
+        if (profile) assert(profile.element.getAttribute('data-fw-ig-panel') === 'profile', 'Profile header must share one coherent panel');
+        for (const id of ['ig-profile-name', 'ig-profile-bio', 'ig-post-next', 'ig-profile-tab-0', 'ig-profile-tab-1']) {
+          const item = inspect(id);
+          if (item) assert(alpha(item.style.backgroundColor) === 0 && item.style.boxShadow === 'none', `${id}: no individual bubble on general text, arrows or post tabs`);
+        }
+        const hoverNav = inspect('ig-nav-hover');
+        if (hoverNav) assert(hoverNav.rect.height >= 48 && parseFloat(hoverNav.style.paddingLeft) >= 14,
+          'Native inline/hover sidebar controls must keep roomy height and inset');
         white('ig-badge');
         const profileIcon = inspect('ig-profile-icon');
         if (profileIcon) assert(profileIcon.style.borderTopLeftRadius === '50%',
           'Instagram profile bubble must remain circular');
-        for (const id of ['ig-reels-canvas', 'ig-reels-track']) {
+        for (const id of query.get('view') === 'profile' ? [] : ['ig-reels-canvas', 'ig-reels-track']) {
           const canvas = inspect(id);
           if (canvas) assert(alpha(canvas.style.backgroundColor) === 0 && canvas.style.backgroundImage === 'none',
             `${id}: opaque Reels route layers must expose the selected wallpaper`);
         }
         const reel = inspect('ig-reel-video');
         if (reel) {
-          assert(reel.style.filter === 'none' && Math.abs(reel.rect.width / reel.rect.height - 9 / 16) < .01,
+          assert(reel.style.filter === 'none' && (query.get('view') === 'profile' || Math.abs(reel.rect.width / reel.rect.height - 9 / 16) < .01),
             'Instagram Reels must retain original media colors and vertical geometry');
         }
         const commentPanel = solid('ig-reel-comments');
@@ -316,7 +337,7 @@
             'Instagram post header corners must match the outer frame');
           const media = igPost.element.querySelector('.post-photo');
           assert(getComputedStyle(media).filter === 'none' &&
-            (query.get('view') === 'reels' || media.getBoundingClientRect().height === 350),
+            (query.has('view') || media.getBoundingClientRect().height === 350),
             'Instagram media must retain its original colors and native geometry');
         }
         const igNav = node('ig-nav');
@@ -330,7 +351,7 @@
         }
         assert(document.documentElement.scrollWidth <= document.documentElement.clientWidth,
           'Instagram frames must not introduce horizontal page overflow');
-        const input = query.get('view') === 'reels' ? node('ig-reel-comments').querySelector('input') : node('ig-input');
+        const input = query.get('view') === 'profile' ? null : query.get('view') === 'reels' ? node('ig-reel-comments').querySelector('input') : node('ig-input');
         if (input) {
           assert(input.matches('input, textarea, [contenteditable="true"]') && !input.disabled,
             'Instagram fields must remain editable native controls');
@@ -347,7 +368,7 @@
             'Instagram primary button nested label must use the selected readable text color');
         }
         const form = node('ig-login');
-        if (form && query.get('view') !== 'reels') {
+        if (form && !query.has('view')) {
           const fields = [...form.querySelectorAll('input')];
           assert(fields.length >= 2, 'Instagram login form must retain username and password fields');
           for (const field of fields) {
@@ -383,7 +404,7 @@
         root.removeAttribute('data-ig-theme');
         root.removeAttribute('data-frutiger-theme');
         await new Promise(resolve => setTimeout(resolve, 140));
-        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer]'),
+        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer], [data-fw-ig-panel], [data-fw-ig-action], [data-fw-ig-bare]'),
           'Instagram switching off must remove all existing and dynamically added markers');
         assert(alpha(getComputedStyle(late.querySelector('p')).backgroundColor) === 0,
           'Instagram switching off must restore native text backgrounds');
@@ -426,6 +447,11 @@
         if (video) {
           assert(video.style.borderTopLeftRadius === '4px', 'Browse videos must keep rectangular artwork');
           assert(video.rect.width / video.rect.height >= 1.7, 'Widescreen thumbnails must keep their native proportions');
+        }
+        for (const id of ['music-search-row', 'music-playlist-row', 'music-search-card', 'music-playlist-header']) {
+          const item = inspect(id);
+          if (item) assert(parseFloat(item.style.paddingLeft) >= 12 && parseFloat(item.style.paddingRight) >= 12,
+            `${id}: reading boxes must leave room between text and edges`);
         }
         const header = inspect('music-shelf-title');
         if (header) assert(parseFloat(header.style.fontSize) <= 26, 'Music shelf headings must keep restrained scale');
@@ -559,6 +585,23 @@
           assert(subscribeText.style.textShadow === 'none',
             'Filled Subscribe labels must not inherit footage text shadows');
         }
+        for (const id of ['playables-title', 'playables-plays', 'playables-more-text']) nestedDark(id);
+        solid('playables-more-button');
+        const moreBacking = inspect('playables-more-wrapper');
+        if (moreBacking) assert(alpha(moreBacking.style.backgroundColor) === 0, 'Playables Show more must not have a rectangular dark backplate');
+        const gameImage = inspect('playables-art');
+        if (gameImage) assert(gameImage.style.filter === 'none', 'Game artwork must retain its native colors');
+        // Reproduce delayed route/ambient layers appearing after a Short mounts.
+        const lateShort = document.createElement('ytd-shorts');
+        lateShort.innerHTML = '<div id="shorts-inner-container" style="background:black"><ytd-reel-video-renderer style="background:black"><div id="cinematic-container" style="background:black"><canvas width="90" height="160"></canvas></div><div id="shorts-player" class="html5-video-player" style="background:black;width:90px;height:160px"><video style="width:90px;height:160px;background:black"></video></div></ytd-reel-video-renderer></div>';
+        document.querySelector('ytd-app').append(lateShort);
+        await new Promise(resolve => setTimeout(resolve, 120));
+        for (const element of [lateShort, lateShort.querySelector('#shorts-inner-container'), lateShort.querySelector('ytd-reel-video-renderer')]) {
+          assert(alpha(getComputedStyle(element).backgroundColor) === 0, 'Late-mounted Shorts route backplates must remain transparent');
+        }
+        assert(getComputedStyle(lateShort.querySelector('#cinematic-container')).display === 'none', 'Delayed ambient canvas must not create a black box behind Shorts');
+        assert(luminance(getComputedStyle(lateShort.querySelector('#shorts-player')).backgroundColor) < .02 && getComputedStyle(lateShort.querySelector('video')).display !== 'none', 'Actual Shorts player and video must remain intact');
+        lateShort.remove();
         solid('modern-shorts-description-panel');
         nestedDark('modern-shorts-description-text');
       }

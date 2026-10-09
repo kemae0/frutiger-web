@@ -27,6 +27,7 @@ Open `apps/youtube/preview.html`, `apps/youtube-music/preview.html` or `apps/ins
 | YouTube | ![YouTube Aero fixture](docs/previews/tube-aero.png) | ![YouTube DORFic fixture](docs/previews/tube-dorfic.png) |
 | YouTube Music | ![Music Aero fixture](docs/previews/music-aero.png) | ![Music DORFic fixture](docs/previews/music-dorfic.png) |
 | Instagram | ![Instagram Aero fixture](docs/previews/instagram-aero.png) | ![Instagram DORFic fixture](docs/previews/instagram-dorfic.png) |
+| Instagram profile | ![Profile Aero fixture](docs/previews/instagram-profile-aero.png) | ![Profile DORFic fixture](docs/previews/instagram-profile-dorfic.png) |
 | Instagram Reels | ![Reels Aero fixture](docs/previews/instagram-reels-aero.png) | ![Reels DORFic fixture](docs/previews/instagram-reels-dorfic.png) |
 
 ## Behavior and privacy
@@ -36,6 +37,8 @@ The extension uses Manifest V3, bundled stylesheets, and a small content script.
 The content script sets a theme attribute on the document root after reading saved settings. CSS selectors are scoped to the selected theme and each site's attribute. The attribute remains in place during the site's normal navigation, so dynamically loaded pages receive the same theme. Site layouts, links, playback behavior, video images and thumbnails are preserved; the native video player keeps its dark control surface. Chrome-managed UI, cross-origin frames, and content inside inaccessible shadow roots are not themed.
 
 Supported sites change their markup and run layout experiments, so some less-common surfaces may retain native colors or require a selector update. The design fixtures do not guarantee every live-site surface. These are independent visual themes, not official YouTube or Instagram products. Instagram uses native color tokens and semantic content, navigation, form and menu surfaces. Its local adapter annotates existing text blocks and controls, exposes wallpaper around Reels players, and lightens comment panels. It adds no text or elements, reads no input values, and removes its markers when disabled; video and image colors remain unchanged. Its signed-out markup was inspected, but signed-in feed, inbox and profile layouts still need an installed-extension check.
+
+Version 1.5.0 removes general Instagram text bubbles, groups action icons with counts, adds shared profile/Reel information panels, and keeps sidebar controls roomy on hover. Carousel arrows and profile post tabs remain unframed. Music reading panels gain insets; Playables game metadata and Show more receive readable colors. Shorts ambient backdrops are suppressed while the actual player remains intact. Playables card/shelf markup and Shorts ambient container names were inspected on signed-out live YouTube.
 
 Version 1.4.0 adds individual Instagram text boxes, bubbles for native DIV icon controls, circular profile frames, Reels wallpaper, and brighter comment surfaces in both themes. The adapter also covers newly mounted content and restores native appearance when disabled.
 
@@ -63,6 +66,7 @@ The shared settings object is `{ enabled: true, theme: "frutiger", apps: { youtu
 - `content.js` — saved preferences, site detection, scoped root attributes, and popup status.
 - `popup.html`, `popup.css`, `popup.js` — global appearance and supported-site controls.
 - `apps/` — independent site styles and local design previews.
+- `refinements.css` — shared Music spacing, Playables metadata/control colors and Shorts backdrop corrections.
 - `icons/` — local PNG icons in Chrome's 16, 32, 48 and 128 pixel sizes.
 - `assets/` and `wallpaper.css` — bundled scenery and shared background styling; [artwork and research notes](assets/SOURCES.md).
 - `fonts/` and `fonts.css` — bundled Exo 2 and Oxanium, their licenses, and scoped typography. Fonts load locally without external requests.
@@ -78,7 +82,7 @@ Run `node tools/test-rendering.cjs` with Chrome or Edge installed to check brows
 
 Sidebar checks exercise expanded and compact Music guides, including mounted hidden panels and native SVG icons. Use `--site=youtube-music --width=960 --guide=compact` for a narrower layout or `--site=youtube-music --guide=fullscreen` to verify the guide stays hidden during fullscreen. Comment checks cover transparent inner replies and circular avatar wrappers; Instagram checks verify that canvas layers expose the wallpaper while posts remain opaque.
 
-Music home checks reproduce the live site's `.background-gradient > #content-wrapper` nesting and immersive attributes. Search and playlist checks start with native white nested links, metadata, owner names and fixed duration columns. Instagram checks include media colors, menu/inbox surfaces, nested button text, header corners, keyboard focus and horizontal overflow. Use `--site=instagram --width=600` for the narrow fixture. Add `--view=reels` for the separate Reels view, and `--screenshots` to refresh its images. Instagram checks also cover late-loaded text/icons, marker cleanup, intact native content, bright comment backplates and unaltered vertical video geometry.
+Music home checks reproduce the live site's `.background-gradient > #content-wrapper` nesting and immersive attributes. Search and playlist checks start with native white nested links, metadata, owner names and fixed duration columns. Instagram checks include media colors, menu/inbox surfaces, nested button text, header corners, keyboard focus and horizontal overflow. Use `--site=instagram --width=600` for the narrow fixture. Add `--view=reels` or `--view=profile` for the separate Reels/profile views, and `--screenshots` to refresh its images. Instagram checks also cover grouped action counts, unboxed general text/arrows/tabs, roomy sidebar hover geometry, single profile/caption panels, late-loaded content and off cleanup. Music checks verify reading insets; YouTube checks include Playables contrast and late-mounted Shorts ambient layers.
 
 The previews use the actual theme stylesheets against representative local markup. Their layouts are illustrative. The source package has been checked with these fixtures and behavioral tests; it still needs an installed-extension check against live signed-in pages for account-specific layouts and playback.
 
