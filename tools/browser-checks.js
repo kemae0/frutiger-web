@@ -253,7 +253,7 @@
       const item = inspect(id);
       if (item) assert(luminance(item.style.color) > .8, 'Off restores native white labels');
       if (instagram) {
-        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer], [data-fw-ig-panel], [data-fw-ig-action], [data-fw-ig-bare]'),
+        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer], [data-fw-ig-panel], [data-fw-ig-action], [data-fw-ig-bare], [data-fw-ig-action-part], [data-fw-ig-action-row], [data-fw-ig-nav-inner], [data-fw-ig-tile]'),
           'Instagram off must remove every decoration marker');
         assert(!document.documentElement.hasAttribute('data-fw-ig-page'), 'Instagram off must remove the route marker');
         const reelCanvas = inspect('ig-reels-canvas');
@@ -284,30 +284,51 @@
             `${id}: native DIV icon control must receive the same bubble as navigation links`);
         }
         for (const kind of ['like', 'comment', 'repost', 'share']) {
-          const group = solid(`ig-post-${kind}-group`);
+          const branch = solid(`ig-post-${kind}-branch`);
           const icon = inspect(`ig-post-${kind}-icon`);
-          const count = inspect(`ig-post-${kind}-count`);
-          if (group && icon && count) {
-            assert(group.element.hasAttribute('data-fw-ig-action') && group.element.contains(icon.element) && group.element.contains(count.element), 'Action icon and count must share one native wrapper');
-            assert(alpha(icon.style.backgroundColor) === 0 && icon.style.boxShadow === 'none' && alpha(count.style.backgroundColor) === 0, 'Action children must not create extra bubbles');
+          const count = solid(`ig-post-${kind}-count`);
+          if (branch && icon && count) {
+            assert(branch.element.getAttribute('data-fw-ig-action-part') === 'icon' && count.element.getAttribute('data-fw-ig-action-part') === 'count', 'Native sibling icon/count controls must form a connected capsule');
+            assert(Math.abs(branch.rect.right - count.rect.left) < 1 && Math.abs(branch.rect.top - count.rect.top) < 1 && Math.abs(branch.rect.height - count.rect.height) < 1, 'Each icon/count pair must touch with matching top and height');
+            assert(parseFloat(branch.style.borderTopRightRadius) === 0 && parseFloat(count.style.borderTopLeftRadius) === 0, 'Action halves must not have separate rounded inner corners');
+            assert(alpha(icon.style.backgroundColor) === 0 && icon.style.boxShadow === 'none', 'The original icon target must not add a nested bubble');
+            let clicked = false;
+            count.element.addEventListener('click', () => { clicked = true; }, {once:true});
+            count.element.click();
+            assert(clicked && count.element.getAttribute('role') === 'button' && count.element.tabIndex === 0, 'Separate native count click targets must remain keyboard operable');
           }
         }
         solid('ig-reel-like-group');
         const reelInfo = query.get('view') === 'profile' ? null : solid('ig-reel-info');
         if (reelInfo) assert(reelInfo.element.getAttribute('data-fw-ig-panel') === 'reel', 'Author and caption must share one Reel information panel');
         const profile = solid('ig-profile-header');
-        if (profile) assert(profile.element.getAttribute('data-fw-ig-panel') === 'profile', 'Profile header must share one coherent panel');
-        for (const id of ['ig-profile-name', 'ig-profile-bio', 'ig-post-next', 'ig-profile-tab-0', 'ig-profile-tab-1']) {
+        if (profile) {
+          assert(profile.element.getAttribute('data-fw-ig-panel') === 'profile', 'Nested profile header with href="#" statistics must share one coherent panel');
+          for (const id of ['ig-profile-photo', 'ig-profile-name', 'ig-profile-bio', 'ig-profile-links', 'ig-profile-edit', 'ig-profile-archive']) assert(profile.element.contains(node(id)), 'Profile panel must enclose avatar, identity, biography and links');
+        }
+        for (const id of ['ig-profile-name', 'ig-profile-bio', 'ig-profile-links', 'ig-post-more', 'ig-caption-more', 'ig-post-next', 'ig-profile-tab-0', 'ig-profile-tab-1']) {
           const item = inspect(id);
           if (item) assert(alpha(item.style.backgroundColor) === 0 && item.style.boxShadow === 'none', `${id}: no individual bubble on general text, arrows or post tabs`);
         }
         const hoverNav = inspect('ig-nav-hover');
-        if (hoverNav) assert(hoverNav.rect.height >= 48 && parseFloat(hoverNav.style.paddingLeft) >= 14,
-          'Native inline/hover sidebar controls must keep roomy height and inset');
+        if (hoverNav) {
+          const compact = hoverNav.element.getAttribute('data-fw-ig-control') === 'nav-compact';
+          assert(hoverNav.rect.height >= 48 && (compact || parseFloat(hoverNav.style.paddingLeft) >= 14), 'Sidebar controls must retain a roomy hit area');
+          if (compact) {
+            const icon = hoverNav.element.querySelector('svg').getBoundingClientRect();
+            assert(Math.abs((icon.left + icon.right) / 2 - (hoverNav.rect.left + hoverNav.rect.right) / 2) < 1 && Math.abs((icon.top + icon.bottom) / 2 - (hoverNav.rect.top + hoverNav.rect.bottom) / 2) < 1, 'Compact sidebar SVG must be centered despite nested native padding');
+          }
+        }
         white('ig-badge');
         const profileIcon = inspect('ig-profile-icon');
-        if (profileIcon) assert(profileIcon.style.borderTopLeftRadius === '50%',
-          'Instagram profile bubble must remain circular');
+        if (profileIcon) assert(getComputedStyle(profileIcon.element.querySelector('img')).borderTopLeftRadius === '50%', 'Sidebar avatar must remain circular inside its roomy control');
+        for (let i = 0; i < 3; i++) {
+          const tile = inspect(`ig-profile-tile-${i}`);
+          if (!tile) continue;
+          assert(tile.element.hasAttribute('data-fw-ig-tile') && !tile.element.hasAttribute('data-fw-ig-control') && tile.style.display === 'block' && alpha(tile.style.backgroundColor) === 0 && tile.style.boxShadow === 'none' && parseFloat(tile.style.paddingLeft) === 0, 'Clip-overlay thumbnails must retain native grid geometry without bubbles');
+          const img = tile.element.querySelector('img').getBoundingClientRect();
+          if (img.width && img.height) assert(Math.abs(img.width / img.height - 3 / 4) < .01, 'Profile thumbnail media must retain its original aspect ratio');
+        }
         for (const id of query.get('view') === 'profile' ? [] : ['ig-reels-canvas', 'ig-reels-track']) {
           const canvas = inspect(id);
           if (canvas) assert(alpha(canvas.style.backgroundColor) === 0 && canvas.style.backgroundImage === 'none',
@@ -324,6 +345,10 @@
           'Reels comment panel must use bright white/ivory paper');
         if (commentLayer) assert(luminance(commentLayer.style.backgroundColor) > .95,
           'Hard-coded dark comment layers must become bright reading surfaces');
+        for (const control of node('ig-reel-comments').querySelectorAll('button, [role="button"], a')) {
+          const style = getComputedStyle(control);
+          assert(alpha(style.backgroundColor) === 0 && style.boxShadow === 'none' && parseFloat(style.paddingLeft) === 0, 'Comments likes, reply, view replies, hearts and close controls must all stay unboxed');
+        }
         for (const id of ['ig-menu', 'ig-inbox']) solid(id);
         nestedDark('ig-message');
         const igPost = inspect('ig-post');
@@ -404,7 +429,7 @@
         root.removeAttribute('data-ig-theme');
         root.removeAttribute('data-frutiger-theme');
         await new Promise(resolve => setTimeout(resolve, 140));
-        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer], [data-fw-ig-panel], [data-fw-ig-action], [data-fw-ig-bare]'),
+        assert(!document.querySelector('[data-fw-ig-text], [data-fw-ig-control], [data-fw-ig-canvas], [data-fw-ig-comments], [data-fw-ig-comment-layer], [data-fw-ig-panel], [data-fw-ig-action], [data-fw-ig-bare], [data-fw-ig-action-part], [data-fw-ig-action-row], [data-fw-ig-nav-inner], [data-fw-ig-tile]'),
           'Instagram switching off must remove all existing and dynamically added markers');
         assert(alpha(getComputedStyle(late.querySelector('p')).backgroundColor) === 0,
           'Instagram switching off must restore native text backgrounds');

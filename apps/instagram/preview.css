@@ -70,3 +70,40 @@ nav a.native-hover { display:inline; height:22px; padding:0; }
 .profile-tabs a { display:flex; padding:8px; color:inherit; }
 body[data-preview-view="reels"] .profile-fixture { display:none; }
 body[data-preview-view="profile"] main > :not(.profile-fixture), body[data-preview-view="profile"] aside { display:none; }
+
+/* Regression markup matching the native sibling action row and profile grid. */
+.native-padded-icon, .native-nav-wrapper { padding:12px; }
+.native-nav-wrapper { display:flex; align-items:center; gap:12px; }
+.native-nav-wrapper > div { padding:0 12px; }
+.native-sibling-actions { display:flex; align-items:center; gap:0; }
+.profile-header { align-items:flex-start; }
+.profile-header section { min-width:0; }
+.profile-header [role=button] { cursor:pointer; margin:10px 0; }
+.profile-edit-actions { display:flex; gap:16px; margin-top:18px; }
+.profile-tabs { margin-bottom:0; }
+.profile-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; }
+.profile-grid article { margin:0; border:0; }
+.profile-grid a { display:block; }
+.profile-grid a > div { position:relative; }
+.profile-grid img { display:block; width:100%; aspect-ratio:3/4; object-fit:cover; }
+.tile-clip { position:absolute; top:8px; right:8px; color:#fff; }
+.reel-comments { background:#92979b; margin-bottom:28px; }
+.comment-heading { display:flex; align-items:center; gap:20px; }
+.comment-heading button { width:auto; margin:0; }
+.comment-heading h2 { margin:0; }
+.native-dark-comments { background:#92979b; max-height:360px; overflow-y:auto; padding-top:24px; }
+.comment-row { display:grid; grid-template-columns:32px minmax(0,1fr) 24px; gap:12px; margin-bottom:24px; }
+.comment-row p { margin:0 0 6px; }
+.comment-row a { color:inherit; }
+.comment-row img { border-radius:50%; }
+.comment-controls { display:flex; gap:14px; margin:8px 0; font-size:12px; }
+.comment-composer { background:#92979b; padding-top:18px; }
+@media(max-width:1000px) {
+ .fixture-layout { grid-template-columns:88px minmax(0,590px); gap:20px; }
+ nav { width:88px; padding:16px; }
+ nav h1, nav select, nav .nav-label { display:none; }
+ nav .icon-tools { flex-direction:column; align-items:flex-start; }
+ .native-nav-wrapper { padding:12px 24px; }
+}
+
+.profile-identity { display:flex; gap:14px; align-items:flex-start; }

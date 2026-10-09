@@ -334,3 +334,78 @@ html[data-ig-theme] [data-fw-ig-bare="arrow"] { color: #fff !important; }
 html[data-ig-theme] [data-fw-ig-bare="arrow"] svg { filter: drop-shadow(0 1px 3px #0009); }
 
 html[data-ig-theme] [data-fw-ig-control="label"] { min-height: 36px; padding: 7px 12px; box-sizing: border-box; }
+
+/* Center compact navigation without doubling native wrapper padding. */
+html[data-ig-theme] [data-fw-ig-control="nav-compact"],
+html[data-ig-theme] [data-fw-ig-control="nav-compact"]:hover {
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  width:56px !important; min-width:56px !important; height:56px !important; min-height:56px !important;
+  padding:0 !important; margin-inline:0 !important; box-sizing:border-box !important;
+}
+html[data-ig-theme] [data-fw-ig-nav-inner] {
+  padding:0 !important; margin:0 !important; min-width:0 !important; min-height:0 !important;
+}
+html[data-ig-theme] [data-fw-ig-nav-inner="compact"] {
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  width:100% !important; height:auto !important;
+}
+html[data-ig-theme] [data-fw-ig-control="nav-compact"] :is(svg,img) { flex-shrink:0 !important; }
+html[data-ig-theme] :is([data-fw-ig-control="nav"],[data-fw-ig-control="nav-compact"]) img { border-radius:50% !important; }
+
+/* Alternating icon/count siblings join into one capsule per action. Native
+   click targets and React node ownership remain intact. */
+html[data-ig-theme] [data-fw-ig-action-row] { gap:0 !important; align-items:center !important; }
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part],
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part]:hover {
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  flex:0 0 auto !important; box-sizing:border-box !important;
+  height:44px !important; min-height:44px !important; min-width:0 !important; width:auto !important;
+  color:var(--fw-ig-ink) !important;
+  background:var(--fw-ig-control) var(--fw-ig-paper) !important;
+  border:1px solid var(--fw-ig-edge) !important;
+  box-shadow:inset 0 1px #fff, 0 3px 3px #0002 !important;
+}
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part="icon"] {
+  border-right:0 !important; border-radius:12px 0 0 12px !important;
+  padding:8px 4px 8px 12px !important; margin:0 !important;
+  clip-path:inset(-8px 0 -8px -8px);
+}
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part="count"] {
+  border-left:0 !important; border-radius:0 24px 24px 0 !important;
+  padding:8px 12px 8px 4px !important; margin:0 10px 0 0 !important;
+  clip-path:inset(-8px -8px -8px 0);
+}
+html[data-ig-theme] [data-fw-ig-action-part="icon"] :is(div,span):has(svg) {
+  padding:0 !important; margin:0 !important; min-width:0 !important; min-height:0 !important;
+}
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part="icon"]:hover,
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part="icon"]:hover + [data-fw-ig-action-part="count"],
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part="icon"]:has(+ [data-fw-ig-action-part="count"]:hover),
+html[data-ig-theme] [data-fw-ig-action-row] > [data-fw-ig-action-part="count"]:hover {
+  background:var(--fw-ig-active) var(--fw-ig-paper) !important;
+}
+
+html[data-ig-theme] [data-fw-ig-panel="profile"][data-fw-ig-panel] {
+  background:var(--fw-ig-detail) no-repeat right top / 100% auto var(--fw-ig-paper) !important;
+  border:1px solid var(--fw-ig-edge) !important; padding:20px !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="profile"] [data-fw-ig-bare="info"] {
+  padding:0 !important; min-width:0 !important; min-height:0 !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="profile"] :is(img[alt*="profile picture" i], [data-fw-ig-bare]:has(img[alt*="profile picture" i])) { border-radius:50% !important; }
+/* Profile thumbnail links retain their original media sizing. */
+html[data-ig-theme] [data-fw-ig-tile],
+html[data-ig-theme] [data-fw-ig-tile]:hover,
+html[data-ig-theme] article:has([data-fw-ig-tile]):not(:has(header,video)) {
+  background:transparent !important; box-shadow:none !important; border:0 !important;
+  border-radius:0 !important; padding:0 !important;
+}
+/* One bright comment surface, with unframed reply, count and heart controls. */
+html[data-ig-theme] [data-fw-ig-comments] :is(a,button,[role="button"],[role="link"]),
+html[data-ig-theme] [data-fw-ig-comments] :is(a,button,[role="button"],[role="link"]):hover,
+html[data-ig-theme] [data-fw-ig-bare="comment"] {
+  background:transparent !important; box-shadow:none !important; border:0 !important;
+  border-radius:0 !important; padding:0 !important; min-width:0 !important; min-height:0 !important;
+  color:var(--fw-ig-ink) !important;
+}
+html[data-ig-theme] [data-fw-ig-comments] [data-fw-ig-text] { background:transparent !important; box-shadow:none !important; }
