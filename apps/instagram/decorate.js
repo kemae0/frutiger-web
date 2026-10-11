@@ -36,7 +36,8 @@
     }
     const fixtureReels = location.protocol === 'file:' && new URLSearchParams(location.search).get('view') === 'reels';
     const reels = /^\/reels?(?:\/|$)/.test(location.pathname) || fixtureReels;
-    root.setAttribute('data-fw-ig-page', reels ? 'reels' : 'other');
+    const messages = /^\/direct(?:\/|$)/.test(location.pathname) || (location.protocol === 'file:' && new URLSearchParams(location.search).get('view') === 'messages');
+    root.setAttribute('data-fw-ig-page', messages ? 'messages' : reels ? 'reels' : 'other');
     const next = new Map();
     const controls = new Set();
     const navigation = new Set(document.body.querySelectorAll('nav, [role="navigation"]'));
@@ -47,7 +48,7 @@
     // Some desktop sidebar experiments use DIV containers rather than a nav.
     for (const link of [...document.body.querySelectorAll('a[href]')].filter(navLink)) {
       for (let parent = link.parentElement, depth = 0; parent && parent !== document.body && depth < 7; parent = parent.parentElement, depth++) {
-        if (parent.matches('main, article') || parent.querySelector('main, article, video')) break;
+        if (parent.matches('main, article') || parent.querySelector('main, article, video, a[href*="/p/"], a[href*="/reel/"]') || parent.getBoundingClientRect().width > 340) break;
         if ([...parent.querySelectorAll('a[href]')].filter(navLink).length >= 3) { navigation.add(parent); break; }
       }
     }
@@ -56,8 +57,8 @@
     const visibleText = element => {
       const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
       let value = '', node;
-      while ((node = walker.nextNode())) if (!node.parentElement.closest(ignored)) value += node.nodeValue;
-      return value.trim();
+      while ((node = walker.nextNode())) if (!node.parentElement.closest(ignored)) value += node.nodeValue + ' ';
+      return value.replace(/\s+/g, ' ').trim();
     };
     const label = element => [element.getAttribute('aria-label'), ...[...element.querySelectorAll('svg[aria-label]')].map(svg => svg.getAttribute('aria-label'))].filter(Boolean).join(' ');
     const bare = (element, kind) => { set(next, element, attrs[7], kind); next.get(element)?.delete(attrs[1]); };
@@ -86,7 +87,7 @@
       controls.add(element);
       if (/^(next|previous|go back|go forward|back|right|left)(?:$|\s)|chevron/i.test(label(element))) bare(element, 'arrow');
       if (element.closest('[role="tablist"]')) bare(element, 'tab');
-      if (!inNav(element) && (/more options/i.test(label(element)) || /^(?:\.{3}|…)?\s*more$/i.test(visibleText(element)))) bare(element, 'menu');
+      if (!inNav(element) && (/more options|ellipsis|^options$|^more$/i.test(label(element)) || /^(?:(?:\.{3}|…)?\s*more|[.…·•]{3})$/i.test(visibleText(element)))) bare(element, 'menu');
       if (!inNav(element) && /^(reply|(?:view|hide) (?:all )?(?:\d+ )?replies|[\d,.]+ likes?)$/i.test(visibleText(element))) bare(element, 'comment');
       if (inNav(element)) {
         const nav = [...navigation].find(nav => nav.contains(element));
@@ -107,12 +108,15 @@
       return result;
     };
     const textUnits = new Set();
+    const profileSeeds = new Set();
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let text;
     while ((text = walker.nextNode())) {
       if (!text.nodeValue.trim()) continue;
       let element = text.parentElement;
       if (!element || element.closest(ignored)) continue;
+      // Statistics can be plain DIVs or buttons, with no heading or <main>.
+      if (/followers|following/i.test(text.nodeValue) && !inNav(element)) profileSeeds.add(element);
       let controlParent = element;
       while (controlParent && !controls.has(controlParent)) controlParent = controlParent.parentElement;
       if (controlParent) continue; // A control already supplies a readable box for its label/badge.
@@ -161,15 +165,21 @@
         break;
       }
     }
-    // Real profile statistics often use href="#", not /followers links.
-    // Find the common header of the avatar, identity and both statistics.
+    // Find the complete identity block without requiring headings, link URLs,
+    // avatar alt text, or semantic main/header elements in signed-in layouts.
     const profiles = new Set();
-    for (const heading of document.body.querySelectorAll('main :is(h1,h2,header), [role="main"] :is(h1,h2,header)')) {
+    for (const seed of profileSeeds) {
       let panel;
-      for (let parent = heading, depth = 0; parent && depth < 14; parent = parent.parentElement, depth++) {
-        if (parent.matches('main, [role="main"], article') || parent.querySelector('video, article, [role="tablist"], a[href*="/reel/"], a[href*="/p/"]')) break;
+      for (let parent = seed, depth = 0; parent && depth < 22; parent = parent.parentElement, depth++) {
+        if (parent.matches('body, main, [role="main"], nav, [role="navigation"], [role="dialog"]') || parent.querySelector('video, [role="tablist"], a[href*="/reel/"], a[href*="/p/"]') || [...navigation].some(nav => parent.contains(nav))) break;
         const text = visibleText(parent);
-        if (parent.querySelector('img[alt*="profile picture" i]') && /followers/i.test(text) && /following/i.test(text)) {
+        const avatar = [...parent.querySelectorAll('img')].some(img => {
+          const box = img.getBoundingClientRect();
+          const width = box.width || Number(img.getAttribute('width'));
+          const height = box.height || Number(img.getAttribute('height'));
+          return /profile (?:picture|photo)/i.test(img.alt) || (width >= 64 && width <= 240 && height >= 64 && height <= 240);
+        });
+        if (avatar && /\d[\d.,]*\s*[kmb]?\s*followers(?![a-z])/i.test(text) && /\d[\d.,]*\s*[kmb]?\s*following(?![a-z])/i.test(text)) {
           // Include biography, links and edit actions outside the identity row,
           // but do not frame redundant route wrappers around the same content.
           if (!panel || text !== visibleText(panel) || parent.tagName === 'HEADER' || parent.querySelectorAll('img').length > panel.querySelectorAll('img').length) panel = parent;
@@ -180,7 +190,46 @@
     for (const panel of profiles) {
       if ([...profiles].some(other => other !== panel && other.contains(panel))) continue;
       set(next, panel, attrs[5], 'profile');
-      for (const control of controls) if (panel.contains(control)) bare(control, 'info');
+      for (const control of panel.querySelectorAll('a, button, [role="button"], [role="link"]')) bare(control, 'info');
+    }
+
+    // Footer/legal links share one roomy surface rather than individual pills.
+    const footerName = /^(about|help|press|api|jobs|privacy|consumer health privacy|terms|locations|language|meta verified|blog|instagram lite)$/i;
+    const footerLinks = [...document.body.querySelectorAll('a, button, [role="button"], [role="link"]')].filter(element => footerName.test(visibleText(element)) && !element.closest('[role="menu"], [role="dialog"]'));
+    const footers = new Set(document.body.querySelectorAll('footer'));
+    for (const link of footerLinks) {
+      for (let parent = link.parentElement, depth = 0; parent && depth < 9; parent = parent.parentElement, depth++) {
+        if (parent.matches('body, main, article, [role="main"]') || parent.querySelector('video, img, input, textarea, main')) break;
+        if (footerLinks.filter(other => parent.contains(other)).length >= 3) { footers.add(parent); break; }
+      }
+    }
+    for (const panel of footers) {
+      if ([...footers].some(other => other !== panel && other.contains(panel))) continue;
+      set(next, panel, attrs[5], 'footer');
+      for (const control of panel.querySelectorAll('a, button, [role="button"], [role="link"]')) bare(control, 'footer');
+    }
+
+    // Feed articles get breathing room; media-only profile tiles stay native.
+    for (const article of document.body.querySelectorAll('article')) {
+      if ([...profiles].some(panel => panel === article || panel.contains(article))) continue;
+      if (article.querySelector('header') && article.querySelector('video, img, [role="img"]') && !article.closest('[role="dialog"]') && !messages && !reels) set(next, article, attrs[5], 'feed');
+    }
+
+    if (messages) {
+      for (const control of controls) {
+        if (inNav(control)) continue;
+        if (control.querySelector('img') || (visibleText(control) && /account|dropdown|down chevron/i.test(label(control))) || control.querySelector('h1,h2,[role="heading"]')) bare(control, 'message');
+      }
+      for (const image of document.body.querySelectorAll('img')) {
+        const box = image.getBoundingClientRect();
+        if (inNav(image) || box.width > 110 || box.height > 110 || !box.width) continue;
+        for (let parent = image.parentElement, depth = 0; parent && depth < 7; parent = parent.parentElement, depth++) {
+          const bounds = parent.getBoundingClientRect();
+          if (parent.matches('body, main, nav, [role="navigation"], [role="dialog"]') || parent.querySelectorAll('img').length > 1 || parent.querySelector('video, input, textarea, [contenteditable="true"]') || bounds.width > 260 || bounds.height > 260) break;
+          bare(parent, 'message');
+          for (const control of parent.querySelectorAll('a, button, [role="button"], [role="link"]')) bare(control, 'message');
+        }
+      }
     }
     // Profile post tabs share a single bar rather than individual icon bubbles.
     const tabs = [...controls].filter(control => !inNav(control) && /^(posts|reels|saved|tagged|reposts)$/i.test(label(control).trim()));
@@ -233,16 +282,19 @@
     /* Both modal and docked comments get bright paper. A docked pane can be
        identified by its native heading and comment list/composer, not classes. */
     const comments = new Set([...document.body.querySelectorAll('[aria-label="Comments" i], section[aria-label*="comments" i], aside[aria-label*="comments" i], ul:has(li time), ul:has(li a[href*="/c/"])')].filter(element => !element.matches('svg, [role="img"], button, [role="button"], [role="link"], a')));
-    for (const unit of textUnits) {
-      if (unit.textContent.trim().toLowerCase() !== 'comments') continue;
+    const commentSeeds = new Set([...textUnits].filter(unit => unit.textContent.trim().toLowerCase() === 'comments'));
+    if (!messages) for (const control of controls) {
+      if (!inNav(control) && /^reply$/i.test(visibleText(control))) commentSeeds.add(control);
+    }
+    for (const unit of commentSeeds) {
       let panel;
-      for (let parent = unit.parentElement, depth = 0; parent && depth < 12; parent = parent.parentElement, depth++) {
-        if (parent.matches('main, body, article, [role="main"]') || parent.querySelector('video, canvas')) break;
-        if (parent.querySelector('form, [role="menu"], [role="log"], [role="dialog"]')) break;
-        if ([...parent.querySelectorAll('img')].some(img => !/profile picture/i.test(img.alt) && img.getBoundingClientRect().width > 96)) break;
+      for (let parent = unit.parentElement, depth = 0; parent && depth < 20; parent = parent.parentElement, depth++) {
+        if (parent.matches('main, body, [role="main"], nav, [role="navigation"]') || parent.querySelector('video, canvas')) break;
+        if (parent.querySelector('input[type="password"], [role="menu"], [role="log"]')) break;
+        if ([...parent.querySelectorAll('svg[aria-label]')].some(icon => /^(?:comment|share|repost|save|send)$/i.test(icon.getAttribute('aria-label')))) break;
+        if ([...parent.querySelectorAll('img, [role="img"]:not(svg)')].some(img => !/profile (?:picture|photo)|gif|sticker|emoji/i.test(img.getAttribute('alt') || img.getAttribute('aria-label') || '') && img.getBoundingClientRect().width > 110)) break;
         const replies = [...parent.querySelectorAll('button, [role="button"]')].filter(control => /^reply$/i.test(visibleText(control)));
         if (parent.querySelector('ul, [role="list"], textarea, [contenteditable="true"], input') || replies.length >= 2) panel = parent;
-        if (panel && parent.querySelector('textarea, [contenteditable="true"], input')) break;
         if (parent.matches('[role="dialog"]')) break;
       }
       if (panel) comments.add(panel);
@@ -255,11 +307,11 @@
         values.delete(attrs[6]); values.delete(attrs[8]); values.delete(attrs[9]);
       }
       for (const layer of panel.querySelectorAll('div, section, ul, li')) {
-        if (layer.matches('[role="button"]') || layer.closest('svg') || layer.querySelector('video, canvas, img:not([alt*="profile picture" i])')) continue;
+        if (layer.matches('[role="button"]') || layer.closest('svg') || layer.querySelector('video, canvas')) continue;
         const color = getComputedStyle(layer).backgroundColor.match(/[\d.]+/g)?.map(Number);
         // Retain a classified dark layer after our CSS lightens it; otherwise
         // subsequent scans would remove and re-add its marker.
-        if (layer.hasAttribute(attrs[4]) || (color && (color[3] ?? 1) > 0 && Math.max(...color.slice(0, 3)) < 235)) {
+        if (layer.hasAttribute(attrs[4]) || (color && (color[3] ?? 1) > 0 && Math.max(...color.slice(0, 3)) < 250)) {
           set(next, layer, attrs[4]);
         }
       }

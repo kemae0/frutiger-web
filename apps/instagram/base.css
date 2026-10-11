@@ -282,7 +282,8 @@ html[data-ig-theme] [data-fw-ig-comments] {
   --card-background: var(--fw-ig-comment-paper) !important;
   --comment-background: var(--fw-ig-comment-paper) !important;
   color: var(--fw-ig-ink) !important;
-  background-color: var(--fw-ig-comment-paper) !important;
+  background: var(--fw-ig-comment-paper) !important;
+  opacity:1 !important;
   border-radius: var(--fw-ig-corner) !important;
   box-shadow: var(--fw-ig-shadow) !important;
 }
@@ -409,3 +410,43 @@ html[data-ig-theme] [data-fw-ig-bare="comment"] {
   color:var(--fw-ig-ink) !important;
 }
 html[data-ig-theme] [data-fw-ig-comments] [data-fw-ig-text] { background:transparent !important; box-shadow:none !important; }
+html[data-ig-theme] [data-fw-ig-comments] form {
+  background:transparent !important; border:0 !important; box-shadow:none !important;
+  padding:0 !important; margin-bottom:0 !important;
+}
+
+/* Room around native feed media and captions without framing profile tiles. */
+html[data-ig-theme] [data-fw-ig-panel="feed"] {
+  padding:12px !important; box-sizing:border-box !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="feed"] > header {
+  border-radius:12px 12px 0 0 !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="footer"] {
+  color:var(--fw-ig-ink) !important;
+  background:var(--fw-ig-paper) !important;
+  border:1px solid var(--fw-ig-edge) !important;
+  border-radius:var(--fw-ig-corner) !important;
+  padding:18px !important; box-sizing:border-box !important;
+  line-height:1.9 !important; box-shadow:var(--fw-ig-shadow) !important;
+  font-size:13px !important; align-content:start !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="footer"]:not(footer) { width:100% !important; min-height:230px !important; }
+html[data-ig-theme] [data-fw-ig-bare="footer"],
+html[data-ig-theme] [data-fw-ig-bare="footer"]:hover {
+  background:transparent !important; border:0 !important; box-shadow:none !important;
+  border-radius:0 !important; padding:0 !important; min-width:0 !important; min-height:0 !important;
+  color:var(--fw-ig-muted) !important;
+}
+html[data-ig-theme] [data-fw-ig-bare="footer"]:hover { text-decoration:underline !important; }
+/* Unframe the entire native note/contact item and its avatar wrappers. */
+html[data-ig-theme] [data-fw-ig-bare="message"],
+html[data-ig-theme] [data-fw-ig-bare="message"]:hover {
+  background:transparent !important; border:0 !important; box-shadow:none !important;
+  border-radius:0 !important; min-width:0 !important; min-height:0 !important;
+  color:var(--fw-ig-ink) !important;
+}
+html[data-ig-theme][data-fw-ig-page="messages"] img {
+  box-shadow:none !important; outline:none !important;
+}
+html[data-ig-theme] [data-fw-ig-panel="profile"] :is(img, [data-fw-ig-bare]:has(img)) { border-radius:50% !important; }

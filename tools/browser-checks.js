@@ -272,7 +272,7 @@
         for (const id of ['ig-post', 'ig-dialog', 'ig-nav', 'ig-login']) solid(id);
         canvasVisible();
         for (const id of ['ig-reel-text', 'ig-reel-caption', 'ig-reel-count', 'ig-reel-comment-text',
-          'ig-byline', 'ig-comment'].filter(id => query.get('view') !== 'profile' || !id.startsWith('ig-reel'))) {
+          'ig-byline', 'ig-comment'].filter(id => !['profile', 'messages'].includes(query.get('view')) || !id.startsWith('ig-reel'))) {
           nestedDark(id);
           const unit = node(id)?.closest('[data-fw-ig-text]') || node(id);
           assert(Boolean(unit) && alpha(getComputedStyle(unit).backgroundColor) === 0 && getComputedStyle(unit).boxShadow === 'none',
@@ -299,14 +299,14 @@
           }
         }
         solid('ig-reel-like-group');
-        const reelInfo = query.get('view') === 'profile' ? null : solid('ig-reel-info');
+        const reelInfo = ['profile', 'messages'].includes(query.get('view')) ? null : solid('ig-reel-info');
         if (reelInfo) assert(reelInfo.element.getAttribute('data-fw-ig-panel') === 'reel', 'Author and caption must share one Reel information panel');
         const profile = solid('ig-profile-header');
         if (profile) {
-          assert(profile.element.getAttribute('data-fw-ig-panel') === 'profile', 'Nested profile header with href="#" statistics must share one coherent panel');
-          for (const id of ['ig-profile-photo', 'ig-profile-name', 'ig-profile-bio', 'ig-profile-links', 'ig-profile-edit', 'ig-profile-archive']) assert(profile.element.contains(node(id)), 'Profile panel must enclose avatar, identity, biography and links');
+          assert(profile.element.getAttribute('data-fw-ig-panel') === 'profile', 'Heading-free profile with button statistics and an unnamed avatar must share one coherent panel');
+          for (const id of ['ig-profile-photo', 'ig-profile-name', 'ig-profile-settings', 'ig-profile-bio', 'ig-profile-links', 'ig-profile-edit', 'ig-profile-archive']) assert(profile.element.contains(node(id)), 'Profile panel must enclose avatar, identity, biography and links');
         }
-        for (const id of ['ig-profile-name', 'ig-profile-bio', 'ig-profile-links', 'ig-post-more', 'ig-caption-more', 'ig-post-next', 'ig-profile-tab-0', 'ig-profile-tab-1']) {
+        for (const id of ['ig-profile-name', 'ig-profile-settings', 'ig-profile-bio', 'ig-profile-links', 'ig-post-more', 'ig-caption-more', 'ig-post-next', 'ig-profile-tab-0', 'ig-profile-tab-1']) {
           const item = inspect(id);
           if (item) assert(alpha(item.style.backgroundColor) === 0 && item.style.boxShadow === 'none', `${id}: no individual bubble on general text, arrows or post tabs`);
         }
@@ -329,14 +329,14 @@
           const img = tile.element.querySelector('img').getBoundingClientRect();
           if (img.width && img.height) assert(Math.abs(img.width / img.height - 3 / 4) < .01, 'Profile thumbnail media must retain its original aspect ratio');
         }
-        for (const id of query.get('view') === 'profile' ? [] : ['ig-reels-canvas', 'ig-reels-track']) {
+        for (const id of ['profile', 'messages'].includes(query.get('view')) ? [] : ['ig-reels-canvas', 'ig-reels-track']) {
           const canvas = inspect(id);
           if (canvas) assert(alpha(canvas.style.backgroundColor) === 0 && canvas.style.backgroundImage === 'none',
             `${id}: opaque Reels route layers must expose the selected wallpaper`);
         }
         const reel = inspect('ig-reel-video');
         if (reel) {
-          assert(reel.style.filter === 'none' && (query.get('view') === 'profile' || Math.abs(reel.rect.width / reel.rect.height - 9 / 16) < .01),
+          assert(reel.style.filter === 'none' && (!reel.rect.width || Math.abs(reel.rect.width / reel.rect.height - 9 / 16) < .01),
             'Instagram Reels must retain original media colors and vertical geometry');
         }
         const commentPanel = solid('ig-reel-comments');
@@ -349,6 +349,35 @@
           const style = getComputedStyle(control);
           assert(alpha(style.backgroundColor) === 0 && style.boxShadow === 'none' && parseFloat(style.paddingLeft) === 0, 'Comments likes, reply, view replies, hearts and close controls must all stay unboxed');
         }
+        const commentForm = node('ig-reel-comments').querySelector('form');
+        assert(alpha(getComputedStyle(commentForm).backgroundColor) === 0 && getComputedStyle(commentForm).boxShadow === 'none', 'A native comment composer form must share the bright outer comments surface');
+        if (query.get('view') !== 'messages') {
+          for (const id of ['ig-post-comment-pane', 'ig-post-comment-wash']) {
+            const pane = solid(id);
+            assert(pane && luminance(pane.style.backgroundColor) > .95, 'Heading-free post comments and their gray wash must become opaque bright paper');
+          }
+        }
+        const footer = solid('ig-legal-footer');
+        if (footer) {
+          assert(footer.element.getAttribute('data-fw-ig-panel') === 'footer' && parseFloat(footer.style.paddingLeft) >= 18, 'Legal links must share a roomy footer surface');
+          for (const link of footer.element.querySelectorAll('[role="button"]')) {
+            const style = getComputedStyle(link);
+            assert(alpha(style.backgroundColor) === 0 && style.boxShadow === 'none' && parseFloat(style.paddingLeft) === 0, 'Footer links must not create individual bubbles');
+          }
+        }
+        if (query.get('view') === 'messages') {
+          assert(document.documentElement.getAttribute('data-fw-ig-page') === 'messages', 'Direct-message routes must be recognized');
+          for (const id of ['ig-dm-account', 'ig-dm-note-0', 'ig-dm-note-1', 'ig-dm-avatar-0', 'ig-dm-avatar-1', 'ig-dm-contact-0', 'ig-dm-contact-1']) {
+            const item = inspect(id);
+            assert(item && alpha(item.style.backgroundColor) === 0 && item.style.boxShadow === 'none' && parseFloat(item.style.borderTopWidth) === 0, 'Account selector, note/contact item and avatar wrapper must remain unframed');
+            for (const img of item.element.querySelectorAll('img')) {
+              const style = getComputedStyle(img);
+              assert(style.boxShadow === 'none' && style.outlineStyle === 'none' && style.borderRadius === '50%', 'Message avatars retain their circle without extra rings or bubble shadows');
+            }
+          }
+          const input = node('ig-dm-input');
+          assert(input.getBoundingClientRect().width > 0 && !input.disabled, 'The native message composer must remain visible and editable');
+        }
         for (const id of ['ig-menu', 'ig-inbox']) solid(id);
         nestedDark('ig-message');
         const igPost = inspect('ig-post');
@@ -357,9 +386,9 @@
             'Instagram panels must use the selected local decorative artwork');
           const header = igPost.element.querySelector('header');
           const headerStyle = getComputedStyle(header);
-          assert(parseFloat(headerStyle.borderTopLeftRadius) === parseFloat(igPost.style.borderTopLeftRadius) &&
-            parseFloat(headerStyle.borderTopRightRadius) === parseFloat(igPost.style.borderTopRightRadius),
-            'Instagram post header corners must match the outer frame');
+          const padded = igPost.element.getAttribute('data-fw-ig-panel') === 'feed';
+          assert(padded ? parseFloat(igPost.style.paddingLeft) >= 12 && parseFloat(headerStyle.borderTopLeftRadius) === 12 :
+            parseFloat(headerStyle.borderTopLeftRadius) === parseFloat(igPost.style.borderTopLeftRadius) && parseFloat(headerStyle.borderTopRightRadius) === parseFloat(igPost.style.borderTopRightRadius), 'Feed posts must have room around their media and a matching inset header contour');
           const media = igPost.element.querySelector('.post-photo');
           assert(getComputedStyle(media).filter === 'none' &&
             (query.has('view') || media.getBoundingClientRect().height === 350),
@@ -376,7 +405,7 @@
         }
         assert(document.documentElement.scrollWidth <= document.documentElement.clientWidth,
           'Instagram frames must not introduce horizontal page overflow');
-        const input = query.get('view') === 'profile' ? null : query.get('view') === 'reels' ? node('ig-reel-comments').querySelector('input') : node('ig-input');
+        const input = query.get('view') === 'profile' ? null : query.get('view') === 'reels' ? node('ig-reel-comments').querySelector('input') : query.get('view') === 'messages' ? node('ig-dm-input') : node('ig-input');
         if (input) {
           assert(input.matches('input, textarea, [contenteditable="true"]') && !input.disabled,
             'Instagram fields must remain editable native controls');

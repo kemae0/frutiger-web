@@ -21,7 +21,7 @@ const width = Number(process.argv.find(arg => arg.startsWith('--width='))?.slice
 assert.ok(Number.isInteger(width) && width >= 480 && width <= 2560, 'Preview width must be 480–2560 pixels');
 const guideMode = process.argv.find(arg => arg.startsWith('--guide='))?.slice(8);
 const view = process.argv.find(arg => arg.startsWith('--view='))?.slice(7);
-assert.ok(!view || ['reels', 'profile'].includes(view), 'Unknown Instagram preview view');
+assert.ok(!view || ['reels', 'profile', 'messages'].includes(view), 'Unknown Instagram preview view');
 assert.ok(!guideMode || ['compact', 'expanded', 'fullscreen'].includes(guideMode), 'Unknown Music guide mode');
 for (const site of selectedSite ? [selectedSite] : allSites) {
   for (const theme of ['frutiger', 'dorfic', 'off']) {

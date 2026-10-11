@@ -107,3 +107,29 @@ body[data-preview-view="profile"] main > :not(.profile-fixture), body[data-previ
 }
 
 .profile-identity { display:flex; gap:14px; align-items:flex-start; }
+
+.legal-links { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:28px; background:#d9eff7; }
+.legal-links [role=button] { font-size:12px; cursor:pointer; }
+.profile-username { display:inline-block; font-size:24px; font-weight:700; margin:18px 0; }
+.profile-statistics { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+.profile-statistics [role=button] { margin:0; }
+.profile-statistics strong { margin-right:4px; font-weight:400; }
+.messages-fixture { padding:20px; }
+.messages-fixture header { padding:0 0 16px; }
+.messages-fixture header [role=button] { display:flex; align-items:center; gap:14px; font-size:24px; font-weight:700; }
+.notes-carousel { display:flex; gap:12px; overflow-x:auto; padding:8px 0 18px; }
+.note-item { flex:0 0 118px; display:flex; flex-direction:column; align-items:center; padding:12px; margin:0; }
+.note-item a { display:block; }
+.note-item img, .message-contact img { border-radius:50%; display:block; }
+.note-caption { padding:8px; min-height:48px; text-align:center; font-size:12px; background:#fff; border-radius:14px; margin-bottom:8px; }
+.note-item > span { font-size:13px; margin-top:6px; }
+.native-avatar-wrapper { display:block; padding:8px; }
+.message-contacts { margin:20px 0; }
+.message-contact { display:flex; align-items:center; gap:16px; padding:12px; margin:12px 0; }
+.message-contact p { margin:4px 0; font-size:13px; }
+.dm-composer { display:flex; gap:12px; }
+.messages-fixture, .fixture-comment-pane { display:none; }
+body[data-preview-view="feed"] .fixture-comment-pane { display:block; padding:18px; background:#92979b; }
+body[data-preview-view="messages"] main > :not(.messages-fixture), body[data-preview-view="messages"] aside { display:none; }
+body[data-preview-view="messages"] .messages-fixture { display:block; }
+body[data-preview-view="reels"] .messages-fixture { display:none; }
